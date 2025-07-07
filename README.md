@@ -47,22 +47,45 @@ LOCAL_EMBEDDING_MODEL=sentence-transformers/paraphrase-multilingual-MiniLM-L12-v
 OPENAI_API_KEY=your-key-here
 ```
 
-### 5. Prepare Data
-
-Ensure your data structure:
+### 5. Project Structure
 
 ```
 flower-chat-agent/
 ├── data/
-│   └── chunks_data.csv     # Your product data
-├── .env                    # Configuration
-├── config.py              # Settings
-└── test.py                # Main test file
+│   ├── chunks_data.csv              # Product database (724 items)
+│   ├── multilingual_faq.json        # FAQ responses (3 languages)
+│   ├── multilingual_mapping.json    # Language mappings & synonyms
+│   ├── multilingual_responses.json  # Response templates
+│   └── language_detection.json      # Intent classification patterns
+├── config.py                        # Categories & settings
+├── setup_database.py               # Main XoFlowersDB class
+├── test.py                          # Comprehensive testing
+├── requirements.txt                 # Dependencies
+└── .env                            # Configuration (create this)
 ```
 
-### 6. Run Initial Test
+### 6. Initialize Database
+
+```bash
+python setup_database.py
+```
+
+This will:
+
+- Create ChromaDB collections
+- Load 724 products from CSV
+- Generate multilingual embeddings
+- Display loading statistics
+
+### 7. Run Tests
 
 ```bash
 python test.py
 ```
 
+This will test:
+
+- Database loading
+- Search functionality
+- Multilingual queries
+- Performance metrics
