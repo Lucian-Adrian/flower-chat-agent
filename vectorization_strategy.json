@@ -1,0 +1,136 @@
+{
+  "chunking_strategy": {
+    "description": "Strategia de împărțire a datelor pentru vectorizare eficientă în ChromaDB",
+    "chunk_types": {
+      "product_chunk": {
+        "description": "Chunk principal pentru fiecare produs",
+        "max_tokens": 200,
+        "content_structure": {
+          "primary_text": "name + description",
+          "metadata": {
+            "id": "product_id",
+            "category": "product_category", 
+            "price": "product_price",
+            "flowers": "flower_types",
+            "url": "product_url",
+            "chunk_type": "product"
+          }
+        }
+      },
+      "collection_chunk": {
+        "description": "Chunk pentru descrierea colecțiilor",
+        "max_tokens": 300,
+        "content_structure": {
+          "primary_text": "collection_name + collection_description",
+          "metadata": {
+            "collection_id": "collection_key",
+            "price_range": "min_max_price",
+            "product_count": "number_of_products",
+            "keywords": "collection_keywords",
+            "chunk_type": "collection"
+          }
+        }
+      },
+      "category_chunk": {
+        "description": "Chunk pentru căutare per categorie",
+        "max_tokens": 150,
+        "content_structure": {
+          "primary_text": "category_name + brief_description",
+          "metadata": {
+            "category": "category_name",
+            "product_ids": "list_of_product_ids",
+            "chunk_type": "category"
+          }
+        }
+      },
+      "flower_type_chunk": {
+        "description": "Chunk pentru tipuri de flori",
+        "max_tokens": 100,
+        "content_structure": {
+          "primary_text": "flower_name + usage_context",
+          "metadata": {
+            "flower_type": "flower_name",
+            "product_ids": "products_containing_flower",
+            "chunk_type": "flower"
+          }
+        }
+      },
+      "price_range_chunk": {
+        "description": "Chunk pentru căutare după preț",
+        "max_tokens": 100,
+        "content_structure": {
+          "primary_text": "price_description + suitable_occasions",
+          "metadata": {
+            "price_min": "minimum_price",
+            "price_max": "maximum_price",
+            "price_category": "budget|mid-range|premium",
+            "chunk_type": "price"
+          }
+        }
+      }
+    },
+    "embedding_strategy": {
+      "model": "text-embedding-ada-002",
+      "chunk_overlap": 50,
+      "similarity_threshold": 0.7,
+      "max_results_per_query": 10
+    },
+    "search_strategies": {
+      "hybrid_search": {
+        "description": "Combinează semantic search cu metadata filtering",
+        "steps": [
+          "1. Semantic search în primary_text",
+          "2. Filter pe metadata (price, category, etc.)",
+          "3. Re-rank rezultatele",
+          "4. Return top matches"
+        ]
+      },
+      "contextual_search": {
+        "description": "Caută în multiple chunk types simultan",
+        "example": "Pentru 'trandafiri roșii sub 1000 MDL' caută în product_chunk + flower_type_chunk + price_range_chunk"
+      }
+    }
+  },
+  "implementation_examples": {
+    "product_chunk_example": {
+      "text": "Bouquet French Kiss - Trandafiri francezi premium disponibili în 15, 21, 31, 51 bucăți. Trandafiri de cea mai înaltă calitate cu arome intense și durabilitate excepțională.",
+      "metadata": {
+        "id": "xof_french_005",
+        "category": "French roses",
+        "price": 1450,
+        "flowers": "Rose",
+        "url": "https://xoflowers.md/bouquet-french-kiss/",
+        "chunk_type": "product"
+      }
+    },
+    "collection_chunk_example": {
+      "text": "Trandafiri Francezi Premium - Trandafiri francezi de cea mai înaltă calitate - varietăți precum Mandala, Pink Mondial, Playa Blanca, și Pink Expression. Buchete luxoase și aranjamente rafinate pentru momentele speciale.",
+      "metadata": {
+        "collection_id": "French roses",
+        "price_range": "640-8700 MDL",
+        "product_count": 50,
+        "keywords": ["trandafir", "francez", "premium", "luxos"],
+        "chunk_type": "collection"
+      }
+    }
+  },
+  "chromadb_configuration": {
+    "collection_settings": {
+      "name": "xoflowers_products",
+      "embedding_function": "default",
+      "metadata_schema": {
+        "chunk_type": "string",
+        "category": "string", 
+        "price": "float",
+        "price_category": "string",
+        "flower_type": "string",
+        "collection_id": "string"
+      }
+    },
+    "indexing_strategy": {
+      "create_separate_collections": false,
+      "use_single_collection_with_metadata": true,
+      "enable_full_text_search": true
+    }
+  }
+}

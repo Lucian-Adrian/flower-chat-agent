@@ -1,0 +1,109 @@
+{
+  "collections": {
+    "Chando": {
+      "name": "Chando - Difuzoare de Aromă",
+      "description": "Colecție exclusivă de difuzoare de aromă Chando cu design elegant din porțelan poros. Parfumuri rafinate pentru casa dumneavoastră - de la aromele romantice și florale până la cele picante și citrice. Fiecare difuzor este o operă de artă care transformă spațiul în experiență senzorială.",
+      "keywords": ["difuzor", "aromă", "parfum", "porțelan", "elegant", "design", "casă", "miros", "senzorial"],
+      "price_range": "660-2800 MDL",
+      "product_count": 11
+    },
+    "Peonies": {
+      "name": "Bujori - Eleganță Naturală",
+      "description": "Colecție magnifica de buchete cu bujori proaspeți, simbolul eleganței și al dragostei pure. De la aranjamente clasice până la compoziții complexe cu hortensii, trandafiri spray și gerbera. Bujori în nuanțe delicate - alb, roz, coral - perfecti pentru ocasii speciale și declarații de dragoste.",
+      "keywords": ["bujor", "peonie", "elegant", "romantic", "proaspăt", "dragoste", "nuntă", "sărbătoare", "delicat"],
+      "price_range": "565-6200 MDL",
+      "product_count": 32
+    },
+    "French roses": {
+      "name": "Trandafiri Francezi Premium",
+      "description": "Trandafiri francezi de cea mai înaltă calitate - varietăți precum Mandala, Pink Mondial, Playa Blanca, și Pink Expression. Buchete luxoase și aranjamente rafinate pentru momentele speciale. Disponibili în multiple configurații - de la 11 la 101 trandafiri.",
+      "keywords": ["trandafir", "francez", "premium", "luxos", "calitate", "varietate", "elegant", "romantic", "cadou"],
+      "price_range": "640-8700 MDL",
+      "product_count": 50
+    },
+    "Basket / Boxes with flowers": {
+      "name": "Coșuri și Cutii cu Flori",
+      "description": "Aranjamente florale artistice în coșuri elegante și cutii de prezentare premium. Compoziții complexe cu hortensii, trandafiri, orchidee, bujori și alte flori de sezon. Perfecte pentru cadouri speciale, evenimente corporative și declarații de dragoste.",
+      "keywords": ["coș", "cutie", "aranjament", "flori", "premium", "cadou", "elegant", "artistic", "prezentare"],
+      "price_range": "700-11500 MDL",
+      "product_count": 94
+    },
+    "Author's bouquets": {
+      "name": "Buchete de Autor",
+      "description": "Creații florale unice, designate de floristii noștri cu experiență. Fiecare buchet este o compoziție artistică care combină armonios diferite varietăți de flori - de la hortensii și trandafiri până la orchidee și bujori. Buchete cu personalitate pentru persoane speciale.",
+      "keywords": ["autor", "unic", "artistic", "designer", "florist", "creație", "personalitate", "special", "armonios"],
+      "price_range": "620-3500 MDL",
+      "product_count": 34
+    },
+    "Classic bouquets": {
+      "name": "Buchete Clasice",
+      "description": "Buchete tradiționale în stil clasic, create după standardele europene de floristică. Compoziții echilibrate cu flori proaspete de sezon - trandafiri, gerbere, crizanteme, eustoma. Perfecte pentru orice ocazie și orice vârstă.",
+      "keywords": ["clasic", "tradițional", "european", "echilibrat", "proaspăt", "sezon", "ocazie", "universal"],
+      "price_range": "450-2500 MDL",
+      "product_count": 25
+    },
+    "MONO/DUO bouquets": {
+      "name": "Buchete Mono/Duo",
+      "description": "Buchete minimaliste și elegante cu o singură varietate de flori (mono) sau combinații simple din două varietăți (duo). Stil modern și rafinat pentru cei care apreciază simplitatea și puritatea formelor florale.",
+      "keywords": ["mono", "duo", "minimalist", "elegant", "simplu", "modern", "rafinat", "puritate", "formă"],
+      "price_range": "380-1800 MDL",
+      "product_count": 18
+    },
+    "Bride's bouquet": {
+      "name": "Buchete de Mireasă",
+      "description": "Buchete speciale pentru cea mai importantă zi din viața unei femei. Creații florale delicate și romantice, realizate din flori albe și în nuanțe pastel. Fiecare buchet de mireasă este personalizat și creat cu atenție la detalii.",
+      "keywords": ["mireasă", "nuntă", "special", "alb", "pastel", "romantic", "delicat", "personalizat", "detalii"],
+      "price_range": "800-3500 MDL",
+      "product_count": 12
+    },
+    "Premium": {
+      "name": "Colecția Premium",
+      "description": "Cele mai exclusive și luxoase aranjamente florale din oferta noastră. Flori rare și de excepție, aranjamente complexe și design sofisticat. Pentru persoanele care apreciază calitatea superioară și rafinamentul.",
+      "keywords": ["premium", "exclusiv", "luxos", "rar", "excepție", "complex", "sofisticat", "calitate", "rafinament"],
+      "price_range": "1200-5000 MDL",
+      "product_count": 8
+    },
+    "St. Valentine's Day": {
+      "name": "Ziua Îndrăgostiților",
+      "description": "Colecție specială pentru Ziua Îndrăgostiților - buchete romantice în roșu și roz, aranjamente în formă de inimă, compoziții pasionale cu trandafiri roșii. Fiecare buchet exprimă dragoste și pasiune.",
+      "keywords": ["valentine", "dragoste", "romantic", "roșu", "roz", "inimă", "pasiune", "trandafir", "sentiment"],
+      "price_range": "500-2500 MDL",
+      "product_count": 15
+    },
+    "Mourning flower arrangement": {
+      "name": "Aranjamente Funerare",
+      "description": "Aranjamente florale elegante și respectuoase pentru momente de doliu. Flori albe și în nuanțe discrete, aranjamente clasice care exprimă respect, compasiune și aducere-aminte. Creații florale pentru ultimul omagiu.",
+      "keywords": ["funerar", "doliu", "respect", "compasiune", "amintire", "omagiu", "alb", "discret", "elegant"],
+      "price_range": "400-1800 MDL",
+      "product_count": 22
+    },
+    "Soft toys": {
+      "name": "Jucării de Pluș",
+      "description": "Jucării de pluș adorabile care însoțesc perfect buchetele florale. Ursuleți, iepurași și alte personaje drăguțe care aduc zâmbete și bucurie. Perfecte pentru copii și pentru cei cu suflet de copil.",
+      "keywords": ["pluș", "jucărie", "ursuleț", "iepuraș", "drăguț", "copii", "zâmbet", "bucurie", "cadou"],
+      "price_range": "150-800 MDL",
+      "product_count": 20
+    },
+    "Sweets": {
+      "name": "Dulciuri",
+      "description": "Dulciuri fine și ciocolată premium care completează perfect buchetele florale. De la praline artizanale până la bomboane belgiene, fiecare dulce este selectat pentru calitate și gust rafinat.",
+      "keywords": ["dulce", "ciocolată", "premium", "praline", "artizanal", "belgian", "calitate", "gust", "rafinat"],
+      "price_range": "100-500 MDL",
+      "product_count": 18
+    },
+    "Additional accessories / Vases": {
+      "name": "Accesorii și Vaze",
+      "description": "Vaze elegante, accesorii florale și elemente decorative care completează aranjamentele florale. Vaze din cristal, ceramică și alte materiale premium pentru a păstra frumusețea florilor mai mult timp.",
+      "keywords": ["vază", "accesoriu", "decorativ", "cristal", "ceramică", "premium", "elegant", "frumusețe", "durabilitate"],
+      "price_range": "200-1500 MDL",
+      "product_count": 25
+    },
+    "Greeting card": {
+      "name": "Felicitări",
+      "description": "Felicitări elegante și mesaje personalizate care însoțesc buchetele florale. Cărți de calitate premium cu designuri artistice pentru a exprima sentimentele în cuvinte frumoase alături de florile oferite.",
+      "keywords": ["felicitare", "mesaj", "personalizat", "calitate", "design", "artistic", "sentiment", "cuvinte", "frumos"],
+      "price_range": "50-200 MDL",
+      "product_count": 57
+    }
+  }
+}

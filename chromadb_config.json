@@ -1,0 +1,54 @@
+{
+  "chromadb_config": {
+    "collection_name": "xoflowers_products",
+    "embedding_model": "text-embedding-ada-002",
+    "distance_metric": "cosine",
+    "batch_size": 100,
+    "metadata_schema": {
+      "chunk_type": {"type": "string", "indexed": true},
+      "category": {"type": "string", "indexed": true},
+      "price": {"type": "float", "indexed": true},
+      "price_category": {"type": "string", "indexed": true},
+      "flower_type": {"type": "string", "indexed": true},
+      "seasonality": {"type": "string", "indexed": true},
+      "occasion": {"type": "string", "indexed": true},
+      "collection_id": {"type": "string", "indexed": true},
+      "max_tokens": {"type": "int", "indexed": false},
+      "content_length": {"type": "int", "indexed": false}
+    }
+  },
+  "search_strategies": {
+    "semantic_search": {
+      "description": "Pure semantic search on primary_text",
+      "use_case": "Finding products by description similarity"
+    },
+    "filtered_search": {
+      "description": "Semantic search + metadata filters",
+      "use_case": "Finding products with specific criteria (price, category, etc.)",
+      "example_filters": {
+        "price_range": {"price": {"$gte": 500, "$lte": 1500}},
+        "category_filter": {"category": "French roses"},
+        "occasion_filter": {"occasion": "Wedding"},
+        "flower_filter": {"flower_type": {"$contains": "Rose"}}
+      }
+    },
+    "hybrid_search": {
+      "description": "Multiple chunk types + re-ranking",
+      "use_case": "Complex queries requiring product + collection context"
+    }
+  },
+  "optimization_tips": {
+    "chunk_size": "Keep chunks under 300 tokens for optimal embedding",
+    "metadata_usage": "Use metadata for filtering before semantic search",
+    "query_expansion": "Expand user queries with synonyms (trandafir = rose)",
+    "result_ranking": "Combine semantic similarity with business rules (price, availability)",
+    "language_handling": "Handle both Romanian and English queries"
+  },
+  "performance_settings": {
+    "max_results": 20,
+    "similarity_threshold": 0.7,
+    "rerank_top_k": 10,
+    "cache_embeddings": true,
+    "index_refresh_interval": "daily"
+  }
+}
