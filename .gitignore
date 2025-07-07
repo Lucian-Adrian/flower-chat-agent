@@ -1,0 +1,9 @@
+.env
+.env.local
+.env.production
+chroma_db/
+.venv/
+__pycache__/
+ai_agents_env/
+venv/
+env/
