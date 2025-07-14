@@ -83,7 +83,7 @@ xoflowers-agent/
 ### **1. Clonare și Setup**
 ```bash
 # Clonează repository-ul
-git clone <repository-url>
+git clone https://github.com/Lucian-Adrian/flower-chat-agent.git
 cd xoflowers-agent
 
 # Creează mediul virtual

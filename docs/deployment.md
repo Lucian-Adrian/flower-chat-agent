@@ -15,7 +15,7 @@ This guide provides instructions for deploying the XOFlowers AI Agent to product
 
 #### **1. Clone Repository**
 ```bash
-git clone https://github.com/your-username/xoflowers-agent.git
+git clone https://github.com/Lucian-Adrian/flower-chat-agent.git
 cd xoflowers-agent
 ```
 
@@ -256,7 +256,7 @@ sudo usermod -aG sudo xoflowers
 sudo -u xoflowers -i
 
 # Clone repository
-git clone https://github.com/your-username/xoflowers-agent.git
+git clone https://github.com/Lucian-Adrian/flower-chat-agent.git
 cd xoflowers-agent
 
 # Create virtual environment
