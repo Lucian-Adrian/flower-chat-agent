@@ -30,7 +30,9 @@ xoflowers-agent/
 │
 ├── docs/                            # 📚 Documentație tehnică
 │   ├── architecture.md              # Arhitectura sistemului
-│   └── api_setup_guide.md           # Ghid configurare API-uri
+│   ├── api_setup_guide.md           # Ghid configurare API-uri
+│   ├── deployment.md                # Ghid deployment
+│   └── system_flow.md               # Fluxul sistemului
 │
 ├── data/                            # 📊 Date și cataloage
 │   └── products.json                # Catalogul de produse XOFlowers
@@ -44,7 +46,7 @@ xoflowers-agent/
 │   ├── intelligence/                # 🧠 Creierul AI
 │   │   ├── __init__.py
 │   │   ├── prompts.py               # Template-uri și prompt-uri AI
-│   │   ├── intent_classifier.py     # Clasificare intenții cu AI
+│   │   ├── intent_classifier.py     # Clasificare intenții cu AI (17 tipuri)
 │   │   ├── product_search.py        # Motor căutare ChromaDB
 │   │   └── action_handler.py        # Logica de business și acțiuni
 │   │
@@ -56,6 +58,13 @@ xoflowers-agent/
 │   └── security/                    # 🔒 Securitate și filtrare
 │       ├── __init__.py
 │       └── filters.py               # Censură, anti-jailbreak, rate limiting
+│
+├── tests/                           # 🧪 Suite de teste
+│   ├── __init__.py
+│   ├── test_imports.py              # Teste validare import-uri
+│   ├── test_agent.py                # Teste funcționalitate de bază
+│   ├── test_enhanced_agent.py       # Teste comprehensive (17 intenții)
+│   └── README.md                    # Documentație teste
 │
 ├── .env                             # 🔑 Variabile de mediu
 ├── .gitignore                       # 📝 Fișiere ignorate de Git
@@ -264,11 +273,18 @@ Mulțumim că ați ales XOFlowers! 🌺"
 
 ### **Rulare Teste**
 ```bash
-# Teste unitate
-pytest tests/
+# Teste comprehensive (17 intenții)
+python tests/test_enhanced_agent.py
 
-# Teste integrare
-python tests/test_meta_webhook.py
+# Teste import-uri și dependențe
+python tests/test_imports.py
+
+# Teste funcționalitate de bază
+python tests/test_agent.py
+
+# Toate testele cu pytest (dacă instalat)
+pip install pytest
+pytest tests/ -v
 
 # Verificare stil cod
 flake8 src/
