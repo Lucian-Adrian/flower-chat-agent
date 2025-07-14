@@ -130,9 +130,15 @@ class ActionHandler:
             return ENHANCED_GREETING_RESPONSES["first_time"]
     
     def handle_find_product(self, message: str, user_id: str) -> str:
-        """Handle product search requests with personalization"""
+        """Handle product search requests with conversational and empathetic approach"""
         # Extract search query from message
         query = self._extract_search_query(message)
+        
+        # Check for budget constraints in the message
+        budget_amount = self._extract_budget_from_message(message)
+        
+        # Analyze the context and occasion
+        occasion_context = self._analyze_occasion_context(message)
         
         # Get user preferences for personalized search
         user_profile = self.context_manager.get_user_profile(user_id)
@@ -146,29 +152,61 @@ class ActionHandler:
                 "special_occasions": user_profile.special_occasions
             }
         
-        # Search for products
-        products = self.product_search.search_products(query, context=search_context)
+        # Search for products - use budget search if budget is specified
+        if budget_amount:
+            products = self.product_search.get_budget_recommendations(budget_amount, query)
+        else:
+            products = self.product_search.search_products(query, context=search_context)
         
         if products:
-            # Format products for response
-            formatted_products = self._format_products_for_display(products)
+            # Generate contextual response
+            contextual_response = self._generate_contextual_response(occasion_context, message)
+            
+            # Add budget-specific intro if budget was specified
+            if budget_amount:
+                contextual_response += f"\n\n💰 *Am găsit opțiuni excelente în bugetul dumneavoastră de {budget_amount} MDL:*"
+            
+            # Format products for response with conversational tone
+            formatted_products = self._format_products_conversationally(products, occasion_context)
+            
+            # Generate personalized advice
+            personalized_advice = self._generate_personalized_advice(occasion_context, products)
+            
             response = ENHANCED_PRODUCT_SEARCH_PROMPT.format(
-                query=query,
-                products=formatted_products
+                contextual_response=contextual_response,
+                products=formatted_products,
+                personalized_advice=personalized_advice
             )
         else:
-            response = f"""
-🌸 **Căutare: "{query}"**
+            # Get some popular products as fallback
+            popular_products = self.product_search.get_popular_products(3)
+            if popular_products:
+                contextual_response = self._generate_contextual_response("general", message)
+                formatted_popular = self._format_products_conversationally(popular_products, "general")
+                
+                response = f"""
+{contextual_response}
 
-Îmi pare rău, nu am găsit produse exacte pentru această căutare, dar iată câteva sugestii frumoase:
+Iată câteva sugestii frumoase din colecția noastră care s-ar putea să vă placă:
 
-🌺 **Buchete Premium:**
-• Buchet Romantic - 25 trandafiri roșii - 750 MDL
-• Buchet Pastel - Mix bujori și trandafiri - 600 MDL
-• Buchet Elegant - Flori de sezon - 450 MDL
+{formatted_popular}
 
 💫 *Doriți să caut ceva specific sau să vă recomand pe baza preferințelor dumneavoastră?*
-            """
+                """
+            else:
+                response = f"""
+🌸 Înțeleg ce căutați, dar să verific mai bine opțiunile disponibile pentru dumneavoastră.
+
+Vă rugăm să îmi spuneți mai multe despre:
+• Ocazia specială
+• Preferințele de culoare
+• Bugetul aproximativ
+
+📞 **Telefon:** +373 22 123 456
+📧 **Email:** hello@xoflowers.md
+
+💫 *Sunt aici să vă ajut să găsiți florile perfecte!*
+                """
         
         return response
     
@@ -478,6 +516,136 @@ Pentru a verifica statusul comenzii dumneavoastră, vă rugăm să ne furnizați
         
         return ' '.join(filtered_words) if filtered_words else message.lower()
     
+    def _extract_budget_from_message(self, message: str) -> Optional[int]:
+        """Extract budget amount from user message"""
+        import re
+        
+        # Look for budget patterns in Romanian
+        budget_patterns = [
+            r'până la (\d+)\s*(?:lei|mdl|md)',
+            r'buget(?:ul)?\s*(?:de|până la)?\s*(\d+)\s*(?:lei|mdl|md)',
+            r'maxim\s*(\d+)\s*(?:lei|mdl|md)',
+            r'sub\s*(\d+)\s*(?:lei|mdl|md)',
+            r'mai ieftin de\s*(\d+)\s*(?:lei|mdl|md)',
+            r'(\d+)\s*(?:lei|mdl|md)\s*maxim',
+            r'(\d+)\s*(?:lei|mdl|md)\s*budget',
+            r'cu\s*(\d+)\s*(?:lei|mdl|md)',
+        ]
+        
+        message_lower = message.lower()
+        
+        for pattern in budget_patterns:
+            match = re.search(pattern, message_lower)
+            if match:
+                try:
+                    return int(match.group(1))
+                except (ValueError, IndexError):
+                    continue
+        
+        return None
+
+    def _analyze_occasion_context(self, message: str) -> str:
+        """Analyze the occasion context from the message"""
+        message_lower = message.lower()
+        
+        # Check for specific occasions
+        if any(word in message_lower for word in ['aniversar', 'ziua', 'birthday', 'sărbător']):
+            return "birthday"
+        elif any(word in message_lower for word in ['nuntă', 'căsător', 'wedding', 'mireasă']):
+            return "wedding"
+        elif any(word in message_lower for word in ['valentine', 'dragoste', 'iubire', 'romantic']):
+            return "romantic"
+        elif any(word in message_lower for word in ['mamă', 'mama', 'mother', '8 martie']):
+            return "mother"
+        elif any(word in message_lower for word in ['înmormântare', 'condoleanțe', 'funeral', 'coroană']):
+            return "funeral"
+        elif any(word in message_lower for word in ['felicitări', 'congratulations', 'succes', 'promovare']):
+            return "congratulations"
+        elif any(word in message_lower for word in ['scuze', 'iertare', 'sorry', 'apologize']):
+            return "apology"
+        else:
+            return "general"
+    
+    def _generate_contextual_response(self, occasion_context: str, message: str) -> str:
+        """Generate contextual response based on occasion"""
+        contextual_responses = {
+            "birthday": "🎉 Pentru o zi de naștere specială! Am găsit cele mai frumoase buchete care vor face această zi de neuitat:",
+            "wedding": "👰 Pentru ziua cea mare! Iată aranjamentele noastre elegante perfecte pentru nuntă:",
+            "romantic": "💕 Pentru momentele romantice! Am selectat cele mai frumoase flori pentru a-ți exprima dragostea:",
+            "mother": "🌸 Pentru cea mai dragă mamă! Iată florile perfecte pentru a-i arăta cât de mult o iubești:",
+            "funeral": "🕊️ Pentru momentele de reculegere. Aranjamentele noastre sunt create cu respect și empatie:",
+            "congratulations": "🎊 Pentru a celebra succesul! Am ales cele mai potrivite flori pentru felicitări:",
+            "apology": "🌹 Pentru a cere iertare cu sinceritate. Florile pot spune ceea ce cuvintele nu pot:",
+            "general": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:"
+        }
+        
+        return contextual_responses.get(occasion_context, contextual_responses["general"])
+    
+    def _format_products_conversationally(self, products: List[Dict], occasion_context: str) -> str:
+        """Format products with conversational tone based on occasion"""
+        if not products:
+            return "Din păcate, nu am găsit produse potrivite în acest moment."
+        
+        formatted = []
+        for i, product in enumerate(products[:5], 1):
+            name = product.get('name', 'Produs special')
+            price = product.get('price', 'Preț la cerere')
+            description = product.get('description', 'Aranjament floral elegant')
+            
+            # Create occasion-specific descriptions
+            if occasion_context == "birthday":
+                emoji = "🎂"
+                tone = "Perfect pentru sărbătorirea zilei speciale!"
+            elif occasion_context == "wedding":
+                emoji = "👰"
+                tone = "Ideal pentru ziua nunții!"
+            elif occasion_context == "romantic":
+                emoji = "💕"
+                tone = "Pentru momentele romantice!"
+            elif occasion_context == "mother":
+                emoji = "🌸"
+                tone = "Perfecte pentru mama dragă!"
+            elif occasion_context == "funeral":
+                emoji = "🕊️"
+                tone = "Cu respect și empatie."
+            else:
+                emoji = "🌺"
+                tone = "Frumos și elegant!"
+            
+            price_display = f"{price} MDL" if str(price).isdigit() else str(price)
+            
+            formatted.append(f"""
+{emoji} **{i}. {name}**
+💰 {price_display}
+📝 {description}
+✨ *{tone}*
+            """)
+        
+        return "\n".join(formatted)
+    
+    def _generate_personalized_advice(self, occasion_context: str, products: List[Dict]) -> str:
+        """Generate personalized advice based on occasion and products"""
+        advice_templates = {
+            "birthday": "🎉 *Sfat personal:* Pentru o zi de naștere, adăugați o felicitare personalizată și poate o cutie de ciocolată pentru a face cadoul complet!",
+            "wedding": "👰 *Sfat personal:* Pentru nuntă, considerați să comandați în avans și să discutați cu noi despre decorațiunile sălii!",
+            "romantic": "💕 *Sfat personal:* Pentru momente romantice, trandafirii roșii sunt întotdeauna o alegere sigură, dar nu uitați de preferințele ei!",
+            "mother": "🌸 *Sfat personal:* Pentru mamă, florile cu parfum delicat și culorile calde sunt mereu apreciate!",
+            "funeral": "🕊️ *Sfat personal:* Pentru condoleanțe, alegem întotdeauna culori sobri și aranjamente elegante, cu respect.",
+            "congratulations": "🎊 *Sfat personal:* Pentru felicitări, culorile vii și aranjamentele mari fac o impresie excelentă!",
+            "apology": "🌹 *Sfat personal:* Pentru a cere iertare, sinceritatea contează mai mult decât mărimea buchetului.",
+            "general": "🌺 *Sfat personal:* Dacă nu sunteți sigur, sunați-ne și vă vom ajuta să alegeți perfect!"
+        }
+        
+        base_advice = advice_templates.get(occasion_context, advice_templates["general"])
+        
+        # Add product-specific advice
+        if products:
+            total_products = len(products)
+            if total_products > 3:
+                base_advice += f"\n\n📞 *Avem {total_products} opțiuni disponibile - sunați pentru a discuta toate variantele!*"
+        
+        return base_advice
+
     def _format_products_for_display(self, products: List[Dict]) -> str:
         """Format products for elegant display with XOFlowers brand voice"""
         if not products:
@@ -487,12 +655,25 @@ Pentru a verifica statusul comenzii dumneavoastră, vă rugăm să ne furnizați
         for i, product in enumerate(products[:5], 1):  # Show max 5 products
             name = product.get('name', 'Produs necunoscut')
             price = product.get('price', 'Preț la cerere')
-            description = product.get('description', 'Descriere indisponibilă')
+            flower_type = product.get('flower_type', '')
+            category = product.get('category', '')
+            
+            # Create a more appealing description
+            description_parts = []
+            if flower_type:
+                description_parts.append(f"🌺 {flower_type}")
+            if category and category != 'product':
+                description_parts.append(f"📂 {category}")
+            
+            description = " • ".join(description_parts) if description_parts else "Aranjament floral special"
+            
+            # Format price nicely
+            price_display = f"{price} MDL" if price and price.isdigit() else price
             
             formatted.append(f"""
 🌸 **{i}. {name}**
-💰 {price} MDL
-📝 {description}
+💰 {price_display}
+{description}
             """)
         
         return "\n".join(formatted)
@@ -532,6 +713,4 @@ Pentru a verifica statusul comenzii dumneavoastră, vă rugăm să ne furnizați
         
         elif intent == "gift_suggestions" and user_profile.special_occasions:
             occasions = ", ".join(user_profile.special_occasions)
-            response += f"\n\n🎁 *Bazându-mă pe istoricul dumneavoastră pentru {occasions}, am pregătit recomandări speciale!*"
-        
-        return response
+            response += f"\n\n🎁 *Bazându-mă pe istoricul dumneavoastră pentru {occasions}, am pregătit sugestii speciale!*"

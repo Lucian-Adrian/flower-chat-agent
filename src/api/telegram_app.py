@@ -48,8 +48,16 @@ load_dotenv()
 class XOFlowersTelegramBot:
     """Enhanced Telegram Bot with AI-powered conversations and context awareness"""
     
-    def __init__(self, token: str):
+    def __init__(self, debug: bool = False):
         """Initialize the enhanced Telegram bot"""
+        self.debug = debug
+        
+        # Get bot token from environment
+        token = os.getenv('TELEGRAM_BOT_TOKEN')
+        
+        if not token:
+            raise ValueError("TELEGRAM_BOT_TOKEN not found in environment variables")
+        
         self.token = token
         self.application = Application.builder().token(token).build()
         
@@ -139,7 +147,7 @@ class XOFlowersTelegramBot:
         
         try:
             # Security check
-            if not self.security_filter.is_safe_message(message):
+            if not self.security_filter.is_message_safe(message):
                 await update.message.reply_text(
                     "🌸 Îmi pare rău, dar prefer să păstrăm conversația profesională și elegantă. \n\nCum vă pot ajuta cu serviciile XOFlowers?"
                 )
@@ -264,18 +272,10 @@ class XOFlowersTelegramBot:
 
 def main():
     """Main function to run the bot"""
-    # Get bot token from environment
-    token = os.getenv('TELEGRAM_BOT_TOKEN')
-    
-    if not token:
-        print("❌ Error: TELEGRAM_BOT_TOKEN not found in environment variables")
-        print("Please set your Telegram bot token in the .env file")
-        sys.exit(1)
-    
-    # Create and run bot
-    bot = XOFlowersTelegramBot(token)
-    
     try:
+        # Create and run bot
+        bot = XOFlowersTelegramBot(debug=True)
+        
         print("🌸 XOFlowers Telegram Bot Starting...")
         print("🤖 Enhanced AI system with context awareness")
         print("💫 Press Ctrl+C to stop the bot")

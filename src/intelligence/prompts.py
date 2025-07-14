@@ -61,20 +61,82 @@ AVAILABLE INTENTS:
 Respond with: intent_name:confidence_score (0.0-1.0)
 """
 
-# Enhanced Product Search Prompt
+# Enhanced Product Search Prompt - Conversational and Empathetic
 ENHANCED_PRODUCT_SEARCH_PROMPT = """
-🌸 **Produse XOFlowers pentru dumneavoastră:**
-
-*Căutare: "{query}"*
+{contextual_response}
 
 {products}
 
-💫 **Sfatul floristului:** Toate aranjamentele noastre sunt realizate cu flori proaspete, selectate cu grijă din cele mai bune surse. Fiecare buchet este unic și transmite emoții autentice.
-
-🎁 Doriți să personalizați aranjamentul sau să adăugați un mesaj special? Sunt aici să vă ajut să creați momentul perfect!
-
-✨ *Ce vă atrage cel mai mult din selecția noastră?*
+{personalized_advice}
 """
+
+# Contextual Response Templates
+CONTEXTUAL_RESPONSES = {
+    "director_birthday": [
+        "Ah, desigur! O persoană high-profile merită cu adevărat flori care să facă o impresie memorabilă! 🌸 Înțeleg perfect - este important să alegi ceva special pentru o directoare.",
+        "Absolut! Pentru o directoare, trebuie să fie ceva rafinat și elegant. Să îți arăt ce am selectat special pentru astfel de ocazii importante! ✨",
+        "Perfect! Știu exact ce vrei să spui - pentru persoane importante, florile trebuie să reflecte respectul și statutul. Să găsim împreună aranjamentul ideal! 🌺"
+    ],
+    "wedding": [
+        "Oh, ce minunat! Nunta... cel mai important moment din viața voastră! 💕 Mă bucur să fac parte din pregătirea acestei zile speciale. Să facem totul perfect!",
+        "Îmi imaginez cât de emoționant este să pregătiți această zi de vis! 🌸 Florile pentru nuntă trebuie să fie absolut perfecte - să creăm ceva magic împreună!",
+        "Ce frumos! Nunta voastră merită să fie ca din povești 💐 Să facem florile să vorbească de dragostea voastră și să completeze perfect atmosfera!"
+    ],
+    "anniversary": [
+        "Aniversarea... ce moment special! 🎉 Înțeleg perfect cât de important este să marchezi aceste momente frumoase. Să găsim florile perfecte pentru a face ziua și mai memorabilă!",
+        "Ce frumos că sărbătoriți acest moment important! 🌸 Aniversările sunt ocazii să ne amintim de bucuriile din viața noastră. Să creăm un aranjament care să facă ziua specială!",
+        "Pentru aniversare! ✨ Aceste momente prețioase merită să fie sărbătorite cum se cuvine. Să alegem florile care să exprime bucuria și importanța acestei zile!"
+    ],
+    "mother": [
+        "Oh, pentru mama! 💕 Înțeleg perfect - mama este cea mai importantă persoană și merită doar ce este mai frumos. Să găsim ceva care să îi aducă zâmbetul pe față!",
+        "Ce gând frumos! 🌺 Mama... ea care ne-a dat totul, merită cu adevărat să fie răsfățată. Să alegem florile perfecte pentru a-i arăta cât de mult o iubești!",
+        "Pentru mama dragă! 🌸 Știu cât de special este acest moment - să creăm ceva care să îi transmită toată dragostea și recunoștința ta!"
+    ],
+    "funeral": [
+        "Îmi pare foarte rău pentru pierderea voastră... 🕊️ Înțeleg prin ce moment dificil treceți. Florile pot fi o modalitate frumoasă de a onora memoria și de a transmite respectul.",
+        "Știu cât de greu este în aceste momente... 🌸 Permiteți-mi să vă ajut să găsiți aranjamente care să onoreze memoria cu demnitate și respect.",
+        "Condoleanțe sincere... 💐 În momentele ca acestea, florile vorbesc acolo unde cuvintele nu mai ajung. Să găsim ceva care să transmită respectul și dragostea voastră."
+    ],
+    "romantic": [
+        "Oh, ce romantic! 💕 Îmi place când văd gesturile frumoase de dragoste. Florile sunt cu adevărat limbajul inimii - să găsim cele perfecte pentru momentul vostru special!",
+        "Dragostea... cel mai frumos sentiment! 🌹 Să creăm împreună ceva special care să exprime exact ceea ce simți. Florile pot spune mai mult decât cuvintele!",
+        "Ce frumos! Iubirea merită să fie sărbătorită cu cele mai frumoase flori! ✨ Să alegem ceva care să îi aducă zâmbetul pe față și să îi arate cât de mult o iubești!"
+    ],
+    "general": [
+        "Înțeleg perfect ce căutați! 🌸 Să ne gândim împreună la florile perfecte pentru această ocazie specială. Îmi place să ajut oamenii să găsească exact ceea ce au nevoie!",
+        "Perfect! Să vedem ce opțiuni frumoase avem pentru dumneavoastră. ✨ Sunt sigură că vom găsi ceva care să vă facă cu adevărat fericiți!",
+        "Îmi face plăcere să vă ajut! 🌺 Fiecare client este special pentru mine și vreau să găsim împreună florile ideale pentru momentul vostru."
+    ]
+}
+
+# Personalized Advice Templates
+PERSONALIZED_ADVICE = {
+    "high_profile": [
+        "💫 **Sfatul meu personal:** Pentru persoane importante ca directoarea, eu întotdeauna recomand aranjamentele din categoria Premium. Știu din experiență că ele fac o impresie de neuitat și arată respect și atenție la detalii.",
+        "✨ **Ce îți recomand:** Acestea sunt perfect potrivite pentru eventos corporate sau cadouri pentru persoane cu funcții înalte. Eleganța și rafinamentul sunt garantate - am văzut reacțiile încântate!",
+        "🌟 **Sfatul floristului:** Pentru directoare sau persoane influente, merită să investești în calitate. Florile premium vorbesc despre bunul tău gust și respectul pentru persoana care le primește. Creează-mi pe cuvânt!"
+    ],
+    "wedding": [
+        "💒 **Sfatul meu pentru nuntă:** Eu întotdeauna spun clienților mei să aleagă flori care să se potrivească cu tema nunții și să dureze toată ziua. Frumusețea trebuie să fie perfectă în fiecare fotografie și amintire!",
+        "✨ **Ce am învățat din experiență:** Aranjamentele pentru mirese trebuie să fie cu adevărat speciale - ele vor fi amintirea vizuală a celei mai importante zile din viața voastră. Nu fac niciodată compromisuri aici!",
+        "🤍 **Sfatul meu sincer:** Pentru nuntă, nu economisește la flori - ele creează atmosfera magică și vor fi în toate pozele de neuitat. Am văzut diferența pe care o fac!"
+    ],
+    "mother": [
+        "💕 **Sfatul meu din inimă:** Pentru mama, eu îi sfătuiesc pe toți clienții să aleagă flori care să transmită toată dragostea. Mama va simți fiecare gând frumos prin frumusețea acestor aranjamente - știu pentru că am văzut lacrimile de bucurie!",
+        "🌺 **Ce știu din experiență:** Mamele înțeleg limbajul florilor cel mai bine din lume. Să alegem ceva care să îi aducă zâmbetul pe față și bucuria în suflet - merită tot ce este mai frumos!",
+        "👩‍👧‍👦 **Sfatul meu personal:** Mama merită doar ce este cel mai frumos - investiția în flori frumoase pentru ea este investiția în fericirea ei. Și nu există nimic mai prețios decât zâmbetul mamei!"
+    ],
+    "romantic": [
+        "💕 **Sfatul meu din suflet:** Pentru dragoste, eu spun întotdeauna că florile trebuie să vorbească din inimă. Fiecare petală să transmită un sentiment autentic - iubirea nu poate fi falsă!",
+        "🌹 **Ce am învățat:** Momentele romantice cer flori cu adevărat speciale - ele vor fi amintirea frumoasă a gestului tău de dragoste. Și știu din experiență că florile potrivite pot face miracole în dragoste!",
+        "💖 **Sfatul meu sincer:** În dragoste, florile nu sunt doar cadou - sunt mesajul tău de iubire care va rămâne în memoria ei pentru totdeauna. Să facem acest mesaj perfect!"
+    ],
+    "general": [
+        "💫 **Sfatul meu:** Toate aranjamentele noastre sunt realizate cu flori proaspete, selectate cu grijă din cele mai bune surse. Fiecare buchet este unic și transmite emoții autentice - asta îmi place cel mai mult la meseria mea!",
+        "✨ **Ce îți recomand:** Să alegi din inimă - florile potrivite vor transmite exact sentimentul pe care dorești să îl exprimi. Eu te ajut să găsești combinația perfectă!",
+        "🌸 **Sfatul meu personal:** Florile sunt limbajul universal al frumuseții și al sentimentelor - să găsim împreună cele perfecte pentru momentul tău special. Îmi place să fac oamenii fericiți!"
+    ]
+}
 
 # Enhanced FAQ Responses with Brand Voice
 ENHANCED_FAQ_RESPONSES = {

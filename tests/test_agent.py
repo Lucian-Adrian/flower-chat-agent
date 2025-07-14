@@ -46,11 +46,11 @@ try:
         
         if is_safe:
             # Intent classification
-            intent = intent_classifier.classify_intent(message)
+            intent, confidence = intent_classifier.classify_intent(message)
             print(f"   Intent: {intent}")
             
             # Action handling
-            response = action_handler.handle_action(intent, message)
+            response, returned_intent, returned_confidence = action_handler.handle_message(message, "test_user")
             print(f"   Response: {response[:100]}...")
         
         print("-" * 40)

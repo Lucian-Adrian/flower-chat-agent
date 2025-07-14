@@ -47,7 +47,7 @@ class IntentClassifier:
         self.intents = {
             # Core business intents
             'find_product': {
-                'keywords': ['vreau', 'caut', 'arată', 'flori', 'buchet', 'cutie', 'cadou', 'plante', 'trandafir', 'bujor'],
+                'keywords': ['vreau', 'caut', 'arată', 'flori', 'buchet', 'cutie', 'cadou', 'plante', 'trandafir', 'bujor', 'aniversare', 'zi de naștere', 'mama', 'nuntă', 'directoare', 'înmormântare', 'funeral', 'comemorare', 'aranjament'],
                 'context': 'User is looking for flowers, bouquets, or gifts',
                 'priority': 10
             },
@@ -114,7 +114,7 @@ class IntentClassifier:
                 'priority': 6
             },
             'gift_suggestions': {
-                'keywords': ['cadou', 'aniversare', 'zi de naștere', 'valentine', 'dragobete', 'mama'],
+                'keywords': ['cadou', 'valentine', 'dragobete', 'sugestii', 'idei'],
                 'context': 'User asks for gift suggestions',
                 'priority': 8
             },

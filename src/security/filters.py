@@ -47,6 +47,18 @@ class SecurityFilter:
             r"act\s+as\s+if",
         ]
     
+    def is_safe_message(self, message: str) -> bool:
+        """
+        Alias for is_message_safe for backward compatibility
+        
+        Args:
+            message (str): User message to check
+            
+        Returns:
+            bool: True if message is safe
+        """
+        return self.is_message_safe(message)
+    
     def is_message_safe(self, message: str) -> bool:
         """
         Check if message is safe (no offensive content or jailbreak attempts)

@@ -60,9 +60,10 @@ def test_enhanced_agent():
         
         if is_safe:
             # Intent classification
-            predicted_intent = intent_classifier.classify_intent(message)
+            predicted_intent, confidence = intent_classifier.classify_intent(message)
             print(f"    Expected: {expected_intent}")
             print(f"    Predicted: {predicted_intent}")
+            print(f"    Confidence: {confidence:.2f}")
             
             # Check if prediction is correct
             if predicted_intent == expected_intent:
@@ -72,7 +73,7 @@ def test_enhanced_agent():
                 print("    Result: ❌ INCORRECT")
             
             # Get response
-            response = action_handler.handle_action(predicted_intent, message)
+            response, intent_returned, confidence_returned = action_handler.handle_message(message, "test_user")
             print(f"    Response: {response[:80]}...")
         
         print("-" * 50)

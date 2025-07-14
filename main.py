@@ -12,6 +12,14 @@ from pathlib import Path
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
+try:
+    from telegram import Update
+except ImportError:
+    Update = None
+
+from dotenv import load_dotenv
+load_dotenv()
+
 def main():
     """Main application entry point"""
     parser = argparse.ArgumentParser(
@@ -60,8 +68,13 @@ def main():
         elif args.platform == "telegram":
             print("📱 Starting Telegram Bot...")
             from src.api.telegram_app import XOFlowersTelegramBot
-            app = XOFlowersTelegramBot(debug=args.debug)
-            app.run()
+            bot = XOFlowersTelegramBot(debug=args.debug)
+            
+            # Run the bot using application.run_polling() directly
+            bot.application.run_polling(
+                allowed_updates=Update.ALL_TYPES,
+                drop_pending_updates=True
+            )
             
         elif args.platform == "both":
             print("🚀 Starting Both Platforms...")

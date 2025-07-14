@@ -44,7 +44,10 @@ class XOFlowersInstagramBot:
     Gestionează webhook-urile de la Meta și conectează cu AI-ul
     """
     
-    def __init__(self):
+    def __init__(self, debug: bool = False):
+        # Store debug flag
+        self.debug = debug
+        
         # Configurări Instagram/Meta
         self.access_token = os.getenv('INSTAGRAM_PAGE_ACCESS_TOKEN')
         self.verify_token = os.getenv('INSTAGRAM_VERIFY_TOKEN')
