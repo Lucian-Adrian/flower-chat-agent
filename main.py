@@ -53,14 +53,14 @@ def main():
     try:
         if args.platform == "instagram":
             print("📸 Starting Instagram Bot...")
-            from src.api.instagram_app import InstagramApp
-            app = InstagramApp(debug=args.debug)
+            from src.api.instagram_app import XOFlowersInstagramBot
+            app = XOFlowersInstagramBot(debug=args.debug)
             app.run(port=args.port)
             
         elif args.platform == "telegram":
             print("📱 Starting Telegram Bot...")
-            from src.api.telegram_app import TelegramApp
-            app = TelegramApp(debug=args.debug)
+            from src.api.telegram_app import XOFlowersTelegramBot
+            app = XOFlowersTelegramBot(debug=args.debug)
             app.run()
             
         elif args.platform == "both":
