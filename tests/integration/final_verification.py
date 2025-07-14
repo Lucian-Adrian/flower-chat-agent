@@ -5,7 +5,7 @@ Final verification test for the conversational XOFlowers bot
 
 import sys
 import os
-sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', '..', 'src'))
 
 from intelligence.action_handler import ActionHandler
 

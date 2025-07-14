@@ -5,7 +5,7 @@ Final integration test for the XOFlowers Telegram Bot
 
 import sys
 import os
-sys.path.insert(0, 'src')
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', 'src'))
 
 from dotenv import load_dotenv
 load_dotenv()

@@ -6,7 +6,7 @@ Tests the action handler directly without needing platform-specific credentials
 
 import sys
 import os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
 
 from intelligence.action_handler import ActionHandler
 from intelligence.intent_classifier import IntentClassifier
