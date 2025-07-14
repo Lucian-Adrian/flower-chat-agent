@@ -25,13 +25,15 @@ from dotenv import load_dotenv
 import json
 
 # Adaugă calea către modulele noastre
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'intelligence'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 try:
-    from core_logic import XOFlowersAI
+    from intelligence.intent_classifier import IntentClassifier
+    from intelligence.action_handler import ActionHandler
+    from security.filters import SecurityFilter
 except ImportError as e:
-    print(f"❌ Eroare la importul core_logic: {e}")
-    print("Asigură-te că core_logic.py există în src/intelligence/")
+    print(f"❌ Eroare la importul modulelor: {e}")
+    print("Asigură-te că toate modulele există în structura nouă")
     sys.exit(1)
 
 # Setup logging
@@ -56,9 +58,11 @@ class XOFlowersTelegramBot:
         if not self.token:
             raise ValueError("TELEGRAM_BOT_TOKEN nu este setat în fișierul .env")
         
-        # Inițializează AI-ul
+        # Inițializează componentele AI
         try:
-            self.ai = XOFlowersAI()
+            self.intent_classifier = IntentClassifier()
+            self.action_handler = ActionHandler()
+            self.security_filter = SecurityFilter()
             logger.info("✅ AI Core Logic inițializat cu succes")
         except Exception as e:
             logger.error(f"❌ Eroare la inițializarea AI: {e}")
@@ -290,10 +294,15 @@ Mulțumesc că folosești XOFlowers Bot! 🌸"""
             )
             
             # AICI SE ÎNTÂMPLĂ MAGIA - Apelăm creierul AI!
-            ai_response = self.ai.get_response(
-                user_message=user_message,
-                user_id=user_id
-            )
+            # 1. Verifică securitatea mesajului
+            if not self.security_filter.is_message_safe(user_message):
+                ai_response = "❌ Mesajul tău conține conținut nepermis. Te rog să reformulezi."
+            else:
+                # 2. Clasifică intenția
+                intent = self.intent_classifier.classify_intent(user_message)
+                
+                # 3. Procesează acțiunea
+                ai_response = self.action_handler.handle_action(intent, user_message)
             
             # Trimite răspunsul
             await update.message.reply_text(

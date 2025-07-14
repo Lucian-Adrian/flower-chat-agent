@@ -105,6 +105,31 @@ class ActionHandler:
         """
         return FALLBACK_PROMPT
     
+    def handle_action(self, intent: str, message: str) -> str:
+        """
+        Main handler that routes actions based on intent
+        
+        Args:
+            intent (str): Classified intent
+            message (str): User message
+            
+        Returns:
+            str: Response message
+        """
+        try:
+            if intent == "find_product":
+                return self.handle_find_product(message)
+            elif intent == "ask_question":
+                return self.handle_ask_question(message)
+            elif intent == "subscribe":
+                return self.handle_subscribe(message)
+            elif intent == "pay_for_product":
+                return self.handle_pay_for_product(message)
+            else:
+                return self.handle_fallback(message)
+        except Exception as e:
+            return f"❌ A apărut o eroare: {str(e)}"
+    
     def _extract_search_query(self, message: str) -> str:
         """
         Extract search query from user message

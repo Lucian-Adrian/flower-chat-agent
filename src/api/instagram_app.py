@@ -20,13 +20,15 @@ import requests
 import time
 
 # Adaugă calea către modulele noastre
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'intelligence'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 try:
-    from enhanced_core_logic import get_response
+    from intelligence.intent_classifier import IntentClassifier
+    from intelligence.action_handler import ActionHandler
+    from security.filters import SecurityFilter
 except ImportError as e:
-    print(f"❌ Eroare la importul enhanced_core_logic: {e}")
-    print("Asigură-te că enhanced_core_logic.py există în src/intelligence/")
+    print(f"❌ Eroare la importul modulelor: {e}")
+    print("Asigură-te că toate modulele există în structura nouă")
     sys.exit(1)
 
 # Setup logging
@@ -63,17 +65,14 @@ class XOFlowersInstagramBot:
         # Store conversation history for each user (similar to Telegram bot)
         self.user_conversations = {}
         
-        logger.info("🤖 XOFlowers Instagram Bot inițializat cu succes")
-        logger.info(f"✅ Page Access Token: {self.access_token[:20]}...")
-        logger.info(f"✅ Verify Token: {self.verify_token}")
-        logger.info(f"✅ App Secret: {self.app_secret[:20]}...")
-        
-        # Testează că enhanced_core_logic funcționează
+        # Initialize AI components
         try:
-            test_response = get_response("test", [])
-            logger.info("✅ Enhanced Core Logic (OpenAI+Gemini) funcționează")
+            self.intent_classifier = IntentClassifier()
+            self.action_handler = ActionHandler()
+            self.security_filter = SecurityFilter()
+            logger.info("✅ AI Components inițializate cu succes")
         except Exception as e:
-            logger.error(f"❌ Eroare la testarea AI: {e}")
+            logger.error(f"❌ Eroare la inițializarea AI: {e}")
             raise
         
         # Flask app pentru webhook-uri
@@ -242,7 +241,15 @@ class XOFlowersInstagramBot:
                 chat_history = self.user_conversations[sender_id]
                 
                 # AICI SE ÎNTÂMPLĂ MAGIA - Apelăm sistemul AI enhanced!
-                ai_response = get_response(user_message, chat_history)
+                # 1. Verifică securitatea mesajului
+                if not self.security_filter.is_message_safe(user_message):
+                    ai_response = "❌ Mesajul tău conține conținut nepermis. Te rog să reformulezi."
+                else:
+                    # 2. Clasifică intenția
+                    intent = self.intent_classifier.classify_intent(user_message)
+                    
+                    # 3. Procesează acțiunea
+                    ai_response = self.action_handler.handle_action(intent, user_message)
                 
                 # Add messages to conversation history
                 self.user_conversations[sender_id].append(f"User: {user_message}")
@@ -289,10 +296,14 @@ class XOFlowersInstagramBot:
                     self.user_conversations[sender_id] = []
                 
                 # Tratează ca mesaj normal cu enhanced core logic
-                response = get_response(
-                    user_message=f"Utilizatorul a apăsat: {postback_payload}",
-                    chat_history=self.user_conversations[sender_id]
-                )
+                postback_message = f"Utilizatorul a apăsat: {postback_payload}"
+                
+                # Verifică securitatea și procesează
+                if not self.security_filter.is_message_safe(postback_message):
+                    response = "❌ Acțiunea nu este permisă."
+                else:
+                    intent = self.intent_classifier.classify_intent(postback_message)
+                    response = self.action_handler.handle_action(intent, postback_message)
             
             self._send_message(sender_id, response)
             
