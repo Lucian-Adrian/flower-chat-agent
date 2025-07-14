@@ -261,6 +261,32 @@ class XOFlowersTelegramBot:
             await update.effective_message.reply_text(
                 "🌸 A apărut o problemă tehnică. Vă rugăm să încercați din nou sau contactați suportul la +373 22 123 456."
             )
+    
+    async def run(self):
+        """Run the bot"""
+        try:
+            # Set bot commands
+            commands = [
+                BotCommand("start", "Pornire bot și salut"),
+                BotCommand("help", "Ghid de utilizare"),
+                BotCommand("menu", "Meniul principal"),
+                BotCommand("oferinte", "Oferte speciale"),
+                BotCommand("preturi", "Lista prețuri"),
+                BotCommand("contact", "Informații contact"),
+            ]
+            
+            await self.application.bot.set_my_commands(commands)
+            
+            # Start the bot
+            logger.info("🚀 Starting XOFlowers Telegram Bot...")
+            await self.application.run_polling(
+                allowed_updates=Update.ALL_TYPES,
+                drop_pending_updates=True
+            )
+            
+        except Exception as e:
+            logger.error(f"❌ Error running bot: {e}")
+            raise
 
 def main():
     """Main function to run the bot"""
@@ -280,11 +306,8 @@ def main():
         print("🤖 Enhanced AI system with context awareness")
         print("💫 Press Ctrl+C to stop the bot")
         
-        # Run the bot using application.run_polling() directly
-        bot.application.run_polling(
-            allowed_updates=Update.ALL_TYPES,
-            drop_pending_updates=True
-        )
+        # Run the bot
+        asyncio.run(bot.run())
         
     except KeyboardInterrupt:
         print("\n👋 Bot stopped by user")
