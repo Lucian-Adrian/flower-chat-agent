@@ -193,3 +193,6 @@ if __name__ == "__main__":
         print("🚀 Sistemul este gata cu noul CSV!")
     else:
         print("⚠️ Unele teste au eșuat - verificați erorile.")
+        
+
+    
