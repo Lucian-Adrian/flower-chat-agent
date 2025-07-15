@@ -4,7 +4,8 @@ Simple test script to check individual components
 """
 import os
 import sys
-sys.path.insert(0, '.')
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', 'src'))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', 'config'))
 
 from dotenv import load_dotenv
 load_dotenv()

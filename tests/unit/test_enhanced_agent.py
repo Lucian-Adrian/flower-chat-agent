@@ -4,14 +4,15 @@ Comprehensive test script for the enhanced conversational agent
 """
 import os
 import sys
-sys.path.insert(0, '.')
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', 'src'))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', 'config'))
 
 from dotenv import load_dotenv
 load_dotenv()
 
-from src.intelligence.intent_classifier import IntentClassifier
-from src.intelligence.action_handler import ActionHandler
-from src.security.filters import SecurityFilter
+from intelligence.intent_classifier import IntentClassifier
+from intelligence.action_handler import ActionHandler
+from security.filters import SecurityFilter
 
 def test_enhanced_agent():
     """Test the enhanced conversational agent with new intent types"""

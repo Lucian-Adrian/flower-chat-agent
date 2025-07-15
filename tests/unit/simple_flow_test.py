@@ -10,7 +10,7 @@ import time
 from datetime import datetime
 
 # Add src to path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', 'src'))
 
 def test_message_reception():
     """Test Component 1: Message Reception"""
@@ -59,7 +59,7 @@ def test_security_check():
         
         for message, description in test_cases:
             try:
-                is_safe = security_filter.is_safe_message(message, "test_user")
+                is_safe = security_filter.is_safe_message(message)
                 status = "✅ SAFE" if is_safe else "🚫 BLOCKED"
                 print(f"{status} {description}")
                 print(f"   Message: '{message}'")
@@ -96,8 +96,7 @@ def test_intent_classification():
         for message, description in test_cases:
             try:
                 result = intent_classifier.classify_intent(message, "test_user")
-                intent = result['intent']
-                confidence = result['confidence']
+                intent, confidence = result
                 
                 print(f"✅ {description}")
                 print(f"   Message: '{message}'")
@@ -270,7 +269,7 @@ def test_complete_flow():
             print(f"✅ Step 1: Message received")
             
             # Step 2: Security Check
-            is_safe = security_filter.is_safe_message(message, received_message['user_id'])
+            is_safe = security_filter.is_safe_message(message)
             if not is_safe:
                 print(f"🚫 Step 2: Message blocked by security")
                 continue
@@ -278,8 +277,7 @@ def test_complete_flow():
             
             # Step 3: Intent Classification
             intent_result = intent_classifier.classify_intent(message, received_message['user_id'])
-            intent = intent_result['intent']
-            confidence = intent_result['confidence']
+            intent, confidence = intent_result
             print(f"✅ Step 3: Intent '{intent}' (confidence: {confidence:.2f})")
             
             # Step 4: Action Processing

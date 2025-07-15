@@ -714,3 +714,34 @@ Pentru a verifica statusul comenzii dumneavoastră, vă rugăm să ne furnizați
         elif intent == "gift_suggestions" and user_profile.special_occasions:
             occasions = ", ".join(user_profile.special_occasions)
             response += f"\n\n🎁 *Bazându-mă pe istoricul dumneavoastră pentru {occasions}, am pregătit sugestii speciale!*"
+        
+        return response
+    
+    def handle_action(self, intent: str, message: str, user_id: str) -> Dict:
+        """
+        Handle action with specific intent (backward compatibility method)
+        
+        Args:
+            intent (str): Intent type
+            message (str): User message
+            user_id (str): User identifier
+            
+        Returns:
+            Dict: Response dictionary with 'response' and 'action_type' keys
+        """
+        response = self._route_to_handler(intent, message, user_id)
+        response = self._personalize_response(response, user_id, intent)
+        
+        # Update conversation context
+        self.context_manager.add_turn(
+            user_id=user_id,
+            user_message=message,
+            bot_response=response,
+            intent=intent,
+            confidence=0.8  # Default confidence for direct intent calls
+        )
+        
+        return {
+            'response': response,
+            'action_type': intent
+        }

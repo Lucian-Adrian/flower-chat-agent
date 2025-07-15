@@ -4,15 +4,16 @@ Simple test script to check if the conversational agent components work
 """
 import os
 import sys
-sys.path.insert(0, '.')
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', 'src'))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', 'config'))
 
 from dotenv import load_dotenv
 load_dotenv()
 
 # Test imports
 try:
-    from src.intelligence.intent_classifier import IntentClassifier
-    from src.intelligence.action_handler import ActionHandler
+    from intelligence.intent_classifier import IntentClassifier
+    from intelligence.action_handler import ActionHandler
     from src.security.filters import SecurityFilter
     print("✅ All imports successful")
 except Exception as e:

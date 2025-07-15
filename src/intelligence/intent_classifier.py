@@ -19,13 +19,22 @@ from .conversation_context import ConversationContext
 
 # Import AI libraries
 try:
-    import openai
+    from openai import OpenAI
     from dotenv import load_dotenv
     load_dotenv()
-    openai.api_key = os.getenv('OPENAI_API_KEY')
-    HAS_OPENAI = True
+    api_key = os.getenv('OPENAI_API_KEY')
+    if api_key:
+        openai_client = OpenAI(api_key=api_key)
+        HAS_OPENAI = True
+    else:
+        openai_client = None
+        HAS_OPENAI = False
 except ImportError:
-    openai = None
+    openai_client = None
+    HAS_OPENAI = False
+except Exception as e:
+    print(f"OpenAI client initialization error: {e}")
+    openai_client = None
     HAS_OPENAI = False
 
 try:
@@ -196,7 +205,7 @@ class IntentClassifier:
         """
         try:
             # Try OpenAI first
-            if HAS_OPENAI and openai.api_key:
+            if HAS_OPENAI and openai_client:
                 return self._classify_with_openai(message, context)
             
             # Fallback to Gemini
@@ -250,7 +259,7 @@ class IntentClassifier:
         """
         
         try:
-            response = openai.chat.completions.create(
+            response = openai_client.chat.completions.create(
                 model="gpt-3.5-turbo",
                 messages=[{"role": "user", "content": prompt}],
                 max_tokens=50,
@@ -283,7 +292,7 @@ class IntentClassifier:
         """Enhanced Gemini classification with context"""
         
         try:
-            model = genai.GenerativeModel('gemini-pro')
+            model = genai.GenerativeModel('gemini-1.5-flash')
             
             prompt = f"""
             Classify this Romanian message for XOFlowers flower shop.

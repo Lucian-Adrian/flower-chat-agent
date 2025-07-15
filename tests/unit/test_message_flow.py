@@ -12,7 +12,7 @@ import time
 from datetime import datetime
 
 # Add src to path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', 'src'))
 
 def test_component_1_message_reception():
     """Test Message Reception"""
@@ -64,7 +64,7 @@ def test_component_2_security_check():
         
         for message, should_pass, description in test_cases:
             try:
-                is_safe = security_filter.is_safe_message(message, "test_user")
+                is_safe = security_filter.is_safe_message(message)
                 status = "✅ PASSED" if is_safe == should_pass else "❌ FAILED"
                 print(f"{status} {description}: '{message[:30]}{'...' if len(message) > 30 else ''}'")
                 print(f"   Expected: {'Safe' if should_pass else 'Unsafe'}")
@@ -304,7 +304,7 @@ def test_complete_integrated_flow():
             print(f"✅ Step 1: Message received")
             
             # Step 2: Security Check
-            is_safe = security_filter.is_safe_message(message, received_message['user_id'])
+            is_safe = security_filter.is_safe_message(message)
             if not is_safe:
                 print(f"❌ Step 2: Message blocked by security filter")
                 continue
