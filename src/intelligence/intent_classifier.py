@@ -7,8 +7,16 @@ import os
 import sys
 import re
 import json
+import logging
 from typing import Dict, List, Optional, Tuple
 from datetime import datetime
+
+# Setup logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
 
 # Add config to path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', 'config'))
@@ -163,33 +171,51 @@ class IntentClassifier:
         
         # Handle empty messages
         if not message_lower:
+            logger.warning("Empty message received")
             return "fallback", 0.0
+        
+        logger.info(f"🔍 Classifying intent for message: '{message[:50]}{'...' if len(message) > 50 else ''}'")
         
         # Check for jailbreak attempts first
         if self.is_jailbreak_attempt(message):
+            logger.warning(f"🚨 Jailbreak attempt detected: '{message[:30]}...'")
             return "jailbreak", 1.0
         
         # Get conversation context if user_id provided
         context = ""
         if user_id:
             context = self.context_manager.get_context_string(user_id, limit=3)
+            if context:
+                logger.info(f"📋 Context loaded for user {user_id}: {len(context)} chars")
         
         # Try AI classification first (most accurate)
         if HAS_OPENAI or HAS_GEMINI:
+            logger.info("🤖 Attempting AI classification...")
             ai_result = self._classify_by_ai(message, context)
             if ai_result[1] >= self.confidence_threshold:
+                logger.info(f"✅ AI classification successful: '{ai_result[0]}' (confidence: {ai_result[1]:.2f})")
                 return ai_result
+            else:
+                logger.info(f"⚠️ AI classification below threshold: '{ai_result[0]}' (confidence: {ai_result[1]:.2f})")
         
         # Fallback to hybrid approach
+        logger.info("🔄 Attempting hybrid classification...")
         hybrid_result = self._classify_hybrid(message_lower, context)
         if hybrid_result[1] >= self.confidence_threshold:
+            logger.info(f"✅ Hybrid classification successful: '{hybrid_result[0]}' (confidence: {hybrid_result[1]:.2f})")
             return hybrid_result
+        else:
+            logger.info(f"⚠️ Hybrid classification below threshold: '{hybrid_result[0]}' (confidence: {hybrid_result[1]:.2f})")
         
         # Final fallback to keyword matching
+        logger.info("🔄 Attempting keyword classification...")
         keyword_result = self._classify_by_keywords(message_lower)
         if keyword_result[0] != "fallback":
-            return keyword_result[0], max(keyword_result[1], 0.4)
+            final_confidence = max(keyword_result[1], 0.4)
+            logger.info(f"✅ Keyword classification: '{keyword_result[0]}' (confidence: {final_confidence:.2f})")
+            return keyword_result[0], final_confidence
         
+        logger.warning(f"❌ All classification methods failed, defaulting to fallback")
         return "fallback", 0.0
     
     def _classify_by_ai(self, message: str, context: str = "") -> Tuple[str, float]:

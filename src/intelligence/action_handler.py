@@ -5,7 +5,15 @@ Handles different user actions with context awareness and personalization
 
 import os
 import sys
+import logging
 from typing import Dict, List, Optional, Tuple
+
+# Setup logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
 
 # Add config to path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', 'config'))
@@ -51,18 +59,29 @@ class ActionHandler:
         Returns:
             Tuple[str, str, float]: (response, intent, confidence)
         """
+        # Log incoming message
+        logger.info(f"🔍 Processing message from user {user_id}: '{message[:50]}{'...' if len(message) > 50 else ''}'")
+        
         # Classify intent with context
         intent, confidence = self.intent_classifier.classify_intent(message, user_id)
         
+        # Log intent classification
+        logger.info(f"🎯 Intent classified: '{intent}' (confidence: {confidence:.2f})")
+        
         # Handle special cases
         if intent == "jailbreak":
+            logger.warning(f"🚨 Jailbreak attempt detected from user {user_id}")
             response = self._handle_jailbreak()
         else:
             # Route to appropriate handler
+            logger.info(f"📋 Routing to handler: {intent}")
             response = self._route_to_handler(intent, message, user_id)
             
             # Personalize response based on context
             response = self._personalize_response(response, user_id, intent)
+        
+        # Log response length
+        logger.info(f"✅ Response generated (length: {len(response)} chars)")
         
         # Update conversation context
         self.context_manager.add_turn(
@@ -133,12 +152,16 @@ class ActionHandler:
         """Handle product search requests with conversational and empathetic approach"""
         # Extract search query from message
         query = self._extract_search_query(message)
+        logger.info(f"🔎 Product search query extracted: '{query}'")
         
         # Check for budget constraints in the message
         budget_amount = self._extract_budget_from_message(message)
+        if budget_amount:
+            logger.info(f"💰 Budget constraint detected: {budget_amount} MDL")
         
         # Analyze the context and occasion
         occasion_context = self._analyze_occasion_context(message)
+        logger.info(f"🎪 Occasion context identified: '{occasion_context}'")
         
         # Get user preferences for personalized search
         user_profile = self.context_manager.get_user_profile(user_id)
@@ -151,12 +174,15 @@ class ActionHandler:
                 "budget_range": user_profile.budget_range,
                 "special_occasions": user_profile.special_occasions
             }
+            logger.info(f"👤 User profile context loaded: {len(search_context)} preferences")
         
         # Search for products - use budget search if budget is specified
         if budget_amount:
             products = self.product_search.get_budget_recommendations(budget_amount, query)
+            logger.info(f"🎯 Budget search returned {len(products)} products")
         else:
             products = self.product_search.search_products(query, context=search_context)
+            logger.info(f"🔍 General search returned {len(products)} products")
         
         if products:
             # Generate contextual response
@@ -177,10 +203,14 @@ class ActionHandler:
                 products=formatted_products,
                 personalized_advice=personalized_advice
             )
+            
+            logger.info(f"✅ Product search response generated successfully")
         else:
+            logger.warning(f"❌ No products found for query: '{query}'")
             # Get some popular products as fallback
             popular_products = self.product_search.get_popular_products(3)
             if popular_products:
+                logger.info(f"🔄 Fallback to {len(popular_products)} popular products")
                 contextual_response = self._generate_contextual_response("general", message)
                 formatted_popular = self._format_products_conversationally(popular_products, "general")
                 
@@ -194,6 +224,7 @@ Iată câteva sugestii frumoase din colecția noastră care s-ar putea să vă p
 💫 *Doriți să caut ceva specific sau să vă recomand pe baza preferințelor dumneavoastră?*
                 """
             else:
+                logger.error("❌ No popular products available as fallback")
                 response = f"""
 🌸 Înțeleg ce căutați, dar să verific mai bine opțiunile disponibile pentru dumneavoastră.
 
