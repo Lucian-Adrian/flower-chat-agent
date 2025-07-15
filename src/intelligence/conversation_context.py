@@ -43,7 +43,7 @@ class ConversationContext:
     Manages conversation context and user profiles
     """
     
-    def __init__(self, storage_path: str = "conversation_data"):
+    def __init__(self, storage_path: str = "data"):
         """
         Initialize conversation context manager
         

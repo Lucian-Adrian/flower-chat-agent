@@ -10,8 +10,7 @@ The XOFlowers AI Agent project has been completely reorganized into a clean, pro
 ```
 xoflowers-agent/
 ├── 📁 config/                      # System configuration
-├── 📁 conversation_data/           # Conversation data and user profiles
-├── 📁 data/                        # Product data and knowledge base
+├── 📁 data/                        # Product data, knowledge base, and conversation data
 ├── 📁 demos/                       # 🎮 Demo scripts and quick testing
 ├── 📁 docs/                        # 📚 Documentation and guides
 ├── 📁 src/                         # 💻 Source code

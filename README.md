@@ -66,9 +66,7 @@ xoflowers-agent/
 ├── data/                            # 📊 Date și cataloage
 │   ├── products.json                # Catalogul de produse XOFlowers
 │   ├── chunks_data.csv              # Date procesate produse
-│   └── faq_data.json                # Întrebări frecvente în română
-│
-├── conversation_data/               # 💬 Date conversații
+│   ├── faq_data.json                # Întrebări frecvente în română
 │   ├── contexts.json                # Contextul conversațiilor
 │   └── profiles.json                # Profilele utilizatorilor
 │
@@ -238,7 +236,7 @@ Proiectul este acum complet organizat în:
 - **`/tests/unit`** - Teste unitare pentru componente individuale  
 - **`/tests/integration`** - Teste de integrare pentru sistemul complet
 - **`/docs/summaries`** - Documentație și rapoarte detaliate
-- **`/conversation_data`** - Date de conversații și profile utilizatori
+- **`/data`** - Date de conversații, profile utilizatori și cataloage
 
 ### **🧪 Testare Webhook Instagram**
 ```bash
