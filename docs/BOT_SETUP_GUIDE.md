@@ -1,50 +1,61 @@
-# 🌸 XOFlowers Bot System - Quick Start Guide
+# 🌸 XOFlowers AI Agent - Setup Guide
 
-## 🚀 How to Run Both Bots
+## 🚀 Agent Conversațional Natural
+
+XOFlowers AI Agent este un agent conversațional natural care conduce conversații personalizate cu clienții, având acces la funcții de căutare în baza de date pentru recomandări relevante.
+
+## 🔧 Rularea Agentului
 
 ### **Option 1: PowerShell Scripts (Recommended)**
 ```powershell
 # Start Instagram bot in separate terminal
-.\start_instagram.ps1
+.\scripts\start_instagram.ps1
 
 # Start Telegram bot in separate terminal  
-.\start_telegram.ps1
+.\scripts\start_telegram.ps1
 
 # Start both bots + ngrok automatically
-.\start_all.ps1
+.\scripts\start_all.ps1
 ```
 
-### **Option 2: Batch File Launcher**
-```cmd
-# Double-click launcher.bat and choose:
+### **Option 2: Launcher Python**
+```bash
+# From project root directory
+python scripts/launcher.py
+# Choose:
 # 1 - Telegram bot only
 # 2 - Instagram bot only
-# 3 - Both bots (separate terminals)
-# 4 - Both bots (single terminal)
-launcher.bat
+# 3 - Both bots
+# 4 - Run tests
 ```
 
 ### **Option 3: Manual Python Commands**
 ```bash
-# From parent directory (xoflowers_chatbot/)
-python xoflowers-agent/run_instagram.py    # Instagram bot
-python xoflowers-agent/run_telegram.py     # Telegram bot
-python xoflowers-agent/run_both.py         # Both bots
+# From project root directory
+python scripts/run_instagram.py    # Instagram bot
+python scripts/run_telegram.py     # Telegram bot
+python scripts/run_both.py         # Both bots
 ```
 
 ## 🔧 Setup Requirements
 
 ### **1. Directory Structure**
 ```
-xoflowers_chatbot/
+xoflowers-agent/
 ├── .venv/                    # Virtual environment
-├── xoflowers-agent/          # Main bot code
-│   ├── run_instagram.py      # Instagram bot runner
-│   ├── run_telegram.py       # Telegram bot runner
-│   ├── run_both.py          # Dual bot runner
+├── scripts/                  # 🚀 Launchers și runners
+│   ├── launcher.py           # Main launcher
+│   ├── run_instagram.py      # Instagram agent
+│   ├── run_telegram.py       # Telegram agent
+│   ├── run_both.py          # Dual agent
 │   ├── start_*.ps1          # PowerShell launchers
 │   └── launcher.bat         # Batch launcher
-└── chatbot-main/junk/ngrok.exe  # ngrok for webhooks
+├── src/                      # 💻 Natural AI Agent Code
+│   ├── api/                  # Platform integrations
+│   ├── intelligence/         # AI brain (no templates)
+│   ├── security/             # Guard rails
+│   └── database/             # Vector database
+└── data/                     # Product catalog & contexts
 ```
 
 ### **2. Environment Setup**
@@ -55,32 +66,33 @@ xoflowers_chatbot/
 ### **3. For Instagram Webhook**
 ```bash
 # Start ngrok tunnel
-chatbot-main\junk\ngrok.exe http 5001
+ngrok http 5001
 
 # Configure in Meta Developer Console:
 # Webhook URL: https://your-ngrok-url.ngrok-free.app/webhook
 # Verify Token: xoflowers_webhook_secret_2024
 ```
 
-## 🎯 Bot Features
+## 🎯 Natural AI Agent Features
 
-### **📱 Telegram Bot**
+### **📱 Telegram Agent**
 - **Mode**: Polling (no webhook needed)
-- **AI**: OpenAI GPT-3.5-turbo → Gemini → Keyword fallback
-- **Language**: Romanian + English
-- **Features**: Product search, recommendations, business info
+- **AI**: Natural conversation with OpenAI GPT-4 → Gemini fallback
+- **Language**: Romanian (perfect native speaker)
+- **Features**: Natural product search, contextual recommendations, business info
 
-### **📸 Instagram Bot**
+### **📸 Instagram Agent**
 - **Mode**: Webhook (Flask server on port 5001)
-- **AI**: Same as Telegram bot
-- **Features**: Same as Telegram bot
+- **AI**: Same natural conversation capabilities
+- **Features**: Same as Telegram agent
 - **Requirements**: ngrok tunnel for webhook
 
-### **🤖 AI System**
-- **Intent Classification**: 90% accuracy
-- **Product Database**: 709 products, 15 categories
-- **Context Awareness**: Conversation memory
-- **Personalization**: User preferences and history
+### **🤖 Natural AI System**
+- **No Templates**: Every response is generated naturally by AI
+- **Database Access**: MCP-style access to product database
+- **Context Awareness**: Multi-turn conversation memory
+- **Personalization**: Learns user preferences and adapts
+- **Guard Rails**: Strong business focus without restricting naturalness
 
 ## 🔍 Testing
 

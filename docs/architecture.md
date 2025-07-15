@@ -2,7 +2,27 @@
 
 ## 📋 **VIZIUNEA SISTEMULUI**
 
-XOFlowers AI Agent este un agent conversațional inteligent construit pentru a oferi servicii complete de customer support pentru florăria XOFlowers din Chișinău, Moldova. Sistemul combină tehnologii AI avansate cu o bază de date vectorială pentru a înțelege intențiile clienților și a oferi răspunsuri relevante și personalizate.
+XOFlowers AI Agent este un **agent conversațional natural** construit pentru a conduce conversații personalizate cu clienții florăriei XOFlowers din Chișinău, Moldova. Agentul funcționează ca un consultant floral expert care are acces la funcții de căutare în baza de date (MCP-style) pentru a oferi recomandări relevante fără a utiliza template-uri predefinite.
+
+## 🤖 **PRINCIPIILE AGENTULUI NATURAL**
+
+### **1. Conversații Naturale, Nu Template-uri**
+- Fiecare răspuns este generat natural de AI
+- Nu există template-uri sau răspunsuri predefinite
+- Agentul se adaptează la stilul și contextul conversației
+- Personalizarea completă pe baza interacțiunilor
+
+### **2. Acces la Baza de Date (MCP-Style)**
+- Agentul are acces la funcții de căutare în timp real
+- Poate apela funcții specializate pentru căutare produse
+- Integrarea informațiilor în conversația naturală
+- Căutare semantică și filtrare inteligentă
+
+### **3. Guard Rails Robuste**
+- Focusul pe rolul de consultant floral XOFlowers
+- Protecție împotriva manipulării fără a afecta naturalețea
+- Menținerea tonului profesional și prietenos
+- Securitate avansată cu răspunsuri politicoase
 
 ## 🏗️ **ARHITECTURA GENERALĂ**
 
@@ -87,15 +107,17 @@ XOFlowers AI Agent este un agent conversațional inteligent construit pentru a o
 ### **1. Recepția Mesajului** 📨
 ```
 Utilizator → Platformă (Instagram/Telegram) → API Layer → Extragere conținut
+*Debug mode = arata continutul extras*
 ```
 
 ### **2. Validarea Securității** 🔒
 ```
 Security Layer:
 ├── Verificare rate limiting (10 msg/min, 100 msg/h)
-├── Scanare conținut ofensator (keywords blacklist)
-├── Detecție tentative jailbreak (pattern matching)
+├── Scanare conținut ofensator
+├── Detecție tentative jailbreak
 └── Decizie: ALLOW/BLOCK cu răspuns corespunzător
+*Debug mode = arata decizia de securitate si criteriile de filtrare verificate*
 ```
 
 ### **3. Clasificarea Intenției** 🧠
@@ -104,13 +126,9 @@ Intent Classification:
 ├── Încărcare prompt pentru clasificare
 ├── Apel API AI (OpenAI → Gemini fallback)
 ├── Analiză text și context
-├── Returnare intenție clasificată:
-│   ├── 🔍 find_product (căutare/recomandări produse)
-│   ├── ❓ ask_question (întrebări despre business)
-│   ├── 📧 subscribe (abonări și actualizări)
-│   ├── 💳 pay_for_product (procesare plăți)
-│   └── 🤷 fallback (intenție nerecunoscută)
+├── Returnare intenție clasificată
 └── Calculare scor de încredere
+*Debug mode = arata prompt-ul folosit si intentia clasificata, scor de incredere*
 ```
 
 ### **4. Procesarea Acțiunii** ⚡
@@ -120,6 +138,7 @@ Action Handler:
 ├── Aplicare logică business XOFlowers
 ├── Generare răspuns contextualizat
 └── Formatare finală pentru platformă
+*Debug mode = arata actiunea executata si datele de intrare/iesire*
 ```
 
 ### **5. Căutarea Produselor** 🔍 (pentru find_product)
@@ -133,6 +152,7 @@ Product Search Engine:
 │   └── Ranking după relevanță
 ├── Formatare rezultate (top 3-5 produse)
 └── Generare răspuns cu recomandări
+*Debug mode = arata query-ul, embedding-ul generat si rezultatele cautarii*
 ```
 
 ### **6. Livrarea Răspunsului** 📤
@@ -142,6 +162,7 @@ Response Delivery:
 ├── Trimitere prin API (Instagram Graph / Telegram Bot)
 ├── Logging și monitorizare
 └── Tracking timp de răspuns
+*Debug mode = arata mesajul final trimis si timpul de raspuns, timpul fiecarei parti*
 ```
 
 ## 🎯 **COMPONENTELE CHEIE**
@@ -160,16 +181,17 @@ Response Delivery:
 
 ### **Stratul Inteligență** 🧠
 **Responsabilități:**
-- Clasificarea intențiilor folosind AI
-- Căutarea semantică în catalog
+- Clasificarea intențiilor folosind doar AI
+- Căutare vectorială pentru produse
 - Aplicarea logicii business
-- Generarea răspunsurilor contextuale
+- Generarea răspunsurilor contextuale, personalizate și relevante, care tin cont de mesajul utilizatorului
 
 **Fișiere principale:**
 - `intent_classifier.py` - Clasificare AI a intențiilor
 - `product_search.py` - Motor căutare vectorială
 - `action_handler.py` - Logică business și acțiuni
 - `prompts.py` - Template-uri pentru AI
+- `conversation_context.py` - Gestionare context conversațional, loggin și urmărirea interacțiunilor in json contexts.json si profiles.json
 
 ### **Stratul Securitate** 🔒
 **Responsabilități:**
@@ -188,10 +210,23 @@ Response Delivery:
 - Informații business și FAQ
 - Pipeline-ul de procesare date
 
+### **Stratul Bază de Date Vectorială** 🗄️
+**Responsabilități:**
+- Stocarea embeddings pentru produse
+- Căutare semantică/vectorială rapidă
+- Gestionarea colecțiilor de produse
+- Backup și recuperare date
+
+**Fișiere principale:**
+- `chroma_db.py` - fisierul chromadb, baza de date vectoriala
+- `manager.py` - Gestionare ChromaDB și operații vectoriale
+- `products.json` - Catalog produse
+- `populate_db.py` - Script de populare bază de date
+
 **Fișiere principale:**
 - `settings.py` - Configurări globale
-- `faq_data.json` - Informații business (moved to data/)
-- `products.json` - Catalog produse
+- `faq_data.json` - Informații business
+- `products.csv` - Catalog produse
 - `populate_db.py` - Populare bază date
 - `scraper.py` - Colectare date web
 
@@ -212,15 +247,15 @@ Fallback AI Service: Google Gemini Pro
 
 Embedding Model: sentence-transformers/all-MiniLM-L6-v2
 ├── Generare embeddings pentru produse
-├── Căutare semantică eficientă
-└── Rezultate relevante pentru query-uri
+├── Căutare vectorială eficientă
+└── Rezultate relevante pentru query-uri si rapide, teste ce verifica acuratetea si viteza
 ```
 
 ### **Prompt Engineering**
 ```
 Template-uri specializate pentru:
-├── Clasificarea intențiilor (cu context business)
-├── Răspunsuri pentru fiecare tip de intenție
+├── Clasificarea intențiilor
+├── Exemplu de răspunsuri pentru fiecare tip de intenție
 ├── Formatarea recomandărilor de produse
 ├── Gestionarea situațiilor de fallback
 └── Personalizarea pentru cultura moldovenească
@@ -267,9 +302,11 @@ Proces căutare:
    └── Blocare temporară pentru abuz
 
 2. Content Filtering:
-   ├── Lista neagră keywords ofensive
+   ├── Lista neagră keywords ofensive conform listelor populare utilizate deja, google etc.
+   ├── Filtrare regex pentru conținut inadecvat
    ├── Pattern matching pentru conținut neadecvat
-   └── Răspunsuri politicoase pentru refuz
+   │   └── Prompturi bine facute pentru a evita jailbreak-uri
+   └── Răspunsuri politicoase pentru refuz si continuare conversație
 
 3. Jailbreak Protection:
    ├── Detecție tentative "ignore instructions"
@@ -290,7 +327,7 @@ Performanță:
 ├── Timp răspuns: < 3 secunde (95% din cazuri)
 ├── Availabilitate: 99.5% uptime
 ├── Throughput: 100+ utilizatori concurenți
-└── Acuratețe intenții: > 90%
+└── Acuratețe intenții: > 80%
 
 Calitate:
 ├── Relevanța căutării: > 85% satisfacție
@@ -336,8 +373,17 @@ Tehnici implementate:
 ├── Batch processing pentru embeddings
 ├── Lazy loading pentru colecții mari
 └── Async processing pentru operațiuni I/O
+- chromadb cu requesturi
+- fara keywords method la intent classifier, AI only
+- Nu cu Json dar cu Redis 
+- Log la intent classifier pentru debug
+- requesturi la chromadb si logging la requesturi
+- Security Filtering la nivel avansat
+- Instagram Bot functional
+- Remove multiple definitions of same info, for example intents are defined multiple times in each prompt, have only one definition, not only intents, many other info may be defined once and then used as variables.
 ```
-
+<!-- 
+TREBUIE RESCRIS PENTRU CA E FALS:
 ## 🔮 **ROADMAP TEHNOLOGIC**
 
 ### **Îmbunătățiri Planificate**
@@ -549,4 +595,4 @@ Q4 2025:
 **🎊 MILESTONE ACHIEVED: Production-Ready XOFlowers AI Agent**  
 **🌸 Status: LIVE and serving customers**  
 **📅 Completion Date: July 14, 2025**  
-**💯 Overall Progress: 95% Complete**
+**💯 Overall Progress: 95% Complete** -->
