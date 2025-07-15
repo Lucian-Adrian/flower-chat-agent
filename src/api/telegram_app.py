@@ -147,7 +147,7 @@ class XOFlowersTelegramBot:
         
         try:
             # Security check
-            if not self.security_filter.is_message_safe(message):
+            if not self.security_filter.is_safe_message(message):
                 await update.message.reply_text(
                     "🌸 Îmi pare rău, dar prefer să păstrăm conversația profesională și elegantă. \n\nCum vă pot ajuta cu serviciile XOFlowers?"
                 )
@@ -280,11 +280,26 @@ def main():
         print("🤖 Enhanced AI system with context awareness")
         print("💫 Press Ctrl+C to stop the bot")
         
-        # Run the bot using application.run_polling() directly
-        bot.application.run_polling(
-            allowed_updates=Update.ALL_TYPES,
-            drop_pending_updates=True
-        )
+        # Set bot commands
+        async def setup_and_run():
+            commands = [
+                BotCommand("start", "Pornire bot și salut"),
+                BotCommand("help", "Ghid de utilizare"),
+                BotCommand("menu", "Meniul principal"),
+                BotCommand("oferinte", "Oferte speciale"),
+                BotCommand("preturi", "Lista prețuri"),
+                BotCommand("contact", "Informații contact"),
+            ]
+            await bot.application.bot.set_my_commands(commands)
+            
+            # Run the bot
+            await bot.application.run_polling(
+                allowed_updates=Update.ALL_TYPES,
+                drop_pending_updates=True
+            )
+        
+        # Start the bot with command setup
+        asyncio.run(setup_and_run())
         
     except KeyboardInterrupt:
         print("\n👋 Bot stopped by user")
