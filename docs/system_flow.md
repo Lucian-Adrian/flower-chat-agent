@@ -14,7 +14,7 @@ User Message → Platform API → Our Application
 
 #### **Instagram Flow**
 ```
-## 📋 **CURRENT PROJECT STRUCTURE**nstagram DM → Meta Graph API → Webhook → instagram_app.py
+Instagram DM → Meta Graph API → Webhook → instagram_app.py
 ```
 
 #### **Telegram Flow**

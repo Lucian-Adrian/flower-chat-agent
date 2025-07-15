@@ -4,9 +4,9 @@
     "name": null,
     "preferences": {},
     "purchase_history": [],
-    "conversation_count": 95,
+    "conversation_count": 111,
     "first_interaction": "2025-07-14T22:51:02.402227",
-    "last_interaction": "2025-07-15T00:51:16.848106",
+    "last_interaction": "2025-07-15T01:59:45.834872",
     "favorite_products": [
       "trandafir"
     ],
@@ -61,9 +61,9 @@
     "name": null,
     "preferences": {},
     "purchase_history": [],
-    "conversation_count": 7,
+    "conversation_count": 8,
     "first_interaction": "2025-07-14T23:45:28.007562",
-    "last_interaction": "2025-07-15T00:47:51.814504",
+    "last_interaction": "2025-07-15T01:59:45.746250",
     "favorite_products": [
       "trandafir"
     ],
@@ -75,9 +75,9 @@
     "name": null,
     "preferences": {},
     "purchase_history": [],
-    "conversation_count": 7,
+    "conversation_count": 8,
     "first_interaction": "2025-07-14T23:45:28.715546",
-    "last_interaction": "2025-07-15T00:47:52.761172",
+    "last_interaction": "2025-07-15T01:59:45.754719",
     "favorite_products": [
       "bujor"
     ],
@@ -89,9 +89,9 @@
     "name": null,
     "preferences": {},
     "purchase_history": [],
-    "conversation_count": 7,
+    "conversation_count": 8,
     "first_interaction": "2025-07-14T23:45:29.954615",
-    "last_interaction": "2025-07-15T00:47:53.581677",
+    "last_interaction": "2025-07-15T01:59:45.762070",
     "favorite_products": [
       "bujor",
       "trandafir"
@@ -104,9 +104,9 @@
     "name": null,
     "preferences": {},
     "purchase_history": [],
-    "conversation_count": 7,
+    "conversation_count": 8,
     "first_interaction": "2025-07-14T23:45:30.454941",
-    "last_interaction": "2025-07-15T00:47:54.010938",
+    "last_interaction": "2025-07-15T01:59:45.773091",
     "favorite_products": [
       "bujor",
       "trandafir"
@@ -119,9 +119,9 @@
     "name": null,
     "preferences": {},
     "purchase_history": [],
-    "conversation_count": 6,
+    "conversation_count": 7,
     "first_interaction": "2025-07-14T23:45:31.679316",
-    "last_interaction": "2025-07-15T00:41:34.283201",
+    "last_interaction": "2025-07-15T01:59:45.778560",
     "favorite_products": [],
     "budget_range": null,
     "special_occasions": []
@@ -213,6 +213,68 @@
     "favorite_products": [
       "trandafir"
     ],
+    "budget_range": null,
+    "special_occasions": []
+  },
+  "demo_user_1": {
+    "user_id": "demo_user_1",
+    "name": null,
+    "preferences": {},
+    "purchase_history": [],
+    "conversation_count": 1,
+    "first_interaction": "2025-07-15T02:01:47.542072",
+    "last_interaction": "2025-07-15T02:01:47.542072",
+    "favorite_products": [
+      "trandafir"
+    ],
+    "budget_range": null,
+    "special_occasions": []
+  },
+  "demo_user_2": {
+    "user_id": "demo_user_2",
+    "name": null,
+    "preferences": {},
+    "purchase_history": [],
+    "conversation_count": 1,
+    "first_interaction": "2025-07-15T02:01:48.156335",
+    "last_interaction": "2025-07-15T02:01:48.156335",
+    "favorite_products": [],
+    "budget_range": null,
+    "special_occasions": []
+  },
+  "demo_user_3": {
+    "user_id": "demo_user_3",
+    "name": null,
+    "preferences": {},
+    "purchase_history": [],
+    "conversation_count": 1,
+    "first_interaction": "2025-07-15T02:01:48.771503",
+    "last_interaction": "2025-07-15T02:01:48.771503",
+    "favorite_products": [],
+    "budget_range": null,
+    "special_occasions": []
+  },
+  "demo_user_4": {
+    "user_id": "demo_user_4",
+    "name": null,
+    "preferences": {},
+    "purchase_history": [],
+    "conversation_count": 1,
+    "first_interaction": "2025-07-15T02:01:49.393082",
+    "last_interaction": "2025-07-15T02:01:49.393082",
+    "favorite_products": [],
+    "budget_range": null,
+    "special_occasions": []
+  },
+  "demo_user_5": {
+    "user_id": "demo_user_5",
+    "name": null,
+    "preferences": {},
+    "purchase_history": [],
+    "conversation_count": 1,
+    "first_interaction": "2025-07-15T02:01:50.010629",
+    "last_interaction": "2025-07-15T02:01:50.010629",
+    "favorite_products": [],
     "budget_range": null,
     "special_occasions": []
   }
