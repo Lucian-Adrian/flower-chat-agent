@@ -372,6 +372,51 @@
       "user_id": "test_user_123",
       "confidence": 0.9,
       "metadata": {}
+    },
+    {
+      "user_message": "Salut! Vreau trandafiri roși",
+      "bot_response": "\n🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n\n🌺 **1. Luxurious Love**\n💰 2800 MDL\n📝 Bouquet \"Luxurious Love\" - Premium mixed bouquet with hydrangea, peonies, spray roses and gerberas\n✨ *Frumos și elegant!*\n            \n\n🌺 **2. Pink palette**\n💰 2000 MDL\n📝 Bouquet \"Pink palette\" - Romantic pink bouquet with peonies, spray roses and classic roses\n✨ *Frumos și elegant!*\n            \n\n🌺 **3. Box with french roses**\n💰 2250 MDL\n📝 Box with french roses - Elegant French roses with eucalyptus in premium presentation box\n✨ *Frumos și elegant!*\n            \n\n🌺 **4. Poma Rosa**\n💰 8700 MDL\n📝 Basket with roses \"Poma Rosa\" - Luxurious basket arrangement with premium roses\n✨ *Frumos și elegant!*\n            \n\n🌺 **5. Emma**\n💰 3700 MDL\n📝 Basket with flowers \"Emma\" - Beautiful basket with roses and viburnum accents\n✨ *Frumos și elegant!*\n            \n\n🌺 *Sfat personal:* Dacă nu sunteți sigur, sunați-ne și vă vom ajuta să alegeți perfect!\n\n📞 *Avem 5 opțiuni disponibile - sunați pentru a discuta toate variantele!*\n",
+      "intent": "find_product",
+      "timestamp": "2025-07-15T16:24:59.203654",
+      "user_id": "test_user_123",
+      "confidence": 0.95,
+      "metadata": {}
+    },
+    {
+      "user_message": "Caut flori pentru aniversare",
+      "bot_response": "\n🎉 Pentru o zi de naștere specială! Am găsit cele mai frumoase buchete care vor face această zi de neuitat:\n\n\n🎂 **1. I love you**\n💰 6200 MDL\n📝 Bouquet \"I love you\" - Composition made from one variety of peonies. Peonies symbolize wealth, honor, and love in the language of flowers. Lush, delicate, fragrant bouquet rightfully considered one of the best gifts for girls and women.\n✨ *Perfect pentru sărbătorirea zilei speciale!*\n            \n\n🎂 **2. Elegant bouquet of flowers**\n💰 1100 MDL\n📝 Elegant bouquet of flowers - Sophisticated arrangement with roses and matiola\n✨ *Perfect pentru sărbătorirea zilei speciale!*\n            \n\n🎂 **3. Greenery**\n💰 1400 MDL\n📝 Bouquet \"Greenery\" - Fresh green arrangement with natural foliage and seasonal flowers for nature lovers\n✨ *Perfect pentru sărbătorirea zilei speciale!*\n            \n\n🎂 **4. Heart in flowers**\n💰 2500 MDL\n📝 Bouquet \"Heart in flowers\" - Heart-shaped arrangement with roses, gerbera, ranunculus, asparagus and spray roses\n✨ *Perfect pentru sărbătorirea zilei speciale!*\n            \n\n🎂 **5. Summer Cocktail**\n💰 550 MDL\n📝 Bouquet of flowers \"Summer Cocktail\" - Refreshing summer cocktail with germini, peonies and spray roses\n✨ *Perfect pentru sărbătorirea zilei speciale!*\n            \n\n🎉 *Sfat personal:* Pentru o zi de naștere, adăugați o felicitare personalizată și poate o cutie de ciocolată pentru a face cadoul complet!\n\n📞 *Avem 5 opțiuni disponibile - sunați pentru a discuta toate variantele!*\n",
+      "intent": "find_product",
+      "timestamp": "2025-07-15T16:25:00.142871",
+      "user_id": "test_user_123",
+      "confidence": 1.0,
+      "metadata": {}
+    },
+    {
+      "user_message": "Ce prețuri aveți?",
+      "bot_response": "\n💰 **Prețuri XOFlowers - Transparent și Competitiv:**\n\n🌹 **Buchete Clasice:**\n• Mici (7-12 flori): 200-400 MDL\n• Medii (15-20 flori): 450-650 MDL\n• Mari (25+ flori): 700-1000 MDL\n\n🎁 **Aranjamente Speciale:**\n• Cutii cadou: 500-1200 MDL\n• Aranjamente masă: 300-600 MDL\n• Coroane: 800-1500 MDL\n\n🚚 **Livrare:**\n• Gratuită peste 500 MDL\n• Standard: 100 MDL\n• Express: 150 MDL\n\n💫 *Pentru preț exact, descrieți ce căutați!*\n        ",
+      "intent": "price_inquiry",
+      "timestamp": "2025-07-15T16:25:01.953097",
+      "user_id": "test_user_123",
+      "confidence": 1.0,
+      "metadata": {}
+    },
+    {
+      "user_message": "Programul de lucru?",
+      "bot_response": "\n🕒 **Programul XOFlowers:**\n\n🌅 **Luni - Vineri:** 9:00 - 20:00\n🌸 **Sâmbătă:** 10:00 - 18:00  \n🌺 **Duminică:** 11:00 - 17:00\n\n💫 *Suntem aici pentru dumneavoastră în fiecare zi, gata să vă ajutăm să găsiți florile perfecte pentru orice moment special!*\n\n📞 Pentru urgențe sau comenzi speciale, ne puteți contacta oricând!\n    ",
+      "intent": "ask_question",
+      "timestamp": "2025-07-15T16:25:02.834261",
+      "user_id": "test_user_123",
+      "confidence": 0.4,
+      "metadata": {}
+    },
+    {
+      "user_message": "Mulțumesc, la revedere!",
+      "bot_response": "\n🌸 **Vă mulțumim că ați ales XOFlowers!**\n\n*Sperăm că v-am fost de ajutor și că veți fi mulțumit de serviciile noastre!*\n\n🌺 **Rămâneți în legătură:**\n📞 Pentru comenzi: +373 22 123 456\n📧 Email: hello@xoflowers.md\n🌐 Website: www.xoflowers.md\n\n💐 **Să aveți o zi frumoasă plină de flori!**\n✨ *Așteptăm să vă servim din nou cu plăcere!*\n        ",
+      "intent": "farewell",
+      "timestamp": "2025-07-15T16:25:03.613372",
+      "user_id": "test_user_123",
+      "confidence": 1.0,
+      "metadata": {}
     }
   ],
   "test_user_456": [
@@ -682,24 +727,6 @@
   ],
   "6997272703": [
     {
-      "user_message": "salut",
-      "bot_response": "\n🌸 **Bună ziua și bine ați venit în lumea XOFlowers!**\n\n*Sunt Maria, florist cu 15 ani de experiență și pasiune pentru frumusețe. Mă bucur mult să vă cunosc!*\n\n🌺 **Știu că fiecare persoană care vine la mine are o poveste, o emoție, un moment special de celebrat. Sunt aici să vă ascult cu inima și să transform acea emoție în frumusețe prin flori.**\n\n✨ **Cum pot să vă ajut astăzi să creați un moment magic?**\n💐 Aveți pe cineva drag în gând pentru care căutați flori speciale?\n🎁 Vă pregătiți pentru o ocazie importantă care merită să fie marcată?\n💝 Sau poate doriți pur și simplu să aduceți puțină frumusețe în ziua cuiva?\n\n🌸 *Indiferent ce vă aduce aici, vreau să știți că sunteți în mâini bune. Îmi place să spun că nu vând flori - ajut oamenii să își exprime sentimentele prin frumusețe.*\n\n📞 **Să începem povestea voastră cu flori?**\n    ",
-      "intent": "greeting",
-      "timestamp": "2025-07-15T15:15:09.007192",
-      "user_id": "6997272703",
-      "confidence": 0.9,
-      "metadata": {}
-    },
-    {
-      "user_message": "am o zi de nastere la mama mea, ce imi recomanzi",
-      "bot_response": "\n🌸 **Recomandări Experte XOFlowers:**\n\n*Bazându-mă pe experiența noastră, iată sugestiile mele:*\n\n💐 **Cele mai populare:**\n• **Buchet Romantic** - Trandafiri roșii clasici - 750 MDL\n• **Buchet Pastel** - Mix delicat pentru orice ocazie - 600 MDL\n• **Buchet Sezon** - Flori proaspete de sezon - 450 MDL\n\n🎁 **Pentru cadouri:**\n• **Cutie Premium** - Flori + ciocolată - 900 MDL\n• **Aranjament Masă** - Perfect pentru acasă - 400 MDL\n\n💫 *Pentru ce ocazie căutați? Vă pot da recomandări mai personalizate!*\n        ",
-      "intent": "recommendation",
-      "timestamp": "2025-07-15T15:15:50.473629",
-      "user_id": "6997272703",
-      "confidence": 0.9,
-      "metadata": {}
-    },
-    {
       "user_message": "sa fie de 2000 lei sau pe aproape",
       "bot_response": "\n💰 **Prețuri XOFlowers - Transparent și Competitiv:**\n\n🌹 **Buchete Clasice:**\n• Mici (7-12 flori): 200-400 MDL\n• Medii (15-20 flori): 450-650 MDL\n• Mari (25+ flori): 700-1000 MDL\n\n🎁 **Aranjamente Speciale:**\n• Cutii cadou: 500-1200 MDL\n• Aranjamente masă: 300-600 MDL\n• Coroane: 800-1500 MDL\n\n🚚 **Livrare:**\n• Gratuită peste 500 MDL\n• Standard: 100 MDL\n• Express: 150 MDL\n\n💫 *Pentru preț exact, descrieți ce căutați!*\n        ",
       "intent": "price_inquiry",
@@ -823,6 +850,60 @@
       "timestamp": "2025-07-15T15:27:09.065685",
       "user_id": "6997272703",
       "confidence": 0.8,
+      "metadata": {}
+    },
+    {
+      "user_message": "salut",
+      "bot_response": "\n🌸 **Bună ziua, estimatul nostru client fidel!**\n\n*Văzându-vă din nou, ne bucurăm foarte mult! Apreciem fidelitatea și încrederea pe care ne-o acordați constant.*\n\n🌺 **Ne bucurăm să vedem că florile au devenit parte din viața dumneavoastră. Aceasta confirmă că munca noastră are cu adevărat sens - să fim parte din momentele dumneavoastră speciale și să vă ajutăm să exprimați emoții prin frumusețe.**\n\n✨ **Ce nouă poveste frumoasă vom crea astăzi cu florile?**\n💐 Pregătim ceva pentru o nouă ocazie specială?\n🎁 Vă gândiți să surprindeți din nou pe cineva drag?\n💝 Sau poate doriți să explorăm împreună ceva nou din colecția noastră?\n\n🌸 *Cunoaștem preferințele dumneavoastră și ne bucurăm să vă ghidăm către cele mai frumoase alegeri. Sunteți dovada că florile nu sunt doar cadouri - sunt conexiuni între oameni.*\n\n📞 **Să creăm din nou ceva magic?**\n    ",
+      "intent": "greeting",
+      "timestamp": "2025-07-15T16:14:14.360186",
+      "user_id": "6997272703",
+      "confidence": 0.9,
+      "metadata": {}
+    },
+    {
+      "user_message": "salut",
+      "bot_response": "\n🌸 **Bună ziua, estimatul nostru client fidel!**\n\n*Văzându-vă din nou, ne bucurăm foarte mult! Apreciem fidelitatea și încrederea pe care ne-o acordați constant.*\n\n🌺 **Ne bucurăm să vedem că florile au devenit parte din viața dumneavoastră. Aceasta confirmă că munca noastră are cu adevărat sens - să fim parte din momentele dumneavoastră speciale și să vă ajutăm să exprimați emoții prin frumusețe.**\n\n✨ **Ce nouă poveste frumoasă vom crea astăzi cu florile?**\n💐 Pregătim ceva pentru o nouă ocazie specială?\n🎁 Vă gândiți să surprindeți din nou pe cineva drag?\n💝 Sau poate doriți să explorăm împreună ceva nou din colecția noastră?\n\n🌸 *Cunoaștem preferințele dumneavoastră și ne bucurăm să vă ghidăm către cele mai frumoase alegeri. Sunteți dovada că florile nu sunt doar cadouri - sunt conexiuni între oameni.*\n\n📞 **Să creăm din nou ceva magic?**\n    ",
+      "intent": "greeting",
+      "timestamp": "2025-07-15T16:16:38.091162",
+      "user_id": "6997272703",
+      "confidence": 0.9,
+      "metadata": {}
+    },
+    {
+      "user_message": "vreau un buchet de flori pentru padruga",
+      "bot_response": "\n🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n\n🌺 **1. I love you**\n💰 6200 MDL\n📝 Bouquet \"I love you\" - Composition made from one variety of peonies. Peonies symbolize wealth, honor, and love in the language of flowers. Lush, delicate, fragrant bouquet rightfully considered one of the best gifts for girls and women.\n✨ *Frumos și elegant!*\n            \n\n🌺 **2. Elegant bouquet of flowers**\n💰 1100 MDL\n📝 Elegant bouquet of flowers - Sophisticated arrangement with roses and matiola\n✨ *Frumos și elegant!*\n            \n\n🌺 **3. Greenery**\n💰 1400 MDL\n📝 Bouquet \"Greenery\" - Fresh green arrangement with natural foliage and seasonal flowers for nature lovers\n✨ *Frumos și elegant!*\n            \n\n🌺 **4. Heart in flowers**\n💰 2500 MDL\n📝 Bouquet \"Heart in flowers\" - Heart-shaped arrangement with roses, gerbera, ranunculus, asparagus and spray roses\n✨ *Frumos și elegant!*\n            \n\n🌺 **5. Summer Cocktail**\n💰 550 MDL\n📝 Bouquet of flowers \"Summer Cocktail\" - Refreshing summer cocktail with germini, peonies and spray roses\n✨ *Frumos și elegant!*\n            \n\n🌺 *Sfat personal:* Dacă nu sunteți sigur, sunați-ne și vă vom ajuta să alegeți perfect!\n\n📞 *Avem 5 opțiuni disponibile - sunați pentru a discuta toate variantele!*\n",
+      "intent": "find_product",
+      "timestamp": "2025-07-15T16:17:42.336074",
+      "user_id": "6997272703",
+      "confidence": 0.9,
+      "metadata": {}
+    },
+    {
+      "user_message": "ce imi recomanzi din produsele dumneavoastra pentru nunta",
+      "bot_response": "\n🌸 **Recomandări Experte XOFlowers:**\n\n*Bazându-mă pe experiența noastră, iată sugestiile mele:*\n\n💐 **Cele mai populare:**\n• **Buchet Romantic** - Trandafiri roșii clasici - 750 MDL\n• **Buchet Pastel** - Mix delicat pentru orice ocazie - 600 MDL\n• **Buchet Sezon** - Flori proaspete de sezon - 450 MDL\n\n🎁 **Pentru cadouri:**\n• **Cutie Premium** - Flori + ciocolată - 900 MDL\n• **Aranjament Masă** - Perfect pentru acasă - 400 MDL\n\n💫 *Pentru ce ocazie căutați? Vă pot da recomandări mai personalizate!*\n        ",
+      "intent": "recommendation",
+      "timestamp": "2025-07-15T16:18:00.638584",
+      "user_id": "6997272703",
+      "confidence": 0.9,
+      "metadata": {}
+    },
+    {
+      "user_message": "vreau sa cumpar mai multe buchete de flori",
+      "bot_response": "\n🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n\n🌺 **1. I love you**\n💰 6200 MDL\n📝 Bouquet \"I love you\" - Composition made from one variety of peonies. Peonies symbolize wealth, honor, and love in the language of flowers. Lush, delicate, fragrant bouquet rightfully considered one of the best gifts for girls and women.\n✨ *Frumos și elegant!*\n            \n\n🌺 **2. Elegant bouquet of flowers**\n💰 1100 MDL\n📝 Elegant bouquet of flowers - Sophisticated arrangement with roses and matiola\n✨ *Frumos și elegant!*\n            \n\n🌺 **3. Greenery**\n💰 1400 MDL\n📝 Bouquet \"Greenery\" - Fresh green arrangement with natural foliage and seasonal flowers for nature lovers\n✨ *Frumos și elegant!*\n            \n\n🌺 **4. Heart in flowers**\n💰 2500 MDL\n📝 Bouquet \"Heart in flowers\" - Heart-shaped arrangement with roses, gerbera, ranunculus, asparagus and spray roses\n✨ *Frumos și elegant!*\n            \n\n🌺 **5. Summer Cocktail**\n💰 550 MDL\n📝 Bouquet of flowers \"Summer Cocktail\" - Refreshing summer cocktail with germini, peonies and spray roses\n✨ *Frumos și elegant!*\n            \n\n🌺 *Sfat personal:* Dacă nu sunteți sigur, sunați-ne și vă vom ajuta să alegeți perfect!\n\n📞 *Avem 5 opțiuni disponibile - sunați pentru a discuta toate variantele!*\n",
+      "intent": "find_product",
+      "timestamp": "2025-07-15T16:18:26.057223",
+      "user_id": "6997272703",
+      "confidence": 0.8,
+      "metadata": {}
+    },
+    {
+      "user_message": "buchete pentru zile de nastere pana in 1000 lei",
+      "bot_response": "\n🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n\n🌺 **1. Marshmallow**\n💰 1200 MDL\n📝 Bouquet \"Marshmallow\" - Elegant bouquet of peonies in soft pastel colors, perfect for romantic occasions and special celebrations\n✨ *Frumos și elegant!*\n            \n\n🌺 **2. 51 peonies**\n💰 5600 MDL\n📝 Bouquet \"51 peonies\" - Luxurious bouquet of 51 fresh peonies for grand gestures and special occasions\n✨ *Frumos și elegant!*\n            \n\n🌺 **3. Coral**\n💰 650 MDL\n📝 Bouquet \"Coral\" - Beautiful coral-colored peony bouquet with viburnum accents\n✨ *Frumos și elegant!*\n            \n\n🌺 **4. Coral Blossom**\n💰 1550 MDL\n📝 Bouquet \"Coral Blossom\" - Elegant coral peony arrangement with delicate viburnum details\n✨ *Frumos și elegant!*\n            \n\n🌺 **5. Luxurious Love**\n💰 2800 MDL\n📝 Bouquet \"Luxurious Love\" - Premium mixed bouquet with hydrangea, peonies, spray roses and gerberas\n✨ *Frumos și elegant!*\n            \n\n🌺 *Sfat personal:* Dacă nu sunteți sigur, sunați-ne și vă vom ajuta să alegeți perfect!\n\n📞 *Avem 5 opțiuni disponibile - sunați pentru a discuta toate variantele!*\n",
+      "intent": "find_product",
+      "timestamp": "2025-07-15T16:22:05.855542",
+      "user_id": "6997272703",
+      "confidence": 0.9,
       "metadata": {}
     }
   ]

@@ -1,0 +1,29 @@
+{
+  "user_id": "user_test_4",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Mulțumesc pentru tot ajutorul!",
+      "timestamp": "2025-07-16T02:41:33.721585",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Vă mulțumesc pentru cuvintele frumoase! Îmi face plăcere să vă ajut să găsiți florile perfecte. Mai aveți nevoie de ceva?",
+      "timestamp": "2025-07-16T02:41:33.722508",
+      "metadata": {}
+    }
+  ],
+  "preferences": {
+    "favorite_colors": [],
+    "favorite_flowers": [],
+    "budget_range": null,
+    "preferred_occasions": [],
+    "style_preferences": [],
+    "recipient_types": []
+  },
+  "current_search_context": null,
+  "mentioned_products": [],
+  "conversation_stage": "greeting",
+  "last_activity": "2025-07-16T02:41:33.722516"
+}

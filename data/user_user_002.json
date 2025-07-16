@@ -1,0 +1,59 @@
+{
+  "user_id": "user_002",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Bună ziua! Aveți trandafiri albi?",
+      "timestamp": "2025-07-16T02:41:31.396525",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Bună ziua din nou! Mă bucur să vă revăd la XOFlowers! Cu ce vă pot ajuta astăzi?",
+      "timestamp": "2025-07-16T02:41:31.397634",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Pentru nuntă îmi trebuie. Ceva elegant.",
+      "timestamp": "2025-07-16T02:41:31.400697",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Vă pot ajuta cu informații despre florile noastre! Suntem XOFlowers din Chișinău și oferim cele mai frumoase aranjamente florale. Cu ce anume vă pot ajuta?",
+      "timestamp": "2025-07-16T02:41:31.401824",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Perfect! Cum pot comanda?",
+      "timestamp": "2025-07-16T02:41:31.404354",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Vă pot ajuta cu informații despre florile noastre! Suntem XOFlowers din Chișinău și oferim cele mai frumoase aranjamente florale. Cu ce anume vă pot ajuta?",
+      "timestamp": "2025-07-16T02:41:31.405189",
+      "metadata": {}
+    }
+  ],
+  "preferences": {
+    "favorite_colors": [
+      "alb"
+    ],
+    "favorite_flowers": [
+      "trandafir"
+    ],
+    "budget_range": null,
+    "preferred_occasions": [],
+    "style_preferences": [
+      "elegant"
+    ],
+    "recipient_types": []
+  },
+  "current_search_context": null,
+  "mentioned_products": [],
+  "conversation_stage": "greeting",
+  "last_activity": "2025-07-16T02:41:31.405196"
+}

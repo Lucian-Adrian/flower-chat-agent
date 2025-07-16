@@ -3,6 +3,8 @@ XOFlowers AI Agent Configuration Settings
 Contains all constants, model configurations, and system parameters
 """
 
+import os
+
 # AI Model Configuration
 AI_MODEL = {
     'primary': 'openai',  # Primary AI service
@@ -89,3 +91,10 @@ LOGGING = {
     'format': '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     'file': './logs/xoflowers_agent.log'
 }
+
+# API Keys (loaded from environment variables)
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
+TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
+INSTAGRAM_PAGE_ACCESS_TOKEN = os.getenv('INSTAGRAM_PAGE_ACCESS_TOKEN')
+INSTAGRAM_VERIFY_TOKEN = os.getenv('INSTAGRAM_VERIFY_TOKEN')

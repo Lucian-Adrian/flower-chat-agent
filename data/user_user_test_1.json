@@ -1,0 +1,33 @@
+{
+  "user_id": "user_test_1",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Ce diferență este între trandafirii roșii și cei roz?",
+      "timestamp": "2025-07-16T02:41:32.234460",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Greeting Card \"Danseaza Viata Asta Frumos!\"** - 20.0 MDL\n   Culori: diverse culori\n   Acest produs potrivit pentru cererea dumneavoastră.\n\n2. **Bouquet \"Dolve Vita\"** - 2900.0 MDL\n   Culori: diverse culori\n   Acest produs potrivit pentru cererea dumneavoastră.\n\n3. **Bouquet \"Meet the Dream\"** - 1250.0 MDL\n   Culori: portocaliu\n   Acest produs potrivit pentru cererea dumneavoastră.\n\nCe părere aveți despre aceste opțiuni?",
+      "timestamp": "2025-07-16T02:41:32.906304",
+      "metadata": {}
+    }
+  ],
+  "preferences": {
+    "favorite_colors": [
+      "roz"
+    ],
+    "favorite_flowers": [
+      "trandafir"
+    ],
+    "budget_range": null,
+    "preferred_occasions": [],
+    "style_preferences": [],
+    "recipient_types": []
+  },
+  "current_search_context": null,
+  "mentioned_products": [],
+  "conversation_stage": "greeting",
+  "last_activity": "2025-07-16T02:41:32.906317"
+}
