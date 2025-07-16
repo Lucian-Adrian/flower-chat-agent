@@ -1,37 +1,61 @@
-# Scripts Folder
+# XOFlowers Bot Scripts
 
-This folder contains utility scripts for the XOFlowers Bot System.
+This folder contains various scripts to launch and manage the XOFlowers Telegram Bot.
 
-## Files:
+## 🚀 Bot Launchers
 
-- **`launcher.bat`** - Windows batch launcher with interactive menu
-- **`start_all.ps1`** - PowerShell script to start both bots + ngrok
-- **`start_telegram.ps1`** - PowerShell script to start Telegram bot only
-- **`start_instagram.ps1`** - PowerShell script to start Instagram bot only
-- **`run_tests.py`** - Python script to run all tests
-
-## Usage:
-
-### Windows (PowerShell):
-```powershell
-.\scripts\start_all.ps1        # Start both bots
-.\scripts\start_telegram.ps1   # Start Telegram bot only
-.\scripts\start_instagram.ps1  # Start Instagram bot only
-```
-
-### Windows (Batch):
-```cmd
-.\scripts\launcher.bat         # Interactive menu
-```
-
-### Python:
+### Quick Start (Recommended)
 ```bash
-python scripts/run_tests.py   # Run all tests
+# PowerShell (Windows)
+.\scripts\start_telegram_bot.ps1
+
+# Command Prompt (Windows)
+scripts\run_telegram_bot.bat
+
+# Cross-platform Python
+python scripts\simple_bot_launcher.py
 ```
 
-## Quick Access:
-
-For easier access, use the root `launcher.py`:
+### Advanced Options
 ```bash
-python launcher.py
+# Direct module execution
+python -m src.api.telegram_app
+
+# With custom launcher
+python scripts\telegram_bot_launcher.py
 ```
+
+## 📋 Requirements
+
+Make sure you have:
+- ✅ Python 3.8+ installed
+- ✅ All dependencies: `pip install -r requirements.txt`
+- ✅ `.env` file with your API keys:
+  - `TELEGRAM_BOT_TOKEN`
+  - `OPENAI_API_KEY`
+
+## 🎯 Testing Your Bot
+
+1. **Start the bot** using one of the methods above
+2. **Find your bot** on Telegram using the bot username
+3. **Send messages** to test:
+   - `/start` - Welcome message
+   - `/help` - Bot commands
+   - "Salut!" - Natural conversation
+   - "Vreau flori pentru ziua mamei" - Product search
+   - "Care sunt prețurile?" - Price inquiry
+
+## 🔧 Troubleshooting
+
+If you get event loop errors:
+- ✅ Bot is likely working despite the error
+- ✅ Check Telegram - bot should respond to messages
+- ✅ The error only affects the launcher, not bot functionality
+
+## 📁 Available Scripts
+
+- `simple_bot_launcher.py` - Clean, minimal launcher
+- `telegram_bot_launcher.py` - Advanced launcher with error handling
+- `start_telegram_bot.ps1` - PowerShell launcher
+- `run_telegram_bot.bat` - Windows batch file
+- `run_tests.py` - Test runner for the bot system

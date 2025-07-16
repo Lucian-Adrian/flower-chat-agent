@@ -1,46 +1,182 @@
 """
-Conversation Context System
-Manages conversation history, context, and memory for personalized interactions
+Conversation Context Management for XOFlowers Conversational AI
+Simplified and effective context tracking for natural conversations
 """
 
-import os
 import json
-import time
+import os
+import logging
 from typing import Dict, List, Optional, Any
-from datetime import datetime, timedelta
 from dataclasses import dataclass, asdict
+from datetime import datetime, timedelta
+
+# Setup logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 
 @dataclass
-class ConversationTurn:
-    """Single conversation turn"""
-    user_message: str
-    bot_response: str
-    intent: str
+class Message:
+    """Single message in conversation"""
+    role: str  # 'user' or 'assistant'
+    content: str
     timestamp: datetime
-    user_id: str
-    confidence: float = 0.0
-    metadata: Dict[str, Any] = None
+    metadata: Optional[Dict[str, Any]] = None
+    
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for JSON serialization"""
+        return {
+            'role': self.role,
+            'content': self.content,
+            'timestamp': self.timestamp.isoformat(),
+            'metadata': self.metadata or {}
+        }
+    
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> 'Message':
+        """Create from dictionary"""
+        return cls(
+            role=data['role'],
+            content=data['content'],
+            timestamp=datetime.fromisoformat(data['timestamp']),
+            metadata=data.get('metadata', {})
+        )
 
 
 @dataclass
-class UserProfile:
-    """User profile with preferences and history"""
+class UserPreferences:
+    """User preferences extracted from conversations"""
+    favorite_colors: List[str] = None
+    favorite_flowers: List[str] = None
+    budget_range: Optional[tuple] = None
+    preferred_occasions: List[str] = None
+    style_preferences: List[str] = None
+    recipient_types: List[str] = None
+    
+    def __post_init__(self):
+        if self.favorite_colors is None:
+            self.favorite_colors = []
+        if self.favorite_flowers is None:
+            self.favorite_flowers = []
+        if self.preferred_occasions is None:
+            self.preferred_occasions = []
+        if self.style_preferences is None:
+            self.style_preferences = []
+        if self.recipient_types is None:
+            self.recipient_types = []
+    
+    def update_from_message(self, message: str, search_intent: Optional[Any] = None):
+        """Update preferences based on user message and search intent"""
+        message_lower = message.lower()
+        
+        # Extract colors
+        color_keywords = {
+            'roșu': ['roșu', 'rosu', 'red'],
+            'roz': ['roz', 'pink'],
+            'alb': ['alb', 'white'],
+            'galben': ['galben', 'yellow'],
+            'violet': ['violet', 'purple']
+        }
+        
+        for color, keywords in color_keywords.items():
+            if any(keyword in message_lower for keyword in keywords):
+                if color not in self.favorite_colors:
+                    self.favorite_colors.append(color)
+        
+        # Extract flower types
+        flower_keywords = ['trandafir', 'bujor', 'lalele', 'crizanteme']
+        for flower in flower_keywords:
+            if flower in message_lower and flower not in self.favorite_flowers:
+                self.favorite_flowers.append(flower)
+        
+        # Extract style preferences
+        style_keywords = {
+            'elegant': ['elegant', 'rafinat'],
+            'romantic': ['romantic', 'tandru'],
+            'modern': ['modern', 'contemporan'],
+            'classic': ['clasic', 'tradițional']
+        }
+        
+        for style, keywords in style_keywords.items():
+            if any(keyword in message_lower for keyword in keywords):
+                if style not in self.style_preferences:
+                    self.style_preferences.append(style)
+        
+        # Update from search intent if provided
+        if search_intent:
+            if hasattr(search_intent, 'colors') and search_intent.colors:
+                for color in search_intent.colors:
+                    if color not in self.favorite_colors:
+                        self.favorite_colors.append(color)
+            
+            if hasattr(search_intent, 'budget_min') and hasattr(search_intent, 'budget_max'):
+                if search_intent.budget_min or search_intent.budget_max:
+                    self.budget_range = (search_intent.budget_min, search_intent.budget_max)
+
+
+@dataclass
+class ConversationSession:
+    """Current conversation session state"""
     user_id: str
-    name: Optional[str] = None
-    preferences: Dict[str, Any] = None
-    purchase_history: List[Dict[str, Any]] = None
-    conversation_count: int = 0
-    first_interaction: datetime = None
-    last_interaction: datetime = None
-    favorite_products: List[str] = None
-    budget_range: Optional[str] = None
-    special_occasions: List[str] = None
+    messages: List[Message]
+    preferences: UserPreferences
+    current_search_context: Optional[Dict[str, Any]] = None
+    mentioned_products: List[str] = None
+    conversation_stage: str = 'greeting'  # greeting, exploring, deciding, ordering
+    last_activity: datetime = None
+    
+    def __post_init__(self):
+        if self.mentioned_products is None:
+            self.mentioned_products = []
+        if self.last_activity is None:
+            self.last_activity = datetime.now()
+    
+    def add_message(self, role: str, content: str, metadata: Optional[Dict] = None):
+        """Add a message to the conversation"""
+        message = Message(
+            role=role,
+            content=content,
+            timestamp=datetime.now(),
+            metadata=metadata
+        )
+        self.messages.append(message)
+        self.last_activity = datetime.now()
+        
+        # Update preferences if it's a user message
+        if role == 'user':
+            self.preferences.update_from_message(content)
+    
+    def get_recent_messages(self, limit: int = 10) -> List[Message]:
+        """Get recent messages for context"""
+        return self.messages[-limit:] if self.messages else []
+    
+    def get_conversation_summary(self) -> str:
+        """Get a summary of the conversation for AI context"""
+        if not self.messages:
+            return "No previous conversation."
+        
+        recent_messages = self.get_recent_messages(6)
+        summary_parts = []
+        
+        for msg in recent_messages:
+            role_label = "Client" if msg.role == 'user' else "XOFlowers"
+            summary_parts.append(f"{role_label}: {msg.content}")
+        
+        return "\n".join(summary_parts)
+    
+    def is_active(self, timeout_minutes: int = 30) -> bool:
+        """Check if conversation is still active"""
+        if not self.last_activity:
+            return False
+        
+        timeout = timedelta(minutes=timeout_minutes)
+        return datetime.now() - self.last_activity < timeout
 
 
-class ConversationContext:
+class ConversationContextManager:
     """
-    Manages conversation context and user profiles
+    Manages conversation contexts for all users
+    Simplified and focused on natural conversation flow
     """
     
     def __init__(self, storage_path: str = "data"):
@@ -48,344 +184,209 @@ class ConversationContext:
         Initialize conversation context manager
         
         Args:
-            storage_path (str): Path to store conversation data
+            storage_path: Path to store conversation data
         """
         self.storage_path = storage_path
-        self.contexts: Dict[str, List[ConversationTurn]] = {}
-        self.user_profiles: Dict[str, UserProfile] = {}
-        self.max_context_length = 20  # Keep last 20 turns
-        self.context_window = timedelta(hours=2)  # Context expires after 2 hours
+        self.active_sessions: Dict[str, ConversationSession] = {}
         
         # Ensure storage directory exists
         os.makedirs(storage_path, exist_ok=True)
         
-        # Load existing data
-        self._load_contexts()
-        self._load_user_profiles()
+        # Load existing sessions
+        self._load_sessions()
     
-    def add_turn(self, user_id: str, user_message: str, bot_response: str, 
-                 intent: str, confidence: float = 0.0, metadata: Dict[str, Any] = None):
-        """
-        Add a conversation turn to context
-        
-        Args:
-            user_id (str): User identifier
-            user_message (str): User's message
-            bot_response (str): Bot's response
-            intent (str): Classified intent
-            confidence (float): Classification confidence
-            metadata (Dict): Additional metadata
-        """
-        turn = ConversationTurn(
-            user_message=user_message,
-            bot_response=bot_response,
-            intent=intent,
-            timestamp=datetime.now(),
-            user_id=user_id,
-            confidence=confidence,
-            metadata=metadata or {}
-        )
-        
-        if user_id not in self.contexts:
-            self.contexts[user_id] = []
-        
-        self.contexts[user_id].append(turn)
-        
-        # Maintain context window
-        self._cleanup_old_context(user_id)
-        
-        # Update user profile
-        self._update_user_profile(user_id, turn)
-        
-        # Persist data
-        self._save_contexts()
-        self._save_user_profiles()
-    
-    def get_context(self, user_id: str, limit: int = 5) -> List[ConversationTurn]:
-        """
-        Get conversation context for a user
-        
-        Args:
-            user_id (str): User identifier
-            limit (int): Number of recent turns to return
+    def get_or_create_session(self, user_id: str) -> ConversationSession:
+        """Get existing session or create new one"""
+        if user_id not in self.active_sessions:
+            # Try to load from storage
+            session = self._load_session(user_id)
+            if not session or not session.is_active():
+                # Create new session
+                session = ConversationSession(
+                    user_id=user_id,
+                    messages=[],
+                    preferences=UserPreferences()
+                )
             
-        Returns:
-            List[ConversationTurn]: Recent conversation turns
-        """
-        if user_id not in self.contexts:
-            return []
+            self.active_sessions[user_id] = session
         
-        # Filter recent context within time window
-        now = datetime.now()
-        recent_turns = [
-            turn for turn in self.contexts[user_id]
-            if now - turn.timestamp < self.context_window
-        ]
-        
-        return recent_turns[-limit:] if recent_turns else []
+        return self.active_sessions[user_id]
     
-    def get_context_string(self, user_id: str, limit: int = 5) -> str:
-        """
-        Get formatted context string for AI prompts
+    def add_message(self, user_id: str, role: str, content: str, metadata: Optional[Dict] = None):
+        """Add a message to user's conversation"""
+        session = self.get_or_create_session(user_id)
+        session.add_message(role, content, metadata)
         
-        Args:
-            user_id (str): User identifier
-            limit (int): Number of recent turns to include
-            
-        Returns:
-            str: Formatted context string
-        """
-        context = self.get_context(user_id, limit)
-        
-        if not context:
-            return "No previous conversation context."
-        
-        context_lines = []
-        for turn in context:
-            context_lines.append(f"User: {turn.user_message}")
-            context_lines.append(f"Bot: {turn.bot_response}")
-            context_lines.append(f"Intent: {turn.intent}")
-            context_lines.append("---")
-        
-        return "\n".join(context_lines)
+        # Save session
+        self._save_session(session)
     
-    def get_user_profile(self, user_id: str) -> Optional[UserProfile]:
-        """
-        Get user profile
+    def get_conversation_context(self, user_id: str) -> Dict[str, Any]:
+        """Get conversation context for AI"""
+        session = self.get_or_create_session(user_id)
         
-        Args:
-            user_id (str): User identifier
-            
-        Returns:
-            Optional[UserProfile]: User profile if exists
-        """
-        return self.user_profiles.get(user_id)
+        return {
+            'user_id': user_id,
+            'conversation_summary': session.get_conversation_summary(),
+            'preferences': asdict(session.preferences),
+            'mentioned_products': session.mentioned_products,
+            'conversation_stage': session.conversation_stage,
+            'is_returning_user': len(session.messages) > 2,
+            'recent_messages': [msg.to_dict() for msg in session.get_recent_messages(5)]
+        }
     
-    def update_user_preferences(self, user_id: str, preferences: Dict[str, Any]):
-        """
-        Update user preferences
+    def update_search_context(self, user_id: str, search_intent: Any, results: List[Any]):
+        """Update search context after a product search"""
+        session = self.get_or_create_session(user_id)
         
-        Args:
-            user_id (str): User identifier
-            preferences (Dict): User preferences to update
-        """
-        if user_id not in self.user_profiles:
-            self.user_profiles[user_id] = UserProfile(user_id=user_id)
+        session.current_search_context = {
+            'search_intent': str(search_intent),
+            'results_count': len(results),
+            'timestamp': datetime.now().isoformat()
+        }
         
-        profile = self.user_profiles[user_id]
-        if profile.preferences is None:
-            profile.preferences = {}
+        # Add product IDs to mentioned products
+        for result in results:
+            if hasattr(result, 'product') and 'id' in result.product:
+                product_id = result.product['id']
+                if product_id not in session.mentioned_products:
+                    session.mentioned_products.append(product_id)
         
-        profile.preferences.update(preferences)
-        self._save_user_profiles()
-    
-    def get_user_intent_history(self, user_id: str, limit: int = 10) -> List[str]:
-        """
-        Get user's recent intent history
+        # Update conversation stage
+        if session.conversation_stage == 'greeting':
+            session.conversation_stage = 'exploring'
         
-        Args:
-            user_id (str): User identifier
-            limit (int): Number of recent intents to return
-            
-        Returns:
-            List[str]: Recent intents
-        """
-        context = self.get_context(user_id, limit)
-        return [turn.intent for turn in context]
-    
-    def is_returning_user(self, user_id: str) -> bool:
-        """
-        Check if user is returning (has previous conversations)
-        
-        Args:
-            user_id (str): User identifier
-            
-        Returns:
-            bool: True if returning user
-        """
-        profile = self.get_user_profile(user_id)
-        return profile is not None and profile.conversation_count > 0
+        self._save_session(session)
     
     def get_personalized_greeting(self, user_id: str) -> str:
-        """
-        Get personalized greeting based on user history
+        """Get personalized greeting based on user history"""
+        session = self.get_or_create_session(user_id)
         
-        Args:
-            user_id (str): User identifier
+        if len(session.messages) == 0:
+            return "🌸 Bună ziua! Bine ați venit la XOFlowers! Sunt aici să vă ajut să găsiți florile perfecte pentru orice ocazie."
+        
+        if len(session.messages) < 5:
+            return "🌸 Bună ziua din nou! Mă bucur să vă revăd la XOFlowers! Cu ce vă pot ajuta astăzi?"
+        
+        # Personalized greeting based on preferences
+        greeting = "🌸 Bună ziua! Îmi pare bine să vă revăd!"
+        
+        if session.preferences.favorite_colors:
+            colors = ", ".join(session.preferences.favorite_colors[:2])
+            greeting += f" Văd că vă plac florile în {colors}."
+        
+        if session.preferences.favorite_flowers:
+            flowers = ", ".join(session.preferences.favorite_flowers[:2])
+            greeting += f" Și știu că apreciați {flowers}."
+        
+        greeting += " Cu ce vă pot ajuta astăzi?"
+        
+        return greeting
+    
+    def cleanup_inactive_sessions(self, timeout_minutes: int = 60):
+        """Remove inactive sessions from memory"""
+        inactive_users = []
+        
+        for user_id, session in self.active_sessions.items():
+            if not session.is_active(timeout_minutes):
+                inactive_users.append(user_id)
+        
+        for user_id in inactive_users:
+            # Save before removing
+            self._save_session(self.active_sessions[user_id])
+            del self.active_sessions[user_id]
+        
+        if inactive_users:
+            logger.info(f"🧹 Cleaned up {len(inactive_users)} inactive sessions")
+    
+    def _load_sessions(self):
+        """Load active sessions from storage"""
+        try:
+            sessions_file = os.path.join(self.storage_path, "active_sessions.json")
+            if os.path.exists(sessions_file):
+                with open(sessions_file, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                    
+                for user_id, session_data in data.items():
+                    session = self._deserialize_session(session_data)
+                    if session and session.is_active():
+                        self.active_sessions[user_id] = session
+                
+                logger.info(f"✅ Loaded {len(self.active_sessions)} active sessions")
+        except Exception as e:
+            logger.warning(f"⚠️ Error loading sessions: {e}")
+    
+    def _save_session(self, session: ConversationSession):
+        """Save individual session"""
+        try:
+            user_file = os.path.join(self.storage_path, f"user_{session.user_id}.json")
+            session_data = self._serialize_session(session)
             
-        Returns:
-            str: Personalized greeting
-        """
-        profile = self.get_user_profile(user_id)
-        
-        if not profile or profile.conversation_count == 0:
-            return "🌸 Bună ziua! Bine ați venit la XOFlowers! Sunt aici să vă ajut să găsiți florile perfecte."
-        
-        name_part = f" {profile.name}" if profile.name else ""
-        
-        if profile.conversation_count == 1:
-            return f"🌸 Bună ziua din nou{name_part}! Mă bucur să vă revăd la XOFlowers!"
-        
-        return f"🌸 Bună ziua{name_part}! Îmi pare bine să vă revăd! Cum vă pot ajuta astăzi?"
+            with open(user_file, 'w', encoding='utf-8') as f:
+                json.dump(session_data, f, ensure_ascii=False, indent=2)
+                
+        except Exception as e:
+            logger.warning(f"⚠️ Error saving session for {session.user_id}: {e}")
     
-    def _cleanup_old_context(self, user_id: str):
-        """Clean up old context entries"""
-        if user_id not in self.contexts:
-            return
+    def _load_session(self, user_id: str) -> Optional[ConversationSession]:
+        """Load individual session"""
+        try:
+            user_file = os.path.join(self.storage_path, f"user_{user_id}.json")
+            if os.path.exists(user_file):
+                with open(user_file, 'r', encoding='utf-8') as f:
+                    session_data = json.load(f)
+                    return self._deserialize_session(session_data)
+        except Exception as e:
+            logger.warning(f"⚠️ Error loading session for {user_id}: {e}")
         
-        # Remove entries older than context window
-        now = datetime.now()
-        self.contexts[user_id] = [
-            turn for turn in self.contexts[user_id]
-            if now - turn.timestamp < self.context_window
-        ]
-        
-        # Limit to max context length
-        if len(self.contexts[user_id]) > self.max_context_length:
-            self.contexts[user_id] = self.contexts[user_id][-self.max_context_length:]
+        return None
     
-    def _update_user_profile(self, user_id: str, turn: ConversationTurn):
-        """Update user profile with new turn"""
-        if user_id not in self.user_profiles:
-            self.user_profiles[user_id] = UserProfile(
-                user_id=user_id,
-                first_interaction=turn.timestamp,
-                preferences={},
-                purchase_history=[],
-                favorite_products=[],
-                special_occasions=[]
+    def _serialize_session(self, session: ConversationSession) -> Dict[str, Any]:
+        """Convert session to JSON-serializable format"""
+        return {
+            'user_id': session.user_id,
+            'messages': [msg.to_dict() for msg in session.messages],
+            'preferences': asdict(session.preferences),
+            'current_search_context': session.current_search_context,
+            'mentioned_products': session.mentioned_products,
+            'conversation_stage': session.conversation_stage,
+            'last_activity': session.last_activity.isoformat()
+        }
+    
+    def _deserialize_session(self, data: Dict[str, Any]) -> Optional[ConversationSession]:
+        """Convert JSON data back to session"""
+        try:
+            messages = [Message.from_dict(msg_data) for msg_data in data.get('messages', [])]
+            
+            preferences_data = data.get('preferences', {})
+            preferences = UserPreferences(
+                favorite_colors=preferences_data.get('favorite_colors', []),
+                favorite_flowers=preferences_data.get('favorite_flowers', []),
+                budget_range=tuple(preferences_data['budget_range']) if preferences_data.get('budget_range') else None,
+                preferred_occasions=preferences_data.get('preferred_occasions', []),
+                style_preferences=preferences_data.get('style_preferences', []),
+                recipient_types=preferences_data.get('recipient_types', [])
             )
-        
-        profile = self.user_profiles[user_id]
-        profile.last_interaction = turn.timestamp
-        profile.conversation_count += 1
-        
-        # Extract preferences from conversation
-        if turn.intent == "find_product":
-            self._extract_product_preferences(profile, turn)
-        elif turn.intent == "gift_suggestions":
-            self._extract_gift_preferences(profile, turn)
-    
-    def _extract_product_preferences(self, profile: UserProfile, turn: ConversationTurn):
-        """Extract product preferences from conversation"""
-        message = turn.user_message.lower()
-        
-        # Extract flower types
-        flowers = ["trandafir", "bujor", "garoafa", "lalele", "crizanteme"]
-        for flower in flowers:
-            if flower in message:
-                if flower not in profile.favorite_products:
-                    profile.favorite_products.append(flower)
-        
-        # Extract colors
-        colors = ["roșu", "roz", "alb", "galben", "violet"]
-        for color in colors:
-            if color in message:
-                if "favorite_colors" not in profile.preferences:
-                    profile.preferences["favorite_colors"] = []
-                if color not in profile.preferences["favorite_colors"]:
-                    profile.preferences["favorite_colors"].append(color)
-    
-    def _extract_gift_preferences(self, profile: UserProfile, turn: ConversationTurn):
-        """Extract gift preferences from conversation"""
-        message = turn.user_message.lower()
-        
-        occasions = ["aniversare", "valentine", "mama", "dragobete", "zi de naștere"]
-        for occasion in occasions:
-            if occasion in message:
-                if occasion not in profile.special_occasions:
-                    profile.special_occasions.append(occasion)
-    
-    def _load_contexts(self):
-        """Load conversation contexts from storage"""
-        context_file = os.path.join(self.storage_path, "contexts.json")
-        try:
-            if os.path.exists(context_file):
-                with open(context_file, 'r', encoding='utf-8') as f:
-                    data = json.load(f)
-                    for user_id, turns_data in data.items():
-                        self.contexts[user_id] = [
-                            ConversationTurn(
-                                user_message=turn['user_message'],
-                                bot_response=turn['bot_response'],
-                                intent=turn['intent'],
-                                timestamp=datetime.fromisoformat(turn['timestamp']),
-                                user_id=turn['user_id'],
-                                confidence=turn.get('confidence', 0.0),
-                                metadata=turn.get('metadata', {})
-                            )
-                            for turn in turns_data
-                        ]
-        except Exception as e:
-            print(f"❌ Error loading contexts: {e}")
-    
-    def _save_contexts(self):
-        """Save conversation contexts to storage"""
-        context_file = os.path.join(self.storage_path, "contexts.json")
-        try:
-            data = {}
-            for user_id, turns in self.contexts.items():
-                data[user_id] = [
-                    {
-                        'user_message': turn.user_message,
-                        'bot_response': turn.bot_response,
-                        'intent': turn.intent,
-                        'timestamp': turn.timestamp.isoformat(),
-                        'user_id': turn.user_id,
-                        'confidence': turn.confidence,
-                        'metadata': turn.metadata
-                    }
-                    for turn in turns
-                ]
             
-            with open(context_file, 'w', encoding='utf-8') as f:
-                json.dump(data, f, ensure_ascii=False, indent=2)
+            return ConversationSession(
+                user_id=data['user_id'],
+                messages=messages,
+                preferences=preferences,
+                current_search_context=data.get('current_search_context'),
+                mentioned_products=data.get('mentioned_products', []),
+                conversation_stage=data.get('conversation_stage', 'greeting'),
+                last_activity=datetime.fromisoformat(data['last_activity'])
+            )
         except Exception as e:
-            print(f"❌ Error saving contexts: {e}")
-    
-    def _load_user_profiles(self):
-        """Load user profiles from storage"""
-        profile_file = os.path.join(self.storage_path, "profiles.json")
-        try:
-            if os.path.exists(profile_file):
-                with open(profile_file, 'r', encoding='utf-8') as f:
-                    data = json.load(f)
-                    for user_id, profile_data in data.items():
-                        self.user_profiles[user_id] = UserProfile(
-                            user_id=profile_data['user_id'],
-                            name=profile_data.get('name'),
-                            preferences=profile_data.get('preferences', {}),
-                            purchase_history=profile_data.get('purchase_history', []),
-                            conversation_count=profile_data.get('conversation_count', 0),
-                            first_interaction=datetime.fromisoformat(profile_data['first_interaction']) if profile_data.get('first_interaction') else None,
-                            last_interaction=datetime.fromisoformat(profile_data['last_interaction']) if profile_data.get('last_interaction') else None,
-                            favorite_products=profile_data.get('favorite_products', []),
-                            budget_range=profile_data.get('budget_range'),
-                            special_occasions=profile_data.get('special_occasions', [])
-                        )
-        except Exception as e:
-            print(f"❌ Error loading profiles: {e}")
-    
-    def _save_user_profiles(self):
-        """Save user profiles to storage"""
-        profile_file = os.path.join(self.storage_path, "profiles.json")
-        try:
-            data = {}
-            for user_id, profile in self.user_profiles.items():
-                data[user_id] = {
-                    'user_id': profile.user_id,
-                    'name': profile.name,
-                    'preferences': profile.preferences,
-                    'purchase_history': profile.purchase_history,
-                    'conversation_count': profile.conversation_count,
-                    'first_interaction': profile.first_interaction.isoformat() if profile.first_interaction else None,
-                    'last_interaction': profile.last_interaction.isoformat() if profile.last_interaction else None,
-                    'favorite_products': profile.favorite_products,
-                    'budget_range': profile.budget_range,
-                    'special_occasions': profile.special_occasions
-                }
-            
-            with open(profile_file, 'w', encoding='utf-8') as f:
-                json.dump(data, f, ensure_ascii=False, indent=2)
-        except Exception as e:
-            print(f"❌ Error saving profiles: {e}")
+            logger.warning(f"⚠️ Error deserializing session: {e}")
+            return None
+
+
+# Global context manager instance
+_context_manager = None
+
+def get_context_manager() -> ConversationContextManager:
+    """Get the global context manager instance"""
+    global _context_manager
+    if _context_manager is None:
+        _context_manager = ConversationContextManager()
+    return _context_manager

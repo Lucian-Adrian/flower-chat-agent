@@ -1,0 +1,67 @@
+{
+  "user_id": "user_001",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Salut! Sunt nou aici.",
+      "timestamp": "2025-07-16T02:41:28.876432",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Bună ziua din nou! Mă bucur să vă revăd la XOFlowers! Cu ce vă pot ajuta astăzi?",
+      "timestamp": "2025-07-16T02:41:28.877534",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Caut un buchet frumos pentru soția mea",
+      "timestamp": "2025-07-16T02:41:28.882434",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Buchet \"Marshmallow\"** - 1615.0 MDL\n   Culori: roșu\n   Acest produs potrivit pentru cererea dumneavoastră.\n\n2. **Bouquet \"Kisses\"** - 1100.0 MDL\n   Culori: diverse culori\n   Acest produs potrivit pentru cererea dumneavoastră.\n\n3. **Bouquet \"Poetry\"** - 1450.0 MDL\n   Culori: diverse culori\n   Acest produs potrivit pentru cererea dumneavoastră.\n\nCe părere aveți despre aceste opțiuni?",
+      "timestamp": "2025-07-16T02:41:29.843600",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Vreau ceva roșu pentru Valentine's Day sub 800 lei",
+      "timestamp": "2025-07-16T02:41:29.849838",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet Red Roses** - 640.0 MDL\n   Culori: roșu\n   Acest produs se încadrează în bugetul dumneavoastră și disponibil în roșu.\n\n2. **Greeting Card \"Love\"** - 20.0 MDL\n   Culori: diverse culori\n   Acest produs se încadrează în bugetul dumneavoastră și perfect pentru valentine.\n\n3. **Greeting Card \"Love\"** - 20.0 MDL\n   Culori: diverse culori\n   Acest produs se încadrează în bugetul dumneavoastră și perfect pentru valentine.\n\nCe părere aveți despre aceste opțiuni?",
+      "timestamp": "2025-07-16T02:41:30.710970",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Mulțumesc! Primul buchet arată perfect.",
+      "timestamp": "2025-07-16T02:41:30.714579",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Basket with Peonis** - 3100.0 MDL\n   Culori: diverse culori\n   Acest produs potrivit pentru cererea dumneavoastră.\n\n2. **Bouquet \"Kisses\"** - 1100.0 MDL\n   Culori: diverse culori\n   Acest produs potrivit pentru cererea dumneavoastră.\n\n3. **Basket with Flowers \"Glints of Summer\"** - 1700.0 MDL\n   Culori: roșu\n   Acest produs potrivit pentru cererea dumneavoastră.\n\nCe părere aveți despre aceste opțiuni?",
+      "timestamp": "2025-07-16T02:41:31.390372",
+      "metadata": {}
+    }
+  ],
+  "preferences": {
+    "favorite_colors": [
+      "roșu"
+    ],
+    "favorite_flowers": [],
+    "budget_range": null,
+    "preferred_occasions": [],
+    "style_preferences": [],
+    "recipient_types": []
+  },
+  "current_search_context": null,
+  "mentioned_products": [],
+  "conversation_stage": "greeting",
+  "last_activity": "2025-07-16T02:41:31.390382"
+}

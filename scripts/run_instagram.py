@@ -26,9 +26,9 @@ def run_instagram_bot():
         print("🔗 Port: 5001")
         print("-" * 50)
         
-        from src.api.instagram_app import XOFlowersInstagramBot
+        from api.instagram_app import XOFlowersInstagramBot
         
-        app = XOFlowersInstagramBot(debug=True)
+        bot = XOFlowersInstagramBot()
         
         print("✅ Instagram bot initialized successfully")
         print("🔄 Starting Flask server...")
@@ -39,7 +39,8 @@ def run_instagram_bot():
         print("   3. Test with: curl http://localhost:5001/health")
         
         # Run the Flask app
-        app.run(port=5001, debug=True, host='0.0.0.0')
+        port = int(os.getenv('WEBHOOK_PORT', 5001))
+        bot.run(port=port)
         
     except KeyboardInterrupt:
         print("\n👋 Instagram bot stopped by user")
