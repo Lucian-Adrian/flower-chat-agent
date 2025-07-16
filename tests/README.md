@@ -85,6 +85,14 @@ When adding new functionality:
 - **Error Handling:** Exception scenarios covered
 - **Integration:** End-to-end conversation flows
 
+## tests/
+
+Teste unitare și de integrare pentru agentul XOFlowers.
+
+- `unit/` – Teste unitare pe componente izolate
+- `integration/` – Teste de integrare pe fluxuri complete
+- `TEST_GUIDE.md` – Ghid de rulare și structură teste
+
 ---
 
 **Last Updated:** January 2025  

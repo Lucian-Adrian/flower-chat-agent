@@ -52,12 +52,15 @@ class XOFlowersTelegramBot:
         """Initialize the enhanced Telegram bot"""
         self.debug = debug
         
-        # Get bot token from environment
-        token = os.getenv('TELEGRAM_BOT_TOKEN')
-        
+        # Get bot token from config.py or environment
+        import os
+        try:
+            from config import TELEGRAM_TOKEN
+        except ImportError:
+            TELEGRAM_TOKEN = None
+        token = TELEGRAM_TOKEN or os.getenv('TELEGRAM_BOT_TOKEN')
         if not token:
-            raise ValueError("TELEGRAM_BOT_TOKEN not found in environment variables")
-        
+            raise ValueError("TELEGRAM_TOKEN not found in config.py or environment variables")
         self.token = token
         self.application = Application.builder().token(token).build()
         

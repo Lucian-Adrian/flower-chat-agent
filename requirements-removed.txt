@@ -1,0 +1,59 @@
+# requirements-removed.txt
+# 🔥 Pachete eliminate la curățarea requirements-locked.txt
+# Data: 2025-07-16
+# Motiv: Nu sunt necesare pentru rularea aplicației în producție (doar pentru dev/docs/notebook)
+# Folosit pentru transparență și auditare internă
+
+# ⚙️ Unelte de build/deployment:
+build==1.2.2.post1
+setuptools==80.9.0
+wheel==0.43.0
+virtualenv==20.31.2
+pip==24.0
+
+distlib==0.3.9
+platformdirs==4.3.8
+appdirs==1.4.4
+filelock==3.18.0
+zipp==3.23.0
+pywin32==310
+
+# 🧪 Tool-uri de development:
+jupyter==1.1.1
+notebook==7.4.3
+ipykernel==6.29.5
+mkdocs==1.6.1
+mkdocs-material==9.6.14
+mkdocs-get-deps==0.2.0
+mkdocs-material-extensions==1.3.1
+pre_commit==4.2.0
+jupyterlab==4.4.3
+jupyterlab_server==2.27.3
+jupyterlab_widgets==3.0.15
+jupyterlab_pygments==0.3.0
+jupyter_core==5.8.1
+jupyter_client==8.6.3
+ipywidgets==8.1.7
+ipython==9.3.0
+ipython_pygments_lexers==1.1.1
+ipykernel==6.29.5
+jupyter-events==0.12.0
+jupyter_server==2.16.0
+jupyter_server_terminals==0.5.3
+notebook_shim==0.2.4
+
+# 🧰 Tool-uri de sistem / librării auxiliare:
+pyreadline3==3.5.4
+shellingham==1.5.4
+pyyaml_env_tag==1.1
+
+# 📉 Alte unelte/experimente:
+crewai==0.130.0
+ngrok==1.4.0
+DownloadKit==2.0.7
+DrissionPage==4.1.0.18
+tavily-python==0.7.6
+
+# 💡 Recomandare:
+# Dacă dorești să readaugi temporar vreunul dintre aceste pachete în mediul tău, instalează-l manual.
+# Nu sunt blocate — doar excluse din pachetul standard de producție.
