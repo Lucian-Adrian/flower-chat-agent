@@ -1,5 +1,5 @@
 """
-Enhanced Action Handler Module
+Enhanced Action Handler Module with Vector Search Integration
 Handles different user actions with context awareness and personalization
 """
 
@@ -24,21 +24,43 @@ from .prompts import (
     CONTEXT_AWARE_TEMPLATES, AI_ENHANCEMENT_TEMPLATES
 )
 from .intent_classifier import IntentClassifier
-from .product_search import ProductSearchEngine
 from .conversation_context import ConversationContext
+
+# Import the new Universal Vector Search System
+from ..database.vector_search import UniversalXOFlowersSearch
 
 
 class ActionHandler:
     """
-    Enhanced action handler with context awareness and personalization
+    Enhanced action handler with vector search integration
     """
     
     def __init__(self):
-        """Initialize the enhanced action handler"""
+        """Initialize the enhanced action handler with vector search"""
         self.intent_classifier = IntentClassifier()
-        self.product_search = ProductSearchEngine()
+        self.vector_search = UniversalXOFlowersSearch()
         self.context_manager = ConversationContext()
         self.business_info = BUSINESS_INFO
+        
+        # Initialize the vector search system with our data
+        self._initialize_vector_search()
+        
+    def _initialize_vector_search(self):
+        """Initialize vector search with final_products_case_standardized.csv"""
+        try:
+            print("🚀 Initializing Vector Search System...")
+            self.vector_search.load_products_from_csv("final_products_case_standardized.csv")
+            print("✅ Vector Search System initialized successfully")
+            
+            # Get stats for verification
+            stats = self.vector_search.get_stats()
+            print(f"📊 Loaded {stats.get('total_products', 0)} products")
+            print(f"🌸 Flower products: {stats.get('flower_products', 0)}")
+            print(f"📂 Categories: {stats.get('categories_count', 0)}")
+            
+        except Exception as e:
+            print(f"❌ Error initializing vector search: {e}")
+            print("⚠️ Falling back to basic search functionality")
         
     def handle_message(self, message: str, user_id: str) -> Tuple[str, str, float]:
         """
@@ -122,7 +144,7 @@ class ActionHandler:
         """Handle greeting messages with personalization"""
         if self.context_manager.is_returning_user(user_id):
             user_profile = self.context_manager.get_user_profile(user_id)
-            if user_profile.conversation_count > 5:
+            if user_profile and user_profile.conversation_count > 5:
                 return ENHANCED_GREETING_RESPONSES["regular"]
             else:
                 return ENHANCED_GREETING_RESPONSES["returning"]
@@ -130,61 +152,68 @@ class ActionHandler:
             return ENHANCED_GREETING_RESPONSES["first_time"]
     
     def handle_find_product(self, message: str, user_id: str) -> str:
-        """Handle product search requests with conversational and empathetic approach"""
-        # Extract search query from message
-        query = self._extract_search_query(message)
-        
-        # Check for budget constraints in the message
-        budget_amount = self._extract_budget_from_message(message)
-        
-        # Analyze the context and occasion
-        occasion_context = self._analyze_occasion_context(message)
-        
-        # Get user preferences for personalized search
-        user_profile = self.context_manager.get_user_profile(user_id)
-        search_context = {}
-        
-        if user_profile:
-            search_context = {
-                "favorite_products": user_profile.favorite_products,
-                "favorite_colors": user_profile.preferences.get("favorite_colors", []) if user_profile.preferences else [],
-                "budget_range": user_profile.budget_range,
-                "special_occasions": user_profile.special_occasions
-            }
-        
-        # Search for products - use budget search if budget is specified
-        if budget_amount:
-            products = self.product_search.get_budget_recommendations(budget_amount, query)
-        else:
-            products = self.product_search.search_products(query, context=search_context)
-        
-        if products:
-            # Generate contextual response
-            contextual_response = self._generate_contextual_response(occasion_context, message)
+        """Handle product search requests using vector search"""
+        try:
+            # Extract search query from message
+            query = self._extract_search_query(message)
             
-            # Add budget-specific intro if budget was specified
+            # Extract budget from message
+            budget_amount = self._extract_budget_from_message(message)
+            
+            # Analyze the context and occasion
+            occasion_context = self._analyze_occasion_context(message)
+            
+            # Get user preferences for personalized search
+            user_profile = self.context_manager.get_user_profile(user_id)
+            search_context = {}
+            
+            if user_profile:
+                search_context = {
+                    "favorite_products": user_profile.favorite_products,
+                    "favorite_colors": user_profile.preferences.get("favorite_colors", []) if user_profile.preferences else [],
+                    "budget_range": user_profile.budget_range,
+                    "special_occasions": user_profile.special_occasions
+                }
+            
+            # Perform smart search using vector search
             if budget_amount:
-                contextual_response += f"\n\n💰 *Am găsit opțiuni excelente în bugetul dumneavoastră de {budget_amount} MDL:*"
+                print(f"💰 Searching with budget: {budget_amount} MDL")
+                products = self.vector_search.smart_search(
+                    query, 
+                    limit=5, 
+                    budget=budget_amount
+                )
+            else:
+                print(f"🔍 Smart search for: '{query}'")
+                products = self.vector_search.smart_search(query, limit=5)
             
-            # Format products for response with conversational tone
-            formatted_products = self._format_products_conversationally(products, occasion_context)
-            
-            # Generate personalized advice
-            personalized_advice = self._generate_personalized_advice(occasion_context, products)
-            
-            response = ENHANCED_PRODUCT_SEARCH_PROMPT.format(
-                contextual_response=contextual_response,
-                products=formatted_products,
-                personalized_advice=personalized_advice
-            )
-        else:
-            # Get some popular products as fallback
-            popular_products = self.product_search.get_popular_products(3)
-            if popular_products:
-                contextual_response = self._generate_contextual_response("general", message)
-                formatted_popular = self._format_products_conversationally(popular_products, "general")
+            if products:
+                # Generate contextual response
+                contextual_response = self._generate_contextual_response(occasion_context, message)
                 
-                response = f"""
+                # Add budget-specific intro if budget was specified
+                if budget_amount:
+                    contextual_response += f"\n\n💰 *Am găsit opțiuni excelente în bugetul dumneavoastră de {budget_amount} MDL:*"
+                
+                # Format products for response with conversational tone
+                formatted_products = self._format_products_conversationally(products, occasion_context)
+                
+                # Generate personalized advice
+                personalized_advice = self._generate_personalized_advice(occasion_context, products)
+                
+                response = ENHANCED_PRODUCT_SEARCH_PROMPT.format(
+                    contextual_response=contextual_response,
+                    products=formatted_products,
+                    personalized_advice=personalized_advice
+                )
+            else:
+                # Get some popular products as fallback
+                popular_products = self.vector_search.search_all_products("flori populare", limit=3)
+                if popular_products:
+                    contextual_response = self._generate_contextual_response("general", message)
+                    formatted_popular = self._format_products_conversationally(popular_products, "general")
+                    
+                    response = f"""
 {contextual_response}
 
 Iată câteva sugestii frumoase din colecția noastră care s-ar putea să vă placă:
@@ -192,9 +221,9 @@ Iată câteva sugestii frumoase din colecția noastră care s-ar putea să vă p
 {formatted_popular}
 
 💫 *Doriți să caut ceva specific sau să vă recomand pe baza preferințelor dumneavoastră?*
-                """
-            else:
-                response = f"""
+                    """
+                else:
+                    response = f"""
 🌸 Înțeleg ce căutați, dar să verific mai bine opțiunile disponibile pentru dumneavoastră.
 
 Vă rugăm să îmi spuneți mai multe despre:
@@ -206,9 +235,33 @@ Vă rugăm să îmi spuneți mai multe despre:
 📧 **Email:** hello@xoflowers.md
 
 💫 *Sunt aici să vă ajut să găsiți florile perfecte!*
-                """
-        
-        return response
+                    """
+            
+            return response
+            
+        except Exception as e:
+            print(f"❌ Error in handle_find_product: {e}")
+            return self._fallback_product_response(message)
+    
+    def _fallback_product_response(self, message: str) -> str:
+        """Fallback response when vector search fails"""
+        return f"""
+🌸 **Vă mulțumim pentru interesul în florile noastre!**
+
+Din păcate, sistemul nostru de căutare întâmpină o problemă temporară. 
+
+📞 **Vă rugăm să ne contactați direct:**
+• Telefon: +373 22 123 456
+• Email: hello@xoflowers.md
+• Website: www.xoflowers.md
+
+🌺 **Echipa noastră vă va ajuta să găsiți:**
+• Buchete pentru orice ocazie
+• Aranjamente personalizate
+• Opțiuni în bugetul dumneavoastră
+
+💫 *Îmi pare rău pentru inconvenient - vă garantez că veți fi mulțumit de serviciile noastre!*
+        """
     
     def handle_ask_question(self, message: str, user_id: str = None) -> str:
         """Handle general questions about business"""
@@ -286,8 +339,30 @@ Pentru a verifica statusul comenzii dumneavoastră, vă rugăm să ne furnizați
         """
     
     def handle_recommendation(self, message: str) -> str:
-        """Handle recommendation requests"""
-        return """
+        """Handle recommendation requests using vector search"""
+        try:
+            # Get popular products from vector search
+            popular_products = self.vector_search.search_all_products("flori populare premium", limit=3)
+            
+            if popular_products:
+                formatted_products = self._format_vector_products(popular_products)
+                return f"""
+🌸 **Recomandări Experte XOFlowers:**
+
+*Bazându-mă pe experiența noastră, iată sugestiile mele:*
+
+{formatted_products}
+
+🎁 **Pentru cadouri speciale:**
+• Cutii premium cu flori și ciocolată
+• Aranjamente de masă elegante
+• Buchete personalizate
+
+💫 *Pentru ce ocazie căutați? Vă pot da recomandări mai personalizate!*
+                """
+            else:
+                # Fallback to static recommendations
+                return """
 🌸 **Recomandări Experte XOFlowers:**
 
 *Bazându-mă pe experiența noastră, iată sugestiile mele:*
@@ -302,7 +377,10 @@ Pentru a verifica statusul comenzii dumneavoastră, vă rugăm să ne furnizați
 • **Aranjament Masă** - Perfect pentru acasă - 400 MDL
 
 💫 *Pentru ce ocazie căutați? Vă pot da recomandări mai personalizate!*
-        """
+                """
+        except Exception as e:
+            print(f"❌ Error in handle_recommendation: {e}")
+            return self.handle_recommendation.__doc__.split('"""')[1]  # Fallback
     
     def handle_availability(self, message: str) -> str:
         """Handle availability inquiries"""
@@ -350,8 +428,37 @@ Pentru a verifica statusul comenzii dumneavoastră, vă rugăm să ne furnizați
         """
     
     def handle_price_inquiry(self, message: str) -> str:
-        """Handle price inquiries"""
-        return """
+        """Handle price inquiries with vector search integration"""
+        try:
+            # Check if specific price range is mentioned
+            budget = self._extract_budget_from_message(message)
+            
+            if budget:
+                # Get products within budget
+                products = self.vector_search.search_all_products("flori populare", limit=3, budget=budget)
+                
+                if products:
+                    formatted_products = self._format_vector_products(products)
+                    return f"""
+💰 **Prețuri XOFlowers în bugetul dumneavoastră ({budget} MDL):**
+
+{formatted_products}
+
+🌹 **Categorii generale de preț:**
+• Buchete mici (7-12 flori): 200-400 MDL
+• Buchete medii (15-20 flori): 450-650 MDL
+• Buchete mari (25+ flori): 700-1000 MDL
+
+🚚 **Livrare:**
+• Gratuită peste 500 MDL
+• Standard: 100 MDL
+• Express: 150 MDL
+
+💫 *Vă pot ajuta să găsiți ceva specific în bugetul dumneavoastră!*
+                    """
+            
+            # Default price response
+            return """
 💰 **Prețuri XOFlowers - Transparent și Competitiv:**
 
 🌹 **Buchete Clasice:**
@@ -370,7 +477,11 @@ Pentru a verifica statusul comenzii dumneavoastră, vă rugăm să ne furnizați
 • Express: 150 MDL
 
 💫 *Pentru preț exact, descrieți ce căutați!*
-        """
+            """
+            
+        except Exception as e:
+            print(f"❌ Error in handle_price_inquiry: {e}")
+            return self.handle_price_inquiry.__doc__.split('"""')[1]  # Fallback
     
     def handle_seasonal_offers(self, message: str) -> str:
         """Handle seasonal offers and promotions"""
@@ -394,8 +505,30 @@ Pentru a verifica statusul comenzii dumneavoastră, vă rugăm să ne furnizați
         """
     
     def handle_gift_suggestions(self, message: str) -> str:
-        """Handle gift suggestions"""
-        return """
+        """Handle gift suggestions with vector search"""
+        try:
+            # Search for gift-appropriate products
+            gift_products = self.vector_search.search_all_products("cadou elegant frumos", limit=4)
+            
+            if gift_products:
+                formatted_products = self._format_vector_products(gift_products)
+                return f"""
+🎁 **Sugestii Cadou XOFlowers:**
+
+*Să găsim cadoul perfect împreună!*
+
+{formatted_products}
+
+🎉 **Pentru ocazii speciale:**
+• Aniversări: Buchete mari cu felicitare
+• Valentine: Trandafiri roșii clasici
+• Mama: Aranjamente delicate și calde
+
+💫 *Pentru ce ocazie și pentru cine căutați cadou?*
+                """
+            else:
+                # Fallback to static suggestions
+                return """
 🎁 **Sugestii Cadou XOFlowers:**
 
 *Să găsim cadoul perfect împreună!*
@@ -416,7 +549,10 @@ Pentru a verifica statusul comenzii dumneavoastră, vă rugăm să ne furnizați
 • Mama: Aranjamente delicate și calde
 
 💫 *Pentru ce ocazie și pentru cine căutați cadou?*
-        """
+                """
+        except Exception as e:
+            print(f"❌ Error in handle_gift_suggestions: {e}")
+            return self.handle_gift_suggestions.__doc__.split('"""')[1]  # Fallback
     
     def handle_care_instructions(self, message: str) -> str:
         """Handle flower care instructions"""
@@ -507,7 +643,7 @@ Pentru a verifica statusul comenzii dumneavoastră, vă rugăm să ne furnizați
         """
     
     def _extract_search_query(self, message: str) -> str:
-        """Extract search query from user message using AI"""
+        """Extract search query from user message"""
         # Remove common Romanian words that don't help with search
         stop_words = ['vreau', 'caut', 'arată', 'mi', 'pentru', 'să', 'cu', 'la', 'de', 'în', 'pe', 'care', 'sunt', 'este', 'am', 'ai', 'au']
         
@@ -590,7 +726,6 @@ Pentru a verifica statusul comenzii dumneavoastră, vă rugăm să ne furnizați
         for i, product in enumerate(products[:5], 1):
             name = product.get('name', 'Produs special')
             price = product.get('price', 'Preț la cerere')
-            description = product.get('description', 'Aranjament floral elegant')
             
             # Create occasion-specific descriptions
             if occasion_context == "birthday":
@@ -612,13 +747,72 @@ Pentru a verifica statusul comenzii dumneavoastră, vă rugăm să ne furnizați
                 emoji = "🌺"
                 tone = "Frumos și elegant!"
             
-            price_display = f"{price} MDL" if str(price).isdigit() else str(price)
+            # Handle price display
+            if isinstance(price, (int, float)) and price > 0:
+                price_display = f"{price} MDL"
+            elif str(price).replace('.', '').isdigit():
+                price_display = f"{price} MDL"
+            else:
+                price_display = "Preț la cerere"
+            
+            # Get additional product info
+            category = product.get('category', '')
+            flowers = product.get('flowers', '')
+            source = product.get('source', '')
+            
+            description_parts = []
+            if flowers:
+                description_parts.append(f"🌺 {flowers}")
+            if category:
+                description_parts.append(f"📂 {category}")
+            if source:
+                description_parts.append(f"🔍 {source}")
+            
+            description = " • ".join(description_parts) if description_parts else "Aranjament floral elegant"
             
             formatted.append(f"""
 {emoji} **{i}. {name}**
 💰 {price_display}
 📝 {description}
 ✨ *{tone}*
+            """)
+        
+        return "\n".join(formatted)
+    
+    def _format_vector_products(self, products: List[Dict]) -> str:
+        """Format products from vector search for display"""
+        if not products:
+            return "Nu am găsit produse disponibile."
+        
+        formatted = []
+        for i, product in enumerate(products[:5], 1):
+            name = product.get('name', 'Produs special')
+            price = product.get('price', 0)
+            category = product.get('category', '')
+            flowers = product.get('flowers', '')
+            score = product.get('score', 0)
+            
+            # Handle price display
+            if isinstance(price, (int, float)) and price > 0:
+                price_display = f"{price} MDL"
+            else:
+                price_display = "Preț la cerere"
+            
+            # Create description
+            description_parts = []
+            if flowers:
+                description_parts.append(f"🌺 {flowers}")
+            if category:
+                description_parts.append(f"📂 {category}")
+            if score > 0:
+                description_parts.append(f"⭐ Relevanță: {score:.2f}")
+            
+            description = " • ".join(description_parts) if description_parts else "Aranjament floral elegant"
+            
+            formatted.append(f"""
+🌸 **{i}. {name}**
+💰 {price_display}
+📝 {description}
             """)
         
         return "\n".join(formatted)
@@ -645,77 +839,6 @@ Pentru a verifica statusul comenzii dumneavoastră, vă rugăm să ne furnizați
                 base_advice += f"\n\n📞 *Avem {total_products} opțiuni disponibile - sunați pentru a discuta toate variantele!*"
         
         return base_advice
-
-    def _format_products_for_display(self, products: List[Dict]) -> str:
-        """Format products for elegant display with XOFlowers brand voice"""
-        if not products:
-            return "Nu am găsit produse disponibile."
-        
-        formatted = []
-        for i, product in enumerate(products[:5], 1):  # Show max 5 products
-            name = product.get('name', 'Produs necunoscut')
-            price = product.get('price', 'Preț la cerere')
-            flower_type = product.get('flower_type', '')
-            category = product.get('category', '')
-            
-            # Create a more appealing description
-            description_parts = []
-            if flower_type:
-                description_parts.append(f"🌺 {flower_type}")
-            if category and category != 'product':
-                description_parts.append(f"📂 {category}")
-            
-            description = " • ".join(description_parts) if description_parts else "Aranjament floral special"
-            
-            # Format price nicely
-            price_display = f"{price} MDL" if price and price.isdigit() else price
-            
-            formatted.append(f"""
-🌸 **{i}. {name}**
-💰 {price_display}
-{description}
-            """)
-        
-        return "\n".join(formatted)
-    
-    def _get_contextual_greeting(self, user_id: str) -> str:
-        """Get contextual greeting based on user history"""
-        if not user_id:
-            return ENHANCED_GREETING_RESPONSES["first_time"]
-        
-        user_profile = self.context_manager.get_user_profile(user_id)
-        if not user_profile:
-            return ENHANCED_GREETING_RESPONSES["first_time"]
-        
-        if user_profile.conversation_count == 0:
-            return ENHANCED_GREETING_RESPONSES["first_time"]
-        elif user_profile.conversation_count < 3:
-            return ENHANCED_GREETING_RESPONSES["returning"]
-        else:
-            return ENHANCED_GREETING_RESPONSES["regular"]
-    
-    def _enhance_response_with_context(self, response: str, user_id: str, intent: str) -> str:
-        """Enhance response with user context and personalization"""
-        user_profile = self.context_manager.get_user_profile(user_id)
-        
-        if not user_profile:
-            return response
-        
-        # Add personal touches based on user history
-        recent_intents = self.context_manager.get_user_intent_history(user_id, 5)
-        
-        # Add context-specific enhancements
-        if intent == "find_product" and "find_product" in recent_intents:
-            response += "\n\n💫 *Văd că sunteți în căutarea produselor perfecte. Pot să vă ajut să comparați opțiunile sau să aflați mai multe detalii?*"
-        
-        elif intent == "price_inquiry" and user_profile.budget_range:
-            response += f"\n\n💰 *Știu că preferați produse în gama {user_profile.budget_range}. Am inclus opțiuni potrivite pentru dumneavoastră!*"
-        
-        elif intent == "gift_suggestions" and user_profile.special_occasions:
-            occasions = ", ".join(user_profile.special_occasions)
-            response += f"\n\n🎁 *Bazându-mă pe istoricul dumneavoastră pentru {occasions}, am pregătit sugestii speciale!*"
-        
-        return response
     
     def handle_action(self, intent: str, message: str, user_id: str) -> Dict:
         """
@@ -745,3 +868,27 @@ Pentru a verifica statusul comenzii dumneavoastră, vă rugăm să ne furnizați
             'response': response,
             'action_type': intent
         }
+    
+    def get_vector_search_stats(self) -> Dict:
+        """Get statistics from vector search system"""
+        try:
+            return self.vector_search.get_stats()
+        except Exception as e:
+            print(f"❌ Error getting vector search stats: {e}")
+            return {"error": str(e)}
+    
+    def test_vector_search(self, query: str, limit: int = 3) -> List[Dict]:
+        """Test vector search functionality"""
+        try:
+            return self.vector_search.smart_search(query, limit)
+        except Exception as e:
+            print(f"❌ Error testing vector search: {e}")
+            return []
+    
+    def search_products_by_budget(self, budget: int, query: str = "flori frumoase", limit: int = 5) -> List[Dict]:
+        """Search products within a specific budget"""
+        try:
+            return self.vector_search.smart_search(query, limit, budget=budget)
+        except Exception as e:
+            print(f"❌ Error searching by budget: {e}")
+            return []
