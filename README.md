@@ -1,50 +1,49 @@
 # 🌸 XOFlowers AI Agent
 
-**Instagram AI Agent pentru XOFlowers** - Construit cu ChromaDB + LLMs
+**Agent Conversațional AI Natural pentru XOFlowers** - Construit cu ChromaDB + LLMs
 
-Un agent AI inteligent integrat cu Instagram și Telegram care interacționează cu clienții prin mesaje directe, înțelege intențiile lor și oferă răspunsuri utile precum recomandări de produse, abonamente, informații despre afacere și procesarea plăților.
+Un agent AI conversațional inteligent care conduce conversații naturale și personalizate cu clienții XOFlowers prin Instagram și Telegram. Agentul își asumă rolul de consultant floral expert, căutând activ în baza de date produse pentru a oferi recomandări relevante și răspunsuri contextuale fără template-uri predefinite.
 
 ## 🎯 **FUNCȚIONALITĂȚI PRINCIPALE**
 
-### **🧠 Procesarea Intențiilor - Sistem Avansat cu 17 Tipuri**
-Botul utilizează un sistem AI avansat care recunoaște și procesează **17 tipuri diferite de intenții** pentru o experiență completă:
+### **🧠 Agent Conversațional Natural cu AI**
+Botul funcționează ca un **consultant floral expert** care:
+- **Conduce conversații naturale** fără template-uri predefinite
+- **Personalizează fiecare răspuns** pe baza contextului conversației
+- **Căutare activă în baza de date** pentru recomandări relevante
+- **Acces la informații complete** despre produse, prețuri, disponibilitate
+- **Memorie conversațională** care păstrează contextul între mesaje
 
-#### **📊 Intenții Principale de Business:**
-1. **🔍 find_product** - Căutare și recomandări de produse (buchete, cutii cadou, plante)
-2. **❓ ask_question** - Întrebări generale despre afacere (program, locație, politici)
-3. **📧 subscribe** - Abonare la planuri de flori sau actualizări promoționale
-4. **💳 pay_for_product** - Procesarea intențiilor de plată cu simulare de plată
+### **🔍 Sistem de Căutare Inteligentă (MCP-Style)**
+Agentul are acces la funcții de căutare specializate:
+- **Căutare vectorială semantică** în catalogul de produse
+- **Filtrare după categorie** (buchete, cutii cadou, plante, etc.)
+- **Căutare după buget** și preferințe specifice
+- **Informații despre disponibilitate** și stock
+- **Recomandări personalizate** bazate pe istoric conversații
 
-#### **🎯 Intenții Avansate de Interacțiune:**
-5. **👋 greeting** - Salutări și începerea conversațiilor
-6. **📦 order_status** - Verificarea stării comenzilor
-7. **⚠️ complaint** - Gestionarea reclamațiilor și problemelor
-8. **💡 recommendation** - Recomandări personalizate de produse
-9. **📋 availability** - Verificarea disponibilității produselor
-10. **🚚 delivery_info** - Informații despre livrare și transport
-
-#### **🛍️ Intenții Specializate:**
-11. **❌ cancel_order** - Anularea comenzilor
-12. **💰 price_inquiry** - Întrebări despre prețuri și tarife
-13. **🎁 seasonal_offers** - Oferte speciale și promoții
-14. **🎉 gift_suggestions** - Sugestii de cadouri pentru ocazii speciale
-15. **🌸 care_instructions** - Instrucțiuni de îngrijire a florilor
-16. **📈 bulk_orders** - Comenzi în cantități mari pentru evenimente
-17. **👋 farewell** - Încheiere conversații și rămas bun
+### **�️ Guard Rails Avansate**
+Sistemul de securitate asigură:
+- **Focusul pe business XOFlowers** - agentul nu se abate de la rol
+- **Protecție anti-jailbreak** cu prompturi robuste
+- **Filtrare conținut ofensator** cu răspunsuri politicoase
+- **Rate limiting inteligent** (10 msg/min, 100 msg/h)
+- **Logging și monitoring** pentru debug și optimizare
 
 ### **⚡ Capabilități AI Avansate**
-- **Recunoaștere Context**: Înțelege conversații multi-turn cu memorie
-- **Clasificare Inteligentă**: 95%+ acuratețe în recunoașterea intențiilor
-- **Răspunsuri Personalizate**: Adaptate la contextul conversației
-- **Protecție Anti-Manipulare**: Sistem avansat de securitate
+- **Conversații Multi-Turn**: Înțelege și păstrează contextul conversațiilor
+- **Răspunsuri Contextuale**: Fiecare mesaj este adaptat la situația specifică
+- **Căutare Semantică**: Găsește produse relevante chiar și cu descrieri vagi
+- **Personalizare Completă**: Ține cont de preferințele și istoricul clientului
+- **Fallback Inteligent**: OpenAI GPT-4 → Google Gemini Pro pentru redundanță
 
-### **🏗️ Arhitectură Inteligentă**
-- **AI Multimodal**: OpenAI GPT-4 primar cu fallback Google Gemini Pro
-- **Sistem de Intenții**: 17 tipuri cu clasificare AI avansată (95%+ acuratețe)
-- **Căutare Vector**: ChromaDB pentru căutare semantică optimizată
-- **Context Manager**: Memorie conversațională multi-turn cu persistență
-- **Securitate Avansată**: Filtrare conținut + protecție anti-jailbreak + rate limiting
-- **Multi-Platform**: Telegram (100% LIVE) și Instagram (90% testare finală)
+### **🏗️ Arhitectură Agent Conversațional**
+- **AI-First Approach**: Toate răspunsurile sunt generate natural de AI, nu template-uri
+- **MCP-Style Database Access**: Agentul are acces la funcții de căutare în timp real
+- **Context-Aware Responses**: Fiecare răspuns ține cont de istoricul conversației
+- **Semantic Search Engine**: ChromaDB cu embeddings pentru căutare inteligentă
+- **Guard Rails Robuste**: Protecție împotriva manipulării fără a afecta natura
+- **Multi-Platform Support**: Telegram (100% LIVE) și Instagram (90% testare finală)
 
 ## 📁 **STRUCTURA PROIECTULUI**
 

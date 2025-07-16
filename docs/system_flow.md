@@ -1,104 +1,66 @@
-# 🔄 System Flow Documentation
+# 🔄 Natural AI Agent System Flow
 
 ## 📋 **OVERVIEW**
 
-This document describes the complete flow of how the XOFlowers AI Agent processes messages and interactions from users across different platforms (Instagram, Telegram).
+Acest document descrie fluxul complet al XOFlowers AI Agent - un agent conversațional natural care conduce conversații personalizate cu clienții, având acces la funcții de căutare în baza de date pentru recomandări relevante, similar cu protocolul MCP (Model Context Protocol).
 
-## 🌊 **MESSAGE PROCESSING FLOW**
+## 🌊 **FLUXUL CONVERSAȚIONAL NATURAL**
 
-### **1. Message Reception**
+### **1. Recepția Mesajului**
 
 ```
-User Message → Platform API → Our Application
+User Message → Platform API → Natural Context Processing
 ```
 
 #### **Instagram Flow**
 ```
-Instagram DM → Meta Graph API → Webhook → instagram_app.py
+Instagram DM → Meta Graph API → Webhook → instagram_app.py → Natural Processing
 ```
 
 #### **Telegram Flow**
 ```
-Telegram Message → Telegram Bot API → Polling → telegram_app.py
+Telegram Message → Telegram Bot API → Polling → telegram_app.py → Natural Processing
 ```
 
-### **2. Security Layer**
+### **2. Guard Rails Security Layer**
 
 ```
-Raw Message → Security Filters → Validated Message
+Raw Message → Security Guard Rails → Validated Input for AI
 ```
 
-**Security Checks (`src/security/filters.py`):**
-- ✅ Content filtering (offensive language, spam)
-- ✅ Rate limiting (max messages per minute)
-- ✅ Anti-jailbreak protection
-- ✅ Message length validation
-- ✅ User verification
+**Security Guard Rails (`src/security/filters.py`):**
+- ✅ **Content Filtering**: Protecție împotriva conținutului ofensator
+- ✅ **Anti-Jailbreak**: Menținerea focusului pe rolul de consultant floral
+- ✅ **Rate Limiting**: 10 msg/min, 100 msg/h pentru protecție spam
+- ✅ **Business Focus**: Asigurarea că agentul rămâne în contextul XOFlowers
+- ✅ **Conversational Safety**: Păstrarea tonului profesional și prietenos
 
-### **3. Enhanced Intent Classification**
-
-```
-Validated Message → AI Analysis → Intent Classification (17 Types)
-```
-
-**Enhanced Intent Types (`src/intelligence/intent_classifier.py`):**
-
-#### **Core Business Intents:**
-- 🔍 **find_product** - Product search and recommendations
-- ❓ **ask_question** - General business inquiries  
-- 📧 **subscribe** - Newsletter/updates subscription
-- 💳 **pay_for_product** - Payment processing intents
-
-#### **Enhanced Interaction Intents:**
-- 👋 **greeting** - User greetings and conversation starts
-- 📋 **order_status** - Check order status and tracking
-- 🚨 **complaint** - Handle complaints and issues
-- 💡 **recommendation** - Product recommendations and suggestions
-- 📦 **availability** - Product availability checks
-- 🚚 **delivery_info** - Delivery information and costs
-- ❌ **cancel_order** - Order cancellation requests
-- 💰 **price_inquiry** - Price and cost inquiries
-- 🎁 **seasonal_offers** - Special offers and promotions
-- 🎁 **gift_suggestions** - Gift recommendations for occasions
-- 🌸 **care_instructions** - Flower care and maintenance
-- 🏢 **bulk_orders** - Corporate and bulk order handling
-- 👋 **farewell** - Conversation endings and goodbyes
-
-**AI Classification Features:**
-- 🤖 **Hybrid AI System**: OpenAI (primary) + Gemini (fallback)
-- 🧠 **Context Awareness**: Conversation history integration
-- 📊 **Confidence Scoring**: Reliability assessment for each classification
-- 🔍 **Keyword Fallback**: Robust keyword-based backup system
-- 🎯 **Priority Handling**: Intent priority management for conflicts
-
-### **4. Context-Aware Action Processing**
+### **3. AI-Driven Natural Response Generation**
 
 ```
-Classified Intent + Context → Action Handler → Business Logic
+Validated Message + Context → AI Agent → Database Access → Natural Response
 ```
 
-**Context Management (`src/intelligence/conversation_context.py`):**
-- 💬 **Conversation History**: Multi-turn conversation tracking
-- 👤 **User Profiles**: Preferences and personalization
-- 🧠 **Context Memory**: Maintain conversation state
-- 📊 **Interaction Analytics**: Usage patterns and insights
+**Natural AI Processing (`src/intelligence/`):**
+- 🧠 **AI-First Approach**: Toate răspunsurile sunt generate natural, nu template-uri
+- 🔍 **Database Access**: Agentul are acces la funcții de căutare în timp real
+- 💬 **Context Awareness**: Fiecare răspuns ține cont de istoricul conversației
+- 🎯 **Personalization**: Adaptarea la preferințele și stilul utilizatorului
+- 📊 **Intent Understanding**: Înțelegerea profundă a nevoilor clientului
 
-**Action Handlers (`src/intelligence/action_handler.py`):**
+### **4. MCP-Style Database Access**
 
-#### **Enhanced Product Search Flow:**
 ```
-find_product → Context Analysis → product_search.py → ChromaDB Vector Search → Personalized Results
-```
-
-#### **Intelligent FAQ Flow:**
-```
-ask_question → Context + FAQ Matching → data/faq_data.json → Contextual Answer
+AI Agent → Database Functions → Real-Time Search → Contextual Results
 ```
 
-#### **Smart Subscription Flow:**
-```
-subscribe → User Profile → data/profiles.json → Confirmation + Context
-```
+**Database Functions Available to AI:**
+- � **search_products()** - Căutare semantică în catalog
+- � **get_product_details()** - Informații complete despre produse
+- � **check_pricing()** - Verificarea prețurilor și disponibilității
+- 🏷️ **filter_by_category()** - Filtrare după categorie (buchete, cutii, plante)
+- 🎁 **get_seasonal_offers()** - Oferte speciale actuale
+- 📦 **check_availability()** - Verificarea stock-ului în timp real
 
 #### **Secure Payment Flow:**
 ```
@@ -135,107 +97,104 @@ Generated Response → Platform API → User Notification
 ### **Complete Processing Pipeline**
 
 ```
+### **5. Context-Aware Conversation Management**
+
+```
+AI Agent + Context → Conversation Memory → Personalized Response
+```
+
+**Context Management (`src/intelligence/conversation_context.py`):**
+- 💬 **Multi-Turn Memory**: Păstrarea contextului conversațiilor
+- � **User Personalization**: Adaptarea la preferințele individuale
+- 🧠 **Conversation State**: Urmărirea stării conversației
+- 📊 **Learning from Interactions**: Îmbunătățirea pe baza interacțiunilor
+
+### **6. Natural Response Generation**
+
+```
+Context + Database Results → AI Generation → Brand Voice Application → Final Response
+```
+
+**Natural Response Features:**
+- 🎨 **No Templates**: Fiecare răspuns este generat natural de AI
+- 🌸 **Brand Voice**: Tonul XOFlowers aplicat consistent
+- 📝 **Contextual Relevance**: Răspunsuri relevante la situația specifică
+- � **Conversation Flow**: Menținerea fluxului natural al conversației
+
+## 🌊 **FLUXUL VIZUAL SIMPLIFICAT**
+
+```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   User Sends    │    │   Platform      │    │   Application   │
-│   Message       │──▶│   API           │───▶│   Receives      │
-│   📱💬         │    │   (IG/TG)       │    │   Webhook       │
+│   User Sends    │    │   Platform      │    │   Natural AI    │
+│   Message       │──▶│   API           │───▶│   Processing    │
+│   📱💬         │    │   (IG/TG)       │    │   🤖            │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
                                                         │
                                                         ▼
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Security      │    │   Message       │    │   Raw Message   │
-│   Layer         │◀──│   Validation    │◀───│   Processing    │
-│    🔒           │    │   ✅           │    │   📝            │
+│   Guard Rails   │    │   Context       │    │   AI Agent      │
+│   Security      │◀──│   Analysis      │◀───│   Understanding │
+│   🔒            │    │   �            │    │   🧠            │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
          │
          ▼
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Context       │    │   AI Intent     │    │   Enhanced      │
-│   Analysis      │───▶│   Classification│───▶│   Intent        │
-│   💬            │    │   🧠 (17 types) │    │   🎯            │
+│   Database      │    │   MCP-Style     │    │   AI Agent      │
+│   Functions     │───▶│   Search        │───▶│   Decision      │
+│   �            │    │   Access        │    │   Making        │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
                                                         │
                                                         ▼
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Business      │    │   Action        │    │   Context-Aware │
-│   Logic         │◀───│   Handler       │◀───│   Routing       │
-│   Execution     │    │   Selection     │    │   🚦            │
-│   ⚡            │    │   🎛️           │    │                 │
+│   Natural       │    │   Brand Voice   │    │   Context +     │
+│   Response      │───▶│   Application   │───▶│   Data          │
+│   Generation    │    │   🌸            │    │   Integration   │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
          │
          ▼
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Database      │    │   Vector        │    │   Product       │
-│   Operations    │───▶│   Search        │───▶│   Results       │
-│   💾            │    │   🔍            │    │   📊            │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-                                                        │
-                                                        ▼
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Response      │    │   Brand Voice   │    │   AI Response   │
-│   Generation    │───▶│   Application   │───▶│   Generation    │
-│   🎨            │    │   🌸            │    │   🤖            │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-         │
-         ▼
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Platform      │    │   Message       │    │   User          │
-│   Delivery      │───▶│   Formatting    │───▶│   Receives      │
+│   Platform      │    │   Personalized  │    │   User          │
+│   Delivery      │───▶│   Message       │───▶│   Receives      │
 │   🚀            │    │   📝            │    │   Response 📱   │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
 ```
 
-## 🔍 **INTENT CLASSIFICATION DETAILS**
+## 🔍 **FUNCȚII DE CĂUTARE DISPONIBILE AI-ULUI**
 
-### **1. Find Product Intent**
+### **1. Căutare Semantică Produse**
 
-**Triggers:**
-- "vreau un buchet"
-- "arată-mi flori"
-- "ce cutii cadou aveți"
-- "flori pentru aniversare"
+**Funcția: `search_products(query, category=None, budget=None)`**
 
-**Process:**
-1. Extract search keywords
-2. Vector search in ChromaDB
-3. Filter by category/price/color
-4. Rank by similarity
-5. Return top 3-5 results
-
-**Response Format:**
-```
-🌸 Am găsit aceste produse pentru tine:
-
-1. 🌹 **Buchet Romantic** - 450 MDL
-   💬 Buchet elegant cu trandafiri roșii
-   📍 Disponibil în magazin
-
-2. 🌷 **Cutie Cadou Deluxe** - 650 MDL
-   💬 Cutie frumoasă cu flori mixte
-   📍 Livrare disponibilă
+**Exemplu de utilizare:**
+```python
+# AI Agent poate apela:
+results = search_products("buchete romantice", category="buchete", budget=500)
 ```
 
-### **2. Ask Question Intent**
+**Proces:**
+1. Extragere query din conversație
+2. Căutare vectorială în ChromaDB
+3. Filtrare după parametri
+4. Returnare rezultate relevante
 
-**Triggers:**
-- "ce program aveți"
-- "unde vă aflați"
-- "livrați acasă"
-- "ce metode de plată acceptați"
+### **2. Informații Complete Produse**
 
-**Process:**
-1. Match question with FAQ database
-2. Retrieve contextual information
-3. Generate personalized answer
-4. Include relevant contact info
+**Funcția: `get_product_details(product_id)`**
 
-### **3. Subscribe Intent**
+**Returnează:**
+- Numele și descrierea completă
+- Preț și disponibilitate
+- Ingrediente și dimensiuni
+- Informații de livrare
 
-**Triggers:**
-- "vreau să mă abonez"
-- "actualizări noi"
-- "newsletter"
-- "oferte speciale"
+### **3. Verificare Disponibilitate**
+
+**Funcția: `check_availability(product_id, quantity=1)`**
+
+**Utilizare:**
+- Verificare stock în timp real
+- Informații despre reaprovizionare
+- Alternative disponibile
 
 **Process:**
 1. Validate user information
