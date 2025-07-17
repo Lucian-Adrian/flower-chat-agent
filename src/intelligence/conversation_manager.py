@@ -11,11 +11,11 @@ from typing import Dict, List, Optional, Any
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Import our components with absolute imports
-from ai_conversation_engine import get_ai_engine
-from product_search import get_search_engine
-from conversation_context import get_context_manager
-from chromadb_manager import get_chromadb_manager
+# Import our components with relative imports
+from .ai_conversation_engine import get_ai_engine
+from .product_search import get_search_engine
+from .conversation_context import get_context_manager
+from .chromadb_manager import get_chromadb_manager
 
 
 class ConversationManager:

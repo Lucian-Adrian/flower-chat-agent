@@ -8,7 +8,7 @@ from typing import List, Dict, Optional, Any, Tuple
 from dataclasses import dataclass
 import re
 
-from chromadb_manager import ChromaDBManager, get_chromadb_manager
+from .chromadb_manager import ChromaDBManager, get_chromadb_manager
 
 # Setup logging
 logging.basicConfig(level=logging.INFO)
