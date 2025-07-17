@@ -191,9 +191,14 @@ class XOFlowersSearchEngine:
     
     def _get_url(self, row):
         """Get best URL / Получить лучший URL"""
-        for field in ['url_fixed', 'url', 'original_url']:
+        for field in ['url', 'original_url', 'url_fixed']:
             url = row.get(field, '').strip()
-            if url:
+            if url and url != 'True' and url != 'False':
+                # Убираем лишние символы в конце URL
+                url = url.rstrip('/n/').rstrip('/n').rstrip('/')
+                # Добавляем слэш в конце если его нет
+                if not url.endswith('/'):
+                    url += '/'
                 return url
         return ""
     

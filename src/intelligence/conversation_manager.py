@@ -72,45 +72,89 @@ class ConversationManager:
             logger.error(f"❌ Error processing message: {e}")
             return self._get_error_response()
     
+    async def handle_message(self, user_id: str, message: str) -> str:
+        """
+        Process user message and return natural response (async version for Telegram bot)
+        
+        Args:
+            user_id: Unique user identifier
+            message: User's message
+            
+        Returns:
+            Natural language response
+        """
+        # For now, just call the sync version
+        # In the future, this can be enhanced with actual async AI calls
+        return self.process_message_sync(user_id, message)
+    
     def _generate_simple_response(self, message: str, conversation_context: Dict[str, Any]) -> str:
         """Generate a simple response without async AI calls for testing"""
         message_lower = message.lower()
         
-        # Check if it's a product search
-        if any(word in message_lower for word in ['caut', 'vreau', 'doresc', 'buchet', 'flori', 'trandafir']):
-            # Extract search intent and perform search
-            search_intent = self.search_engine.extract_search_intent(message, conversation_context)
-            search_results = self.search_engine.search_products(search_intent, n_results=3)
-            
-            if search_results:
-                response = "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n"
-                for i, result in enumerate(search_results, 1):
-                    product = result.product
-                    response += f"{i}. **{product['name']}** - {product['price']} MDL\n"
-                    if product.get('colors'):
-                        response += f"   Culori: {', '.join(product['colors'])}\n"
-                    response += f"   {result.relevance_explanation}\n\n"
+        # Check if it's a product search - расширенный список ключевых слов
+        search_keywords = [
+            'caut', 'vreau', 'doresc', 'buchet', 'flori', 'trandafir', 'socia', 'mama', 
+            'девушки', 'букет', 'хочу', 'купить', 'want', 'buy', 'flowers', 'bouquet',
+            'розы', 'цветы', 'girlfriend', 'wife', 'мама', 'девушка'
+        ]
+        
+        if any(word in message_lower for word in search_keywords):
+            try:
+                # Use ChromaDB search directly
+                from src.database.chromadb_search_engine import search_products
                 
-                response += "Ce părere aveți despre aceste opțiuni?"
-                return response
-            else:
-                return "🌸 Îmi pare rău, nu am găsit produse care să corespundă exact cererii dumneavoastră. Puteți să îmi spuneți mai multe detalii despre ce căutați?"
+                logger.info(f"🔍 Searching for: {message}")
+                
+                # Perform search
+                search_results = search_products(message, limit=3)
+                
+                logger.info(f"📊 Search returned {len(search_results) if search_results else 0} results")
+                
+                if search_results and len(search_results) > 0:
+                    response = "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n"
+                    for i, result in enumerate(search_results, 1):
+                        name = result.get('name', 'Produs necunoscut')
+                        price = result.get('price', 'Preț la cerere')
+                        category = result.get('category', '')
+                        url = result.get('url', '')
+                        
+                        response += f"{i}. **{name}**\n"
+                        response += f"   💰 Preț: {price} MDL\n"
+                        
+                        if category:
+                            response += f"   📂 Categorie: {category}\n"
+                        
+                        if url:
+                            response += f"   🔗 Vizualizați: {url}\n"
+                        
+                        response += "\n"
+                    
+                    response += "🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!"
+                    return response
+                else:
+                    return "🌸 Îmi pare rău, nu am găsit produse care să corespundă exact cererii dumneavoastră. Puteți să îmi spuneți mai multe detalii despre ce căutați? De exemplu:\n\n• Culoarea preferată\n• Tipul de flori (trandafiri, bujori, etc.)\n• Ocazia (zi de naștere, aniversare, etc.)\n• Bugetul aproximativ\n\nCu aceste detalii vă pot ajuta mai bine! 😊"
+                    
+            except Exception as e:
+                logger.error(f"❌ Error in product search: {e}")
+                import traceback
+                traceback.print_exc()
+                return "🌸 Am întâmpinat o problemă tehnică cu căutarea. Vă rog să încercați din nou sau să mă contactați pentru asistență."
         
         # Handle greetings
-        elif any(word in message_lower for word in ['salut', 'bună', 'hello', 'hi']):
-            return self.context_manager.get_personalized_greeting(conversation_context['user_id'])
+        elif any(word in message_lower for word in ['salut', 'bună', 'hello', 'hi', 'привет', 'start']):
+            return "🌸 Bună ziua! Bine ați venit la XOFlowers! 💐\n\nSunt asistentul dumneavoastră virtual și vă pot ajuta să găsiți florile perfecte pentru orice ocazie.\n\n**Cum vă pot ajuta astăzi?**\n• Căutați un buchet special?\n• Aveți o ocazie particulară?\n• Doriți recomandări?\n\nSpuneți-mi ce aveți în minte și vă voi ajuta cu plăcere! 😊"
         
-        # Handle questions
-        elif any(word in message_lower for word in ['ce', 'cum', 'când', 'unde', 'de ce']):
-            return "🌸 Vă pot ajuta cu informații despre florile noastre! Suntem XOFlowers din Chișinău și oferim cele mai frumoase aranjamente florale. Cu ce anume vă pot ajuta?"
+        # Handle questions about what they offer
+        elif any(word in message_lower for word in ['ce', 'cum', 'când', 'unde', 'de ce', 'что', 'спуне']):
+            return "🌸 **La XOFlowers găsiți:**\n\n🌹 **Buchete clasice și premium**\n🇫🇷 **Trandafiri francezi**\n🌸 **Bujori și flori de sezon**\n🎉 **Buchete pentru ocazii speciale**\n📦 **Aranjamente în coșuri și cutii**\n🎁 **Accesorii și cadouri**\n\n**Prețuri:** de la 20 MDL la 3800 MDL\n**Livrare:** în Chișinău și împrejurimi\n\nSpuneți-mi ce căutați și vă voi ajuta să găsesc produsul perfect! 🌺"
         
         # Handle compliments
-        elif any(word in message_lower for word in ['mulțumesc', 'frumos', 'minunat', 'perfect']):
-            return "🌸 Vă mulțumesc pentru cuvintele frumoase! Îmi face plăcere să vă ajut să găsiți florile perfecte. Mai aveți nevoie de ceva?"
+        elif any(word in message_lower for word in ['mulțumesc', 'frumos', 'minunat', 'perfect', 'спасибо', 'благодар']):
+            return "🌸 Vă mulțumesc pentru cuvintele frumoase! Îmi face plăcere să vă ajut să găsiți florile perfecte. \n\n💐 Mai aveți nevoie de ceva? Poate:\n• Alte opțiuni de buchete?\n• Informații despre livrare?\n• Sfaturi pentru îngrijirea florilor?\n\nSunt aici pentru dumneavoastră! 😊"
         
-        # Default response
+        # Default response - encourage them to search
         else:
-            return "🌸 Înțeleg! Sunt aici să vă ajut cu orice aveți nevoie legat de flori. Căutați un buchet special, aveți întrebări despre produsele noastre, sau vă pot ajuta cu altceva?"
+            return "🌸 **Înțeleg!** Sunt aici să vă ajut cu orice aveți nevoie legat de flori. \n\n**Pentru a vă ajuta mai bine, spuneți-mi:**\n\n🌺 Ce tip de flori căutați?\n🎉 Pentru ce ocazie sunt?\n💰 Aveți un buget anume?\n🎨 Culori preferate?\n👥 Pentru cine sunt florile?\n\n**Exemple:**\n• \"Caut trandafiri roșii pentru soția mea\"\n• \"Vreau un buchet sub 500 lei\"\n• \"Flori pentru ziua mamei\"\n\nCu cât mai multe detalii îmi oferiți, cu atât mai bine vă pot ajuta! 💪😊"
     
     def _is_greeting(self, message: str) -> bool:
         """Check if message is a greeting"""

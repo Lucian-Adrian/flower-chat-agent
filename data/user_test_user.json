@@ -1,0 +1,331 @@
+{
+  "user_id": "test_user",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Привет я ищу букет для девушки",
+      "timestamp": "2025-07-17T11:00:21.905908",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - Bouquet with Roses.** - 450.0 MDL\n   Categorie: St. Valentine'S Day\n\n2. **Bouquet Red Roses - Bouquet with Red roses.** - 640.0 MDL\n   Categorie: St. Valentine'S Day\n\n3. **Bouquet of Roses - A classic bouquet composed solely of roses.** - 3000.0 MDL\n   Categorie: Classic Bouquets\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T11:00:22.666479",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Что вы мне можете предложить",
+      "timestamp": "2025-07-17T11:00:22.669511",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 La XOFlowers găsiți:\n\n• Buchete clasice și premium\n• Trandafiri francezi\n• Bujori și flori de sezon\n• Buchete pentru ocazii speciale\n• Aranjamente în coșuri și cutii\n• Accesorii și cadouri\n\nSpuneți-mi ce căutați și vă voi ajuta să găsesc produsul perfect!",
+      "timestamp": "2025-07-17T11:00:22.670524",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Doresc un buchet pentru socia",
+      "timestamp": "2025-07-17T11:00:22.673648",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Buchet \"Scarlet Inspiration\" - Bouquet with 70cm roses, available in various quantities.** - 2100.0 MDL\n   Categorie: St. Valentine'S Day\n\n2. **Bouquet \"Charm\" - Charming small bouquet with peonies and sweet matiola** - 565.0 MDL\n   Categorie: Peonies\n\n3. **Buchet De Flori \"Lilac Beauty\" - Beautiful lilac arrangement with roses, eustoma and chrysanthemum** - 750.0 MDL\n   Categorie: Author'S Bouquets\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T11:00:23.072168",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Flori",
+      "timestamp": "2025-07-17T11:00:23.075481",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - A classic bouquet composed solely of roses.** - 3000.0 MDL\n   Categorie: Classic Bouquets\n\n2. **Flower Bouquet \"Flowers of Love\" - Loving arrangement with chrysanthemum, tulips and spray roses** - 600.0 MDL\n   Categorie: Author'S Bouquets\n\n3. **Bouquet Red Roses - Bouquet with Red roses.** - 640.0 MDL\n   Categorie: St. Valentine'S Day\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T11:00:23.505474",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Caut trandafiri roșii",
+      "timestamp": "2025-07-17T11:00:23.507939",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Greeting Card \"Danseaza Viata Asta Frumos!\" - Greeting card with the text \"Danseaza viata asta frumos!\".** - 20.0 MDL\n   Categorie: Greeting Card\n\n2. **Bouquet \"Dolve Vita\" - Sweet life arrangement with peonies, spray roses and tanacetum** - 2900.0 MDL\n   Categorie: Author'S Bouquets\n\n3. **Bouquet \"Dolve Vita\" - A sweet life bouquet with peonies, spray roses, and tanacetum.** - 2900.0 MDL\n   Categorie: Premium\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T11:00:23.892079",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Привет я ищу букет для девушки",
+      "timestamp": "2025-07-17T11:08:27.220087",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: St. Valentine'S Day\n\n2. **Bouquet Red Roses - Bouquet with Red roses.**\n   💰 Preț: 640.0 MDL\n   📂 Categorie: St. Valentine'S Day\n\n3. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Preț: 3000.0 MDL\n   📂 Categorie: Classic Bouquets\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T11:08:27.912602",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Что вы мне можете предложить",
+      "timestamp": "2025-07-17T11:08:27.915241",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 **La XOFlowers găsiți:**\n\n🌹 **Buchete clasice și premium**\n🇫🇷 **Trandafiri francezi**\n🌸 **Bujori și flori de sezon**\n🎉 **Buchete pentru ocazii speciale**\n📦 **Aranjamente în coșuri și cutii**\n🎁 **Accesorii și cadouri**\n\n**Prețuri:** de la 20 MDL la 3800 MDL\n**Livrare:** în Chișinău și împrejurimi\n\nSpuneți-mi ce căutați și vă voi ajuta să găsesc produsul perfect! 🌺",
+      "timestamp": "2025-07-17T11:08:27.917328",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Doresc un buchet pentru socia",
+      "timestamp": "2025-07-17T11:08:27.919571",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Buchet \"Scarlet Inspiration\" - Bouquet with 70cm roses, available in various quantities.**\n   💰 Preț: 2100.0 MDL\n   📂 Categorie: St. Valentine'S Day\n\n2. **Bouquet \"Charm\" - Charming small bouquet with peonies and sweet matiola**\n   💰 Preț: 565.0 MDL\n   📂 Categorie: Peonies\n\n3. **Buchet De Flori \"Lilac Beauty\" - Beautiful lilac arrangement with roses, eustoma and chrysanthemum**\n   💰 Preț: 750.0 MDL\n   📂 Categorie: Author'S Bouquets\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T11:08:28.292744",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Flori",
+      "timestamp": "2025-07-17T11:08:28.295979",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Preț: 3000.0 MDL\n   📂 Categorie: Classic Bouquets\n\n2. **Flower Bouquet \"Flowers of Love\" - Loving arrangement with chrysanthemum, tulips and spray roses**\n   💰 Preț: 600.0 MDL\n   📂 Categorie: Author'S Bouquets\n\n3. **Bouquet Red Roses - Bouquet with Red roses.**\n   💰 Preț: 640.0 MDL\n   📂 Categorie: St. Valentine'S Day\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T11:08:28.618985",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Caut trandafiri roșii",
+      "timestamp": "2025-07-17T11:08:28.621626",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Greeting Card \"Danseaza Viata Asta Frumos!\" - Greeting card with the text \"Danseaza viata asta frumos!\".**\n   💰 Preț: 20.0 MDL\n   📂 Categorie: Greeting Card\n\n2. **aromă Deffuser Sensual Camilla 200Ml - Difuzor de arom Chando Sensual Camilla cu arom senzual de camelie, ambalaj luxos care face din acest difuzor un cadou scump i impresionant**\n   💰 Preț: 2700.0 MDL\n   📂 Categorie: Chando\n\n3. **Bouquet \"Dolve Vita\" - Sweet life arrangement with peonies, spray roses and tanacetum**\n   💰 Preț: 2900.0 MDL\n   📂 Categorie: Author'S Bouquets\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T11:08:28.927054",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Привет я ищу букет для девушки",
+      "timestamp": "2025-07-17T11:26:35.201348",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: True\n\n2. **Bouquet Red Roses - Bouquet with Red roses.**\n   💰 Preț: 640.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: True\n\n3. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Preț: 3000.0 MDL\n   📂 Categorie: Classic Bouquets\n   🔗 Vizualizați: True\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T11:26:35.549822",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Что вы мне можете предложить",
+      "timestamp": "2025-07-17T11:26:35.550829",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 **La XOFlowers găsiți:**\n\n🌹 **Buchete clasice și premium**\n🇫🇷 **Trandafiri francezi**\n🌸 **Bujori și flori de sezon**\n🎉 **Buchete pentru ocazii speciale**\n📦 **Aranjamente în coșuri și cutii**\n🎁 **Accesorii și cadouri**\n\n**Prețuri:** de la 20 MDL la 3800 MDL\n**Livrare:** în Chișinău și împrejurimi\n\nSpuneți-mi ce căutați și vă voi ajuta să găsesc produsul perfect! 🌺",
+      "timestamp": "2025-07-17T11:26:35.550829",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Doresc un buchet pentru socia",
+      "timestamp": "2025-07-17T11:26:35.552297",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Buchet \"Scarlet Inspiration\" - Bouquet with 70cm roses, available in various quantities.**\n   💰 Preț: 2100.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: True\n\n2. **Bouquet \"Charm\" - Charming small bouquet with peonies and sweet matiola**\n   💰 Preț: 565.0 MDL\n   📂 Categorie: Peonies\n   🔗 Vizualizați: True\n\n3. **Buchet De Flori \"Lilac Beauty\" - Beautiful lilac arrangement with roses, eustoma and chrysanthemum**\n   💰 Preț: 750.0 MDL\n   📂 Categorie: Author'S Bouquets\n   🔗 Vizualizați: True\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T11:26:35.751334",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Flori",
+      "timestamp": "2025-07-17T11:26:35.753468",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Preț: 3000.0 MDL\n   📂 Categorie: Classic Bouquets\n   🔗 Vizualizați: True\n\n2. **Flower Bouquet \"Flowers of Love\" - Loving arrangement with chrysanthemum, tulips and spray roses**\n   💰 Preț: 600.0 MDL\n   📂 Categorie: Author'S Bouquets\n   🔗 Vizualizați: True\n\n3. **Bouquet Red Roses - Bouquet with Red roses.**\n   💰 Preț: 640.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: True\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T11:26:35.940952",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Caut trandafiri roșii",
+      "timestamp": "2025-07-17T11:26:35.942991",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Greeting Card \"Danseaza Viata Asta Frumos!\" - Greeting card with the text \"Danseaza viata asta frumos!\".**\n   💰 Preț: 20.0 MDL\n   📂 Categorie: Greeting Card\n   🔗 Vizualizați: True\n\n2. **aromă Deffuser Sensual Camilla 200Ml - Difuzor de arom Chando Sensual Camilla cu arom senzual de camelie, ambalaj luxos care face din acest difuzor un cadou scump i impresionant**\n   💰 Preț: 2700.0 MDL\n   📂 Categorie: Chando\n   🔗 Vizualizați: True\n\n3. **Bouquet \"Dolve Vita\" - Sweet life arrangement with peonies, spray roses and tanacetum**\n   💰 Preț: 2900.0 MDL\n   📂 Categorie: Author'S Bouquets\n   🔗 Vizualizați: True\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T11:26:36.118682",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Привет я ищу букет для девушки",
+      "timestamp": "2025-07-17T11:29:22.859392",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/n/\n\n2. **Bouquet Red Roses - Bouquet with Red roses.**\n   💰 Preț: 640.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-red-roses/n/\n\n3. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Preț: 3000.0 MDL\n   📂 Categorie: Classic Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/n/\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T11:29:23.166458",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Что вы мне можете предложить",
+      "timestamp": "2025-07-17T11:29:23.168463",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 **La XOFlowers găsiți:**\n\n🌹 **Buchete clasice și premium**\n🇫🇷 **Trandafiri francezi**\n🌸 **Bujori și flori de sezon**\n🎉 **Buchete pentru ocazii speciale**\n📦 **Aranjamente în coșuri și cutii**\n🎁 **Accesorii și cadouri**\n\n**Prețuri:** de la 20 MDL la 3800 MDL\n**Livrare:** în Chișinău și împrejurimi\n\nSpuneți-mi ce căutați și vă voi ajuta să găsesc produsul perfect! 🌺",
+      "timestamp": "2025-07-17T11:29:23.169465",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Doresc un buchet pentru socia",
+      "timestamp": "2025-07-17T11:29:23.170468",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Buchet \"Scarlet Inspiration\" - Bouquet with 70cm roses, available in various quantities.**\n   💰 Preț: 2100.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/buchet-scarlet-inspiration/\n\n2. **Bouquet \"Charm\" - Charming small bouquet with peonies and sweet matiola**\n   💰 Preț: 565.0 MDL\n   📂 Categorie: Peonies\n   🔗 Vizualizați: https://xoflowers.md/bouquet-charm/\n\n3. **Buchet De Flori \"Lilac Beauty\" - Beautiful lilac arrangement with roses, eustoma and chrysanthemum**\n   💰 Preț: 750.0 MDL\n   📂 Categorie: Author'S Bouquets\n   🔗 Vizualizați: https://xoflowers.md/buchet-lilac-beauty/\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T11:29:23.337351",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Flori",
+      "timestamp": "2025-07-17T11:29:23.340381",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Preț: 3000.0 MDL\n   📂 Categorie: Classic Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/n/\n\n2. **Flower Bouquet \"Flowers of Love\" - Loving arrangement with chrysanthemum, tulips and spray roses**\n   💰 Preț: 600.0 MDL\n   📂 Categorie: Author'S Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-flowers-love/n/\n\n3. **Bouquet Red Roses - Bouquet with Red roses.**\n   💰 Preț: 640.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-red-roses/n/\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T11:29:23.497797",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Caut trandafiri roșii",
+      "timestamp": "2025-07-17T11:29:23.499953",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Greeting Card \"Danseaza Viata Asta Frumos!\" - Greeting card with the text \"Danseaza viata asta frumos!\".**\n   💰 Preț: 20.0 MDL\n   📂 Categorie: Greeting Card\n   🔗 Vizualizați: https://xoflowers.md/greeting-card/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/\n\n2. **aromă Deffuser Sensual Camilla 200Ml - Difuzor de arom Chando Sensual Camilla cu arom senzual de camelie, ambalaj luxos care face din acest difuzor un cadou scump i impresionant**\n   💰 Preț: 2700.0 MDL\n   📂 Categorie: Chando\n   🔗 Vizualizați: https://xoflowers.md/difuzor-de-aroma-sensual-camilla-200ml/\n\n3. **Bouquet \"Dolve Vita\" - Sweet life arrangement with peonies, spray roses and tanacetum**\n   💰 Preț: 2900.0 MDL\n   📂 Categorie: Author'S Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-dolce-vita/n/\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T11:29:23.667365",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Привет я ищу букет для девушки",
+      "timestamp": "2025-07-17T11:36:40.841284",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n2. **Bouquet Red Roses - Bouquet with Red roses.**\n   💰 Preț: 640.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-red-roses/\n\n3. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Preț: 3000.0 MDL\n   📂 Categorie: Classic Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T11:36:41.159352",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Что вы мне можете предложить",
+      "timestamp": "2025-07-17T11:36:41.160568",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 **La XOFlowers găsiți:**\n\n🌹 **Buchete clasice și premium**\n🇫🇷 **Trandafiri francezi**\n🌸 **Bujori și flori de sezon**\n🎉 **Buchete pentru ocazii speciale**\n📦 **Aranjamente în coșuri și cutii**\n🎁 **Accesorii și cadouri**\n\n**Prețuri:** de la 20 MDL la 3800 MDL\n**Livrare:** în Chișinău și împrejurimi\n\nSpuneți-mi ce căutați și vă voi ajuta să găsesc produsul perfect! 🌺",
+      "timestamp": "2025-07-17T11:36:41.161652",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Doresc un buchet pentru socia",
+      "timestamp": "2025-07-17T11:36:41.162930",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Buchet \"Scarlet Inspiration\" - Bouquet with 70cm roses, available in various quantities.**\n   💰 Preț: 2100.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/buchet-scarlet-inspiratio/\n\n2. **Bouquet \"Charm\" - Charming small bouquet with peonies and sweet matiola**\n   💰 Preț: 565.0 MDL\n   📂 Categorie: Peonies\n   🔗 Vizualizați: https://xoflowers.md/bouquet-charm/\n\n3. **Buchet De Flori \"Lilac Beauty\" - Beautiful lilac arrangement with roses, eustoma and chrysanthemum**\n   💰 Preț: 750.0 MDL\n   📂 Categorie: Author'S Bouquets\n   🔗 Vizualizați: https://xoflowers.md/buchet-lilac-beauty/\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T11:36:41.335618",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Flori",
+      "timestamp": "2025-07-17T11:36:41.337630",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Preț: 3000.0 MDL\n   📂 Categorie: Classic Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n2. **Flower Bouquet \"Flowers of Love\" - Loving arrangement with chrysanthemum, tulips and spray roses**\n   💰 Preț: 600.0 MDL\n   📂 Categorie: Author'S Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-flowers-love/\n\n3. **Bouquet Red Roses - Bouquet with Red roses.**\n   💰 Preț: 640.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-red-roses/\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T11:36:41.541346",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Caut trandafiri roșii",
+      "timestamp": "2025-07-17T11:36:41.543468",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Greeting Card \"Danseaza Viata Asta Frumos!\" - Greeting card with the text \"Danseaza viata asta frumos!\".**\n   💰 Preț: 20.0 MDL\n   📂 Categorie: Greeting Card\n   🔗 Vizualizați: https://xoflowers.md/greeting-card/\n\n2. **aromă Deffuser Sensual Camilla 200Ml - Difuzor de arom Chando Sensual Camilla cu arom senzual de camelie, ambalaj luxos care face din acest difuzor un cadou scump i impresionant**\n   💰 Preț: 2700.0 MDL\n   📂 Categorie: Chando\n   🔗 Vizualizați: https://xoflowers.md/difuzor-de-aroma-sensual-camilla-200ml/\n\n3. **Bouquet \"Dolve Vita\" - Sweet life arrangement with peonies, spray roses and tanacetum**\n   💰 Preț: 2900.0 MDL\n   📂 Categorie: Author'S Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-dolce-vita/\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T11:36:41.737602",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Хочу купить букет роз",
+      "timestamp": "2025-07-17T11:37:49.138562",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n2. **Bouquet Red Roses - Bouquet with Red roses.**\n   💰 Preț: 640.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-red-roses/\n\n3. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Preț: 3000.0 MDL\n   📂 Categorie: Classic Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T11:37:49.506298",
+      "metadata": {}
+    }
+  ],
+  "preferences": {
+    "favorite_colors": [],
+    "favorite_flowers": [
+      "trandafir"
+    ],
+    "budget_range": null,
+    "preferred_occasions": [],
+    "style_preferences": [],
+    "recipient_types": []
+  },
+  "current_search_context": null,
+  "mentioned_products": [],
+  "conversation_stage": "greeting",
+  "last_activity": "2025-07-17T11:37:49.506298"
+}

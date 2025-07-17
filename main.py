@@ -68,7 +68,7 @@ def main():
         elif args.platform == "telegram":
             print("📱 Starting Telegram Bot...")
             from src.api.telegram_app import XOFlowersTelegramBot
-            bot = XOFlowersTelegramBot(debug=args.debug)
+            bot = XOFlowersTelegramBot()
             
             # Run the bot using application.run_polling() directly
             bot.application.run_polling(
