@@ -7,15 +7,18 @@ Un agent AI inteligent integrat cu Instagram și Telegram care interacționează
 ## 🎯 **FUNCȚIONALITĂȚI PRINCIPALE**
 
 ### **🧠 Procesarea Intențiilor - Sistem Avansat cu 17 Tipuri**
+
 Botul utilizează un sistem AI avansat care recunoaște și procesează **17 tipuri diferite de intenții** pentru o experiență completă:
 
 #### **📊 Intenții Principale de Business:**
+
 1. **🔍 find_product** - Căutare și recomandări de produse (buchete, cutii cadou, plante)
 2. **❓ ask_question** - Întrebări generale despre afacere (program, locație, politici)
 3. **📧 subscribe** - Abonare la planuri de flori sau actualizări promoționale
 4. **💳 pay_for_product** - Procesarea intențiilor de plată cu simulare de plată
 
 #### **🎯 Intenții Avansate de Interacțiune:**
+
 5. **👋 greeting** - Salutări și începerea conversațiilor
 6. **📦 order_status** - Verificarea stării comenzilor
 7. **⚠️ complaint** - Gestionarea reclamațiilor și problemelor
@@ -24,6 +27,7 @@ Botul utilizează un sistem AI avansat care recunoaște și procesează **17 tip
 10. **🚚 delivery_info** - Informații despre livrare și transport
 
 #### **🛍️ Intenții Specializate:**
+
 11. **❌ cancel_order** - Anularea comenzilor
 12. **💰 price_inquiry** - Întrebări despre prețuri și tarife
 13. **🎁 seasonal_offers** - Oferte speciale și promoții
@@ -33,12 +37,14 @@ Botul utilizează un sistem AI avansat care recunoaște și procesează **17 tip
 17. **👋 farewell** - Încheiere conversații și rămas bun
 
 ### **⚡ Capabilități AI Avansate**
+
 - **Recunoaștere Context**: Înțelege conversații multi-turn cu memorie
 - **Clasificare Inteligentă**: 95%+ acuratețe în recunoașterea intențiilor
 - **Răspunsuri Personalizate**: Adaptate la contextul conversației
 - **Protecție Anti-Manipulare**: Sistem avansat de securitate
 
 ### **🏗️ Arhitectură Inteligentă**
+
 - **AI Multimodal**: OpenAI GPT-4 primar cu fallback Google Gemini Pro
 - **Sistem de Intenții**: 17 tipuri cu clasificare AI avansată (95%+ acuratețe)
 - **Căutare Vector**: ChromaDB pentru căutare semantică optimizată
@@ -138,6 +144,7 @@ xoflowers-agent/
 ## 🚀 **INSTALARE ȘI CONFIGURARE**
 
 ### **1. Clonare și Setup**
+
 ```bash
 # Clonează repository-ul
 git clone https://github.com/Lucian-Adrian/flower-chat-agent.git
@@ -153,6 +160,7 @@ pip install -r requirements.txt
 ```
 
 ### **2. Configurare Environment**
+
 ```bash
 # Copiază template-ul de mediu
 cp .env.example .env
@@ -165,6 +173,7 @@ cp .env.example .env
 ```
 
 ### **3. Populare Bază de Date**
+
 ```bash
 # Populează ChromaDB cu produsele
 python -m src.pipeline.populate_db
@@ -176,6 +185,7 @@ python -c "import chromadb; client = chromadb.PersistentClient('./chroma_db_flow
 ## 🎮 **UTILIZARE - SISTEM LIVE**
 
 ### **🟢 Telegram Bot LIVE**
+
 **Bot-ul Telegram este acum LIVE și funcționează complet!**
 
 ```bash
@@ -188,6 +198,7 @@ python main.py --platform telegram
 ```
 
 **Comenzi disponibile:**
+
 - `/start` - Salut și introducere XOFlowers
 - `/help` - Ghid complet de utilizare
 - `/menu` - Meniu interactiv principal
@@ -198,12 +209,14 @@ python main.py --platform telegram
 - `/feedback` - Trimite feedback
 
 ### **🔄 Instagram Bot (În testare)**
+
 ```bash
 # Pornește botul Instagram (testare finală)
 python main.py --platform instagram --port 5001
 ```
 
 ### **🛠️ Mod Debug și Testare**
+
 ```bash
 # Mod debug pentru dezvoltare
 python main.py --platform telegram --debug
@@ -219,6 +232,7 @@ print(ic.classify_intent('Vreau un buchet frumos pentru soția mea'))
 ## 🧪 **TESTARE**
 
 ### **🎮 Demo Rapid**
+
 ```bash
 # Demo principal interactiv
 python demos/demo_bot.py
@@ -231,14 +245,17 @@ python demos/quick_test.py
 ```
 
 ### **📊 Structura Organizată**
+
 Proiectul este acum complet organizat în:
+
 - **`/demos`** - Demo-uri și testare rapidă pentru dezvoltatori
-- **`/tests/unit`** - Teste unitare pentru componente individuale  
+- **`/tests/unit`** - Teste unitare pentru componente individuale
 - **`/tests/integration`** - Teste de integrare pentru sistemul complet
 - **`/docs/summaries`** - Documentație și rapoarte detaliate
 - **`/data`** - Date de conversații, profile utilizatori și cataloage
 
 ### **🧪 Testare Webhook Instagram**
+
 ```bash
 # Testează verificarea webhook-ului
 curl -X GET "http://localhost:5001/webhook?hub.mode=subscribe&hub.verify_token=xoflowers_webhook_secret_2024&hub.challenge=test"
@@ -247,12 +264,14 @@ curl -X GET "http://localhost:5001/webhook?hub.mode=subscribe&hub.verify_token=x
 ```
 
 ### **🏥 Testare Endpoint Sănătate**
+
 ```bash
 curl http://localhost:5001/health
 # Răspuns: {"status": "healthy", "service": "XOFlowers Instagram Bot"}
 ```
 
 ### **🔬 Testare Clasificare Intenții (17 Tipuri)**
+
 ```bash
 # Testare intenții principale
 python -c "
@@ -287,6 +306,7 @@ for msg in test_messages:
 ```
 
 ### **🔄 Testare Completă Sistem**
+
 ```bash
 # Test complet integrare
 python tests/integration/final_test.py
@@ -296,6 +316,7 @@ python tests/integration/final_verification.py
 ```
 
 ### **🔬 Testare Unitară**
+
 ```bash
 # Teste unitare specifice
 python tests/unit/test_basic.py
@@ -309,6 +330,7 @@ pytest tests/unit/ -v
 ## 🔧 **CONFIGURARE AVANSATĂ**
 
 ### **Setări AI (config/settings.py)**
+
 ```python
 AI_MODEL = {
     'primary': 'openai',        # Serviciu AI primar
@@ -319,6 +341,7 @@ AI_MODEL = {
 ```
 
 ### **Configurare Securitate**
+
 ```python
 SECURITY = {
     'enable_censorship': True,          # Activează filtrarea conținutului
@@ -331,6 +354,7 @@ SECURITY = {
 ```
 
 ### **Configurare Căutare Produse**
+
 ```python
 DATABASE = {
     'chromadb_path': './chroma_db_flowers',
@@ -348,6 +372,7 @@ DATABASE = {
 ## 🎯 **EXEMPLE DE UTILIZARE**
 
 ### **🔍 Căutare Produse (find_product)**
+
 ```
 User: "Vreau un buchet pentru soția mea"
 Bot: "🌸 Am găsit aceste buchete perfecte pentru soția dumneavoastră:
@@ -357,11 +382,12 @@ Bot: "🌸 Am găsit aceste buchete perfecte pentru soția dumneavoastră:
 📝 Buchet elegant cu 25 trandafiri roșii și baby breath
 
 🌸 **Buchet Passion**
-💰 600 MDL  
+💰 600 MDL
 📝 Combinație frumoasă de trandafiri și bujori roz"
 ```
 
 ### **❓ Întrebări Business (ask_question)**
+
 ```
 User: "Care sunt orele de lucru?"
 Bot: "🕒 Orele noastre de lucru:
@@ -370,6 +396,7 @@ Bot: "🕒 Orele noastre de lucru:
 ```
 
 ### **📦 Status Comandă (order_status)**
+
 ```
 User: "Unde este comanda mea?"
 Bot: "📦 Comanda #1234 este în procesare:
@@ -379,6 +406,7 @@ Bot: "📦 Comanda #1234 este în procesare:
 ```
 
 ### **💡 Recomandări (recommendation)**
+
 ```
 User: "Ce îmi recomandați pentru o aniversare?"
 Bot: "🎉 Pentru aniversări, recomand:
@@ -389,6 +417,7 @@ Bot: "🎉 Pentru aniversări, recomand:
 ```
 
 ### **🚚 Informații Livrare (delivery_info)**
+
 ```
 User: "Cât costă livrarea?"
 Bot: "🚚 Informații livrare:
@@ -399,6 +428,7 @@ Bot: "🚚 Informații livrare:
 ```
 
 ### **💳 Procesare Plată (pay_for_product)**
+
 ```
 User: "Vreau să plătesc pentru buchețul acela"
 Bot: "💳 Plata a fost procesată cu succes! 🎉
@@ -412,6 +442,7 @@ Mulțumim că ați ales XOFlowers! 🌺"
 ## 📊 **PERFORMANȚĂ LIVE**
 
 ### **🎯 Metrici Producție Actuală**
+
 ```
 🌸 XOFlowers AI Agent - LIVE METRICS (Iulie 2025):
 ├── � AI Intent Recognition: 17 tipuri cu 95%+ acuratețe
@@ -426,12 +457,14 @@ Mulțumim că ați ales XOFlowers! 🌺"
 ```
 
 ### **📈 Capabilități Avansate**
+
 - **Conversații Inteligente**: AI-powered cu memorie contextuală
 - **Căutare Semantică**: Vector search cu similaritate avansată
 - **Personalizare**: Răspunsuri adaptate preferințelor utilizatorului
 - **Robusteță**: Fallback mechanisms pentru fiabilitate maximă
 
 ### **🔧 Arhitectură Scalabilă**
+
 - **Timp de răspuns**: < 3 secunde mediu
 - **Disponibilitate**: 99%+ uptime reliability
 - **Capacitate**: 100+ utilizatori concurenți
@@ -440,6 +473,7 @@ Mulțumim că ați ales XOFlowers! 🌺"
 ## 🔮 **ROADMAP ACTUALIZAT - IULIE 2025**
 
 ### **🎉 REALIZAT - SISTEM LIVE** ✅
+
 - [x] **Sistem AI Complet** - Intent classification cu 17 tipuri
 - [x] **Context Conversațional** - Memorie și personalizare
 - [x] **Telegram Bot LIVE** - Complet funcțional în producție
@@ -448,12 +482,14 @@ Mulțumim că ați ales XOFlowers! 🌺"
 - [x] **ChromaDB Integration** - Vector search optimizat
 
 ### **🔄 În Finalizare** 📋
+
 - [ ] **Instagram Bot Testing** - Testare finală webhook
 - [ ] **Performance Monitoring** - Analytics și optimizare
 - [ ] **Documentation Complete** - Ghiduri utilizator finale
 - [ ] **User Feedback Integration** - Colectare și procesare feedback
 
-### **🚀 Următoarea Fază** 
+### **🚀 Următoarea Fază**
+
 - [ ] **Suport multilingv extins** (RO/EN/RU)
 - [ ] **Integrare procesare plăți reale**
 - [ ] **Dashboard analytics** complet
@@ -461,6 +497,7 @@ Mulțumim că ați ales XOFlowers! 🌺"
 - [ ] **Procesare mesaje vocale**
 
 ### **🌟 Viitor Extins**
+
 - [ ] **Arhitectură microservicii**
 - [ ] **Scalare automată**
 - [ ] **Machine learning personalizat**
@@ -470,6 +507,7 @@ Mulțumim că ați ales XOFlowers! 🌺"
 ## 🛠️ **DEZVOLTARE**
 
 ### **Contribuție**
+
 1. Fork repository-ul
 2. Creează branch pentru feature (`git checkout -b feature/AmazingFeature`)
 3. Commit schimbările (`git commit -m 'Add AmazingFeature'`)
@@ -477,6 +515,7 @@ Mulțumim că ați ales XOFlowers! 🌺"
 5. Deschide Pull Request
 
 ### **Rulare Teste**
+
 ```bash
 # 🎮 Demo și testare rapidă
 python demos/demo_bot.py                    # Demo principal
@@ -512,6 +551,7 @@ black src/
 ## 📞 **SUPORT**
 
 ### **Documentație**
+
 - [Arhitectura Sistemului](docs/architecture.md)
 - [Ghid Setup API](docs/api_setup_guide.md)
 - [Exemplu
