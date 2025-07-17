@@ -1,8 +1,22 @@
 """
 Database package for XOFlowers AI Agent
-Handles database connections and operations
+Contains ChromaDB search engine for product search
 """
 
-from .manager import DatabaseManager
+from .chromadb_search_engine import (
+    load_products,
+    search_products,
+    search_flowers,
+    search_budget,
+    get_stats,
+    XOFlowersSearchEngine
+)
 
-__all__ = ['DatabaseManager']
+__all__ = [
+    'load_products',
+    'search_products', 
+    'search_flowers',
+    'search_budget',
+    'get_stats',
+    'XOFlowersSearchEngine'
+]
