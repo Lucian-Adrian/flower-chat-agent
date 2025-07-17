@@ -20,7 +20,7 @@ class Config:
     # Paths / Пути
     BASE_DIR = Path(__file__).parent.parent.parent  # src/database -> src -> project_root
     DATA_CSV = BASE_DIR / "data" / "final_products_case_standardized.csv"
-    CHROMA_DB = BASE_DIR / "chroma_db_simple"
+    CHROMA_DB = BASE_DIR / "chroma_db"
     
     # Categories / Категории
     FLOWER_CATEGORIES = {
