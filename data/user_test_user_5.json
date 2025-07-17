@@ -1,0 +1,41 @@
+{
+  "user_id": "test_user_5",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Mulțumesc!",
+      "timestamp": "2025-07-17T15:26:11.689674",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Vă mulțumesc pentru cuvintele frumoase! Îmi face plăcere să vă ajut să găsiți florile perfecte. \n\n💐 Mai aveți nevoie de ceva? Poate:\n• Alte opțiuni de buchete?\n• Informații despre livrare?\n• Sfaturi pentru îngrijirea florilor?\n\nSunt aici pentru dumneavoastră! 😊",
+      "timestamp": "2025-07-17T15:26:11.690743",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Mulțumesc!",
+      "timestamp": "2025-07-17T15:27:13.072909",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Vă mulțumesc pentru cuvintele frumoase! Îmi face plăcere să vă ajut să găsiți florile perfecte. \n\n💐 Mai aveți nevoie de ceva? Poate:\n• Alte opțiuni de buchete?\n• Informații despre livrare?\n• Sfaturi pentru îngrijirea florilor?\n\nSunt aici pentru dumneavoastră! 😊",
+      "timestamp": "2025-07-17T15:27:13.072909",
+      "metadata": {}
+    }
+  ],
+  "preferences": {
+    "favorite_colors": [],
+    "favorite_flowers": [],
+    "budget_range": null,
+    "preferred_occasions": [],
+    "style_preferences": [],
+    "recipient_types": []
+  },
+  "current_search_context": null,
+  "mentioned_products": [],
+  "conversation_stage": "greeting",
+  "last_activity": "2025-07-17T15:27:13.072909"
+}

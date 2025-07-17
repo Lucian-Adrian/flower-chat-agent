@@ -1,0 +1,29 @@
+{
+  "user_id": "test_budget",
+  "messages": [
+    {
+      "role": "user",
+      "content": "нужны цветы для мамы до 1000 лей",
+      "timestamp": "2025-07-17T15:31:29.967536",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n2. **Bouquet Red Roses - Bouquet with Red roses.**\n   💰 Preț: 640.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-red-roses/\n\n3. **Bouquet 'Sunny Accent' - Bouquet with rose, tulip, chrysanthemum, and ruscus.**\n   💰 Preț: 800.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-sunny-accent/\n\n🌸 Toate opțiunile sunt în bugetul dumneavoastră de până la 1000.0 MDL. Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T15:31:33.479700",
+      "metadata": {}
+    }
+  ],
+  "preferences": {
+    "favorite_colors": [],
+    "favorite_flowers": [],
+    "budget_range": null,
+    "preferred_occasions": [],
+    "style_preferences": [],
+    "recipient_types": []
+  },
+  "current_search_context": null,
+  "mentioned_products": [],
+  "conversation_stage": "greeting",
+  "last_activity": "2025-07-17T15:31:33.479700"
+}

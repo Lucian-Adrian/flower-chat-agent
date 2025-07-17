@@ -371,6 +371,11 @@ Răspunde doar cu JSON-ul cerut:
     async def _get_ai_response(self, prompt: str, max_tokens: int = 1000) -> str:
         """Get response from AI service with fallback"""
         
+        # Check if any AI service is available
+        if not self.openai_client and not self.gemini_model:
+            logger.error("❌ No AI services available")
+            return "Îmi pare rău, serviciile AI nu sunt disponibile momentan. Vă rog să încercați mai târziu."
+        
         # Try OpenAI first
         if self.openai_client:
             try:
@@ -398,8 +403,9 @@ Răspunde doar cu JSON-ul cerut:
             except Exception as e:
                 logger.warning(f"⚠️ Gemini request failed: {e}")
         
-        # If both fail, raise exception
-        raise Exception("Both AI services unavailable")
+        # If both fail, return graceful error message
+        logger.error("❌ All AI services failed")
+        return "Îmi pare rău, am întâmpinat probleme tehnice. Vă rog să încercați din nou sau să ne contactați direct."
     
     def get_health_status(self) -> Dict[str, Any]:
         """Get health status of AI services"""

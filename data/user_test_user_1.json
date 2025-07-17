@@ -1,40 +1,28 @@
 {
-  "user_id": "test_user",
+  "user_id": "test_user_1",
   "messages": [
     {
       "role": "user",
       "content": "Salut!",
-      "timestamp": "2025-07-17T15:22:41.490086",
+      "timestamp": "2025-07-17T15:26:08.872644",
       "metadata": {}
     },
     {
       "role": "assistant",
       "content": "🌸 Bună ziua din nou! Mă bucur să vă revăd la XOFlowers! Cu ce vă pot ajuta astăzi?",
-      "timestamp": "2025-07-17T15:22:41.491092",
+      "timestamp": "2025-07-17T15:26:08.873955",
       "metadata": {}
     },
     {
       "role": "user",
       "content": "Salut!",
-      "timestamp": "2025-07-17T15:23:16.045082",
+      "timestamp": "2025-07-17T15:27:09.983128",
       "metadata": {}
     },
     {
       "role": "assistant",
       "content": "🌸 Bună ziua! Bine ați venit la XOFlowers! 💐\n\nSunt asistentul dumneavoastră virtual și vă pot ajuta să găsiți florile perfecte pentru orice ocazie.\n\n**Cum vă pot ajuta astăzi?**\n• Căutați un buchet special?\n• Aveți o ocazie particulară?\n• Doriți recomandări?\n\nSpuneți-mi ce aveți în minte și vă voi ajuta cu plăcere! 😊",
-      "timestamp": "2025-07-17T15:23:16.045082",
-      "metadata": {}
-    },
-    {
-      "role": "user",
-      "content": "Salut!",
-      "timestamp": "2025-07-17T15:25:00.584253",
-      "metadata": {}
-    },
-    {
-      "role": "assistant",
-      "content": "🌸 Bună ziua! Bine ați venit la XOFlowers! 💐\n\nSunt asistentul dumneavoastră virtual și vă pot ajuta să găsiți florile perfecte pentru orice ocazie.\n\n**Cum vă pot ajuta astăzi?**\n• Căutați un buchet special?\n• Aveți o ocazie particulară?\n• Doriți recomandări?\n\nSpuneți-mi ce aveți în minte și vă voi ajuta cu plăcere! 😊",
-      "timestamp": "2025-07-17T15:25:00.584253",
+      "timestamp": "2025-07-17T15:27:09.984131",
       "metadata": {}
     }
   ],
@@ -49,5 +37,5 @@
   "current_search_context": null,
   "mentioned_products": [],
   "conversation_stage": "greeting",
-  "last_activity": "2025-07-17T15:25:00.584253"
+  "last_activity": "2025-07-17T15:27:09.984131"
 }

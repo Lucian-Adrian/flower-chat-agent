@@ -12,11 +12,7 @@ from pathlib import Path
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
-try:
-    from telegram import Update
-except ImportError:
-    Update = None
-
+# Load environment variables
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -67,6 +63,7 @@ def main():
             
         elif args.platform == "telegram":
             print("📱 Starting Telegram Bot...")
+            from telegram import Update
             from src.api.telegram_app import XOFlowersTelegramBot
             bot = XOFlowersTelegramBot()
             

@@ -87,6 +87,52 @@ class ConversationManager:
         # In the future, this can be enhanced with actual async AI calls
         return self.process_message_sync(user_id, message)
     
+    def _extract_budget(self, message: str) -> Optional[float]:
+        """Extract budget from user message"""
+        import re
+        
+        # Look for patterns like "до 1000", "под 500", "до 1000 лей", "under 500", etc.
+        budget_patterns = [
+            r'до\s*(\d+)',           # до 1000
+            r'под\s*(\d+)',          # под 500  
+            r'under\s*(\d+)',        # under 500
+            r'sub\s*(\d+)',          # sub 500
+            r'maximum\s*(\d+)',      # maximum 1000
+            r'max\s*(\d+)',          # max 1000
+            r'не\s*более\s*(\d+)',   # не более 1000
+            r'максимум\s*(\d+)',     # максимум 1000
+            r'nu\s*mai\s*mult\s*de\s*(\d+)', # nu mai mult de 1000
+            r'максимально\s*(\d+)',  # максимально 1000
+        ]
+        
+        message_lower = message.lower()
+        
+        for pattern in budget_patterns:
+            match = re.search(pattern, message_lower)
+            if match:
+                try:
+                    budget = float(match.group(1))
+                    logger.info(f"💰 Extracted budget: {budget} MDL")
+                    return budget
+                except ValueError:
+                    continue
+        
+        return None
+    
+    def _filter_by_budget(self, results: List[Dict], max_budget: float) -> List[Dict]:
+        """Filter search results by budget"""
+        if not results or not max_budget:
+            return results
+        
+        filtered = []
+        for result in results:
+            price = result.get('price', 0)
+            if isinstance(price, (int, float)) and price <= max_budget:
+                filtered.append(result)
+        
+        logger.info(f"💰 Filtered {len(results)} → {len(filtered)} results within budget {max_budget} MDL")
+        return filtered
+
     def _generate_simple_response(self, message: str, conversation_context: Dict[str, Any]) -> str:
         """Generate a simple response without async AI calls for testing"""
         message_lower = message.lower()
@@ -95,18 +141,30 @@ class ConversationManager:
         search_keywords = [
             'caut', 'vreau', 'doresc', 'buchet', 'flori', 'trandafir', 'socia', 'mama', 
             'девушки', 'букет', 'хочу', 'купить', 'want', 'buy', 'flowers', 'bouquet',
-            'розы', 'цветы', 'girlfriend', 'wife', 'мама', 'девушка'
+            'розы', 'цветы', 'girlfriend', 'wife', 'мама', 'девушка', 'нужны', 'нужен'
         ]
         
         if any(word in message_lower for word in search_keywords):
             try:
+                # Extract budget if mentioned
+                budget = self._extract_budget(message)
+                
                 # Use ChromaDB search directly
                 from src.database.chromadb_search_engine import search_products
                 
                 logger.info(f"🔍 Searching for: {message}")
                 
                 # Perform search
-                search_results = search_products(message, limit=3)
+                search_results = search_products(message, limit=10)  # Get more results to filter
+                
+                # Filter by budget if specified
+                if budget:
+                    search_results = self._filter_by_budget(search_results, budget)
+                    # Limit to top 3 after filtering
+                    search_results = search_results[:3]
+                else:
+                    # If no budget, just take top 3
+                    search_results = search_results[:3] if search_results else []
                 
                 logger.info(f"📊 Search returned {len(search_results) if search_results else 0} results")
                 
@@ -129,10 +187,16 @@ class ConversationManager:
                         
                         response += "\n"
                     
-                    response += "🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!"
+                    if budget:
+                        response += f"🌸 Toate opțiunile sunt în bugetul dumneavoastră de până la {budget} MDL. "
+                    
+                    response += "Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!"
                     return response
                 else:
-                    return "🌸 Îmi pare rău, nu am găsit produse care să corespundă exact cererii dumneavoastră. Puteți să îmi spuneți mai multe detalii despre ce căutați? De exemplu:\n\n• Culoarea preferată\n• Tipul de flori (trandafiri, bujori, etc.)\n• Ocazia (zi de naștere, aniversare, etc.)\n• Bugetul aproximativ\n\nCu aceste detalii vă pot ajuta mai bine! 😊"
+                    if budget:
+                        return f"🌸 Îmi pare rău, nu am găsit buchete în bugetul de până la {budget} MDL care să corespundă cererii dumneavoastră. \n\n💡 **Sugestii:**\n• Încercați să măriți puțin bugetul\n• Căutați buchete mai simple sau cu flori de sezon\n• Contactați-ne direct pentru opțiuni personalizate\n\n📞 Putem să vă ajutăm să găsim ceva frumos în bugetul dumneavoastră!"
+                    else:
+                        return "🌸 Îmi pare rău, nu am găsit produse care să corespundă exact cererii dumneavoastră. Puteți să îmi spuneți mai multe detalii despre ce căutați? De exemplu:\n\n• Culoarea preferată\n• Tipul de flori (trandafiri, bujori, etc.)\n• Ocazia (zi de naștere, aniversare, etc.)\n• Bugetul aproximativ\n\nCu aceste detalii vă pot ajuta mai bine! 😊"
                     
             except Exception as e:
                 logger.error(f"❌ Error in product search: {e}")

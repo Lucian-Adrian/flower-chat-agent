@@ -58,7 +58,7 @@ class XOFlowersSearchEngine:
         # Single collection for all products / Одна коллекция для всех товаров
         try:
             self.collection = self.client.create_collection("all_products")
-        except:
+        except Exception:
             self.collection = self.client.get_collection("all_products")
         
         print("✅ XOFlowers ChromaDB Search Engine initialized")
@@ -186,7 +186,7 @@ class XOFlowersSearchEngine:
         clean = re.sub(r'[^\d.]', '', str(price_str))
         try:
             return float(clean)
-        except:
+        except ValueError:
             return 0
     
     def _get_url(self, row):
@@ -279,7 +279,7 @@ class XOFlowersSearchEngine:
             # Clear and recreate collection / Очистка и пересоздание коллекции
             self.client.delete_collection("all_products")
             self.collection = self.client.create_collection("all_products")
-        except:
+        except Exception:
             pass
         
         # Prepare data / Подготовка данных
@@ -310,6 +310,12 @@ def load_products():
 
 def search_products(query, limit=10):
     """Search all products / Поиск всех продуктов"""
+    # Auto-load if empty / Автозагрузка если пусто
+    stats = db.get_stats()
+    if stats.get('total_products', 0) == 0:
+        print("🔄 Auto-loading products...")
+        db.load_data()
+    
     return db.search(query, limit)
 
 def search_flowers(query, limit=10):
@@ -327,3 +333,12 @@ def get_stats():
 # Auto-load on import / Автозагрузка при импорте
 if __name__ == "__main__":
     load_products()
+else:
+    # Auto-load when imported / Автозагрузка при импорте
+    try:
+        stats = db.get_stats()
+        if stats.get('total_products', 0) == 0:
+            print("🔄 Auto-loading products on import...")
+            db.load_data()
+    except Exception as e:
+        print(f"⚠️ Auto-load failed: {e}")

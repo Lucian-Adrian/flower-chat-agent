@@ -1,0 +1,43 @@
+{
+  "user_id": "test_user_2",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Vreau un buchet de trandafiri roșii",
+      "timestamp": "2025-07-17T15:26:08.875056",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet \"Momo\" - Charming 'Momo' bouquet featuring chrysanthemums.**\n   💰 Preț: 850.0 MDL\n   📂 Categorie: Mono/Duo Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-momo/\n\n2. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Preț: 3000.0 MDL\n   📂 Categorie: Classic Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n3. **Buchet \"Scarlet Inspiration\" - Bouquet with 70cm roses, available in various quantities.**\n   💰 Preț: 2100.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/buchet-scarlet-inspiratio/\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T15:26:11.685650",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Vreau un buchet de trandafiri roșii",
+      "timestamp": "2025-07-17T15:27:09.994043",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet \"Momo\" - Charming 'Momo' bouquet featuring chrysanthemums.**\n   💰 Preț: 850.0 MDL\n   📂 Categorie: Mono/Duo Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-momo/\n\n2. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Preț: 3000.0 MDL\n   📂 Categorie: Classic Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n3. **Buchet \"Scarlet Inspiration\" - Bouquet with 70cm roses, available in various quantities.**\n   💰 Preț: 2100.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/buchet-scarlet-inspiratio/\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T15:27:13.046363",
+      "metadata": {}
+    }
+  ],
+  "preferences": {
+    "favorite_colors": [],
+    "favorite_flowers": [
+      "trandafir"
+    ],
+    "budget_range": null,
+    "preferred_occasions": [],
+    "style_preferences": [],
+    "recipient_types": []
+  },
+  "current_search_context": null,
+  "mentioned_products": [],
+  "conversation_stage": "greeting",
+  "last_activity": "2025-07-17T15:27:13.046363"
+}

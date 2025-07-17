@@ -3,190 +3,176 @@
   "messages": [
     {
       "role": "user",
-      "content": "Привет я ищу букет для девушки",
-      "timestamp": "2025-07-17T10:55:20.583930",
+      "content": "Привет нужны цветы для мамы до 1000 лей",
+      "timestamp": "2025-07-17T14:43:43.418294",
       "metadata": {}
     },
     {
       "role": "assistant",
-      "content": "🌸 Înțeleg! Sunt aici să vă ajut cu orice aveți nevoie legat de flori. Căutați un buchet special, aveți întrebări despre produsele noastre, sau vă pot ajuta cu altceva?",
-      "timestamp": "2025-07-17T10:55:20.584936",
-      "metadata": {}
-    },
-    {
-      "role": "user",
-      "content": "Что вы мне можете предложить",
-      "timestamp": "2025-07-17T10:55:47.207600",
-      "metadata": {}
-    },
-    {
-      "role": "assistant",
-      "content": "🌸 Înțeleg! Sunt aici să vă ajut cu orice aveți nevoie legat de flori. Căutați un buchet special, aveți întrebări despre produsele noastre, sau vă pot ajuta cu altceva?",
-      "timestamp": "2025-07-17T10:55:47.209705",
+      "content": "🌸 Îmi pare rău, nu am găsit produse care să corespundă exact cererii dumneavoastră. Puteți să îmi spuneți mai multe detalii despre ce căutați? De exemplu:\n\n• Culoarea preferată\n• Tipul de flori (trandafiri, bujori, etc.)\n• Ocazia (zi de naștere, aniversare, etc.)\n• Bugetul aproximativ\n\nCu aceste detalii vă pot ajuta mai bine! 😊",
+      "timestamp": "2025-07-17T14:43:43.776662",
       "metadata": {}
     },
     {
       "role": "user",
       "content": "Doresc un buchet pentru socia",
-      "timestamp": "2025-07-17T10:56:12.560206",
+      "timestamp": "2025-07-17T14:44:29.425149",
       "metadata": {}
     },
     {
       "role": "assistant",
-      "content": "🌸 Îmi pare rău, nu am găsit produse care să corespundă exact cererii dumneavoastră. Puteți să îmi spuneți mai multe detalii despre ce căutați?",
-      "timestamp": "2025-07-17T10:56:13.295502",
+      "content": "🌸 Îmi pare rău, nu am găsit produse care să corespundă exact cererii dumneavoastră. Puteți să îmi spuneți mai multe detalii despre ce căutați? De exemplu:\n\n• Culoarea preferată\n• Tipul de flori (trandafiri, bujori, etc.)\n• Ocazia (zi de naștere, aniversare, etc.)\n• Bugetul aproximativ\n\nCu aceste detalii vă pot ajuta mai bine! 😊",
+      "timestamp": "2025-07-17T14:44:29.594236",
       "metadata": {}
     },
     {
       "role": "user",
-      "content": "Flori",
-      "timestamp": "2025-07-17T10:56:26.649151",
-      "metadata": {}
-    },
-    {
-      "role": "assistant",
-      "content": "🌸 Îmi pare rău, nu am găsit produse care să corespundă exact cererii dumneavoastră. Puteți să îmi spuneți mai multe detalii despre ce căutați?",
-      "timestamp": "2025-07-17T10:56:27.094184",
-      "metadata": {}
-    },
-    {
-      "role": "user",
-      "content": "Хочу купить букет для девушки",
-      "timestamp": "2025-07-17T11:03:11.157528",
-      "metadata": {}
-    },
-    {
-      "role": "assistant",
-      "content": "🌸 Am întâmpinat o problemă tehnică cu căutarea. Vă rog să încercați din nou sau să mă contactați pentru asistență.",
-      "timestamp": "2025-07-17T11:03:11.158538",
-      "metadata": {}
-    },
-    {
-      "role": "user",
-      "content": "Хочу купить букет для девушки",
-      "timestamp": "2025-07-17T11:03:28.207756",
-      "metadata": {}
-    },
-    {
-      "role": "assistant",
-      "content": "🌸 Am întâmpinat o problemă tehnică cu căutarea. Vă rog să încercați din nou sau să mă contactați pentru asistență.",
-      "timestamp": "2025-07-17T11:03:28.210203",
-      "metadata": {}
-    },
-    {
-      "role": "user",
-      "content": "Хочу купить букет для девушки",
-      "timestamp": "2025-07-17T11:11:14.121226",
-      "metadata": {}
-    },
-    {
-      "role": "assistant",
-      "content": "🌸 Am întâmpinat o problemă tehnică cu căutarea. Vă rog să încercați din nou sau să mă contactați pentru asistență.",
-      "timestamp": "2025-07-17T11:11:14.125356",
-      "metadata": {}
-    },
-    {
-      "role": "user",
-      "content": "Caut trandafiri roșii",
-      "timestamp": "2025-07-17T11:11:44.540905",
-      "metadata": {}
-    },
-    {
-      "role": "assistant",
-      "content": "🌸 Am întâmpinat o problemă tehnică cu căutarea. Vă rog să încercați din nou sau să mă contactați pentru asistență.",
-      "timestamp": "2025-07-17T11:11:44.543113",
-      "metadata": {}
-    },
-    {
-      "role": "user",
-      "content": "Хочу купить букет для девушки",
-      "timestamp": "2025-07-17T11:21:24.141987",
-      "metadata": {}
-    },
-    {
-      "role": "assistant",
-      "content": "🌸 Am întâmpinat o problemă tehnică cu căutarea. Vă rog să încercați din nou sau să mă contactați pentru asistență.",
-      "timestamp": "2025-07-17T11:21:24.144433",
-      "metadata": {}
-    },
-    {
-      "role": "user",
-      "content": "Привет",
-      "timestamp": "2025-07-17T11:24:14.276672",
+      "content": "Salut",
+      "timestamp": "2025-07-17T14:53:11.255847",
       "metadata": {}
     },
     {
       "role": "assistant",
       "content": "🌸 Bună ziua! Bine ați venit la XOFlowers! 💐\n\nSunt asistentul dumneavoastră virtual și vă pot ajuta să găsiți florile perfecte pentru orice ocazie.\n\n**Cum vă pot ajuta astăzi?**\n• Căutați un buchet special?\n• Aveți o ocazie particulară?\n• Doriți recomandări?\n\nSpuneți-mi ce aveți în minte și vă voi ajuta cu plăcere! 😊",
-      "timestamp": "2025-07-17T11:24:14.277674",
+      "timestamp": "2025-07-17T14:53:11.256853",
       "metadata": {}
     },
     {
       "role": "user",
-      "content": "Хочу купить букет для девушки",
-      "timestamp": "2025-07-17T11:24:22.370638",
+      "content": "Doresc un buchet pentru socia",
+      "timestamp": "2025-07-17T14:53:41.656382",
       "metadata": {}
     },
     {
       "role": "assistant",
-      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: St. Valentine'S Day\n\n2. **Bouquet Red Roses - Bouquet with Red roses.**\n   💰 Preț: 640.0 MDL\n   📂 Categorie: St. Valentine'S Day\n\n3. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Preț: 3000.0 MDL\n   📂 Categorie: Classic Bouquets\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
-      "timestamp": "2025-07-17T11:24:22.709842",
+      "content": "🌸 Am întâmpinat o problemă tehnică cu căutarea. Vă rog să încercați din nou sau să mă contactați pentru asistență.",
+      "timestamp": "2025-07-17T14:53:41.658820",
       "metadata": {}
     },
     {
       "role": "user",
-      "content": "Хочу купить букет для девушки",
-      "timestamp": "2025-07-17T11:31:34.417657",
+      "content": "Doresc un buchet pentru socia",
+      "timestamp": "2025-07-17T14:53:54.422503",
       "metadata": {}
     },
     {
       "role": "assistant",
-      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/n/\n\n2. **Bouquet Red Roses - Bouquet with Red roses.**\n   💰 Preț: 640.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-red-roses/n/\n\n3. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Preț: 3000.0 MDL\n   📂 Categorie: Classic Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/n/\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
-      "timestamp": "2025-07-17T11:31:34.741976",
+      "content": "🌸 Am întâmpinat o problemă tehnică cu căutarea. Vă rog să încercați din nou sau să mă contactați pentru asistență.",
+      "timestamp": "2025-07-17T14:53:54.425565",
       "metadata": {}
     },
     {
       "role": "user",
-      "content": "Привет",
-      "timestamp": "2025-07-17T11:59:44.727243",
+      "content": "Doresc un buchet pentru socia",
+      "timestamp": "2025-07-17T14:55:41.502036",
       "metadata": {}
     },
     {
       "role": "assistant",
-      "content": "🌸 Bună ziua! Bine ați venit la XOFlowers! 💐\n\nSunt asistentul dumneavoastră virtual și vă pot ajuta să găsiți florile perfecte pentru orice ocazie.\n\n**Cum vă pot ajuta astăzi?**\n• Căutați un buchet special?\n• Aveți o ocazie particulară?\n• Doriți recomandări?\n\nSpuneți-mi ce aveți în minte și vă voi ajuta cu plăcere! 😊",
-      "timestamp": "2025-07-17T11:59:44.729271",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Buchet \"Scarlet Inspiration\" - Bouquet with 70cm roses, available in various quantities.**\n   💰 Preț: 2100.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/buchet-scarlet-inspiratio/\n\n2. **Bouquet \"Charm\" - Charming small bouquet with peonies and sweet matiola**\n   💰 Preț: 565.0 MDL\n   📂 Categorie: Peonies\n   🔗 Vizualizați: https://xoflowers.md/bouquet-charm/\n\n3. **Buchet De Flori \"Lilac Beauty\" - Beautiful lilac arrangement with roses, eustoma and chrysanthemum**\n   💰 Preț: 750.0 MDL\n   📂 Categorie: Author'S Bouquets\n   🔗 Vizualizați: https://xoflowers.md/buchet-lilac-beauty/\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T14:55:41.808817",
       "metadata": {}
     },
     {
       "role": "user",
-      "content": "Посоветуй букет для девушки",
-      "timestamp": "2025-07-17T11:59:54.162970",
+      "content": "\"Привет нужны цветы для мамы до 1000 лей",
+      "timestamp": "2025-07-17T15:03:01.200464",
       "metadata": {}
     },
     {
       "role": "assistant",
-      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n2. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Preț: 3000.0 MDL\n   📂 Categorie: Classic Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n3. **Bouquet Red Roses - Bouquet with Red roses.**\n   💰 Preț: 640.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-red-roses/\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
-      "timestamp": "2025-07-17T11:59:54.549370",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n2. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Preț: 3000.0 MDL\n   📂 Categorie: Classic Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n3. **Bouquet \"Pink Palette\" - Romantic pink bouquet with peonies, spray roses and classic roses**\n   💰 Preț: 2000.0 MDL\n   📂 Categorie: Peonies\n   🔗 Vizualizați: https://xoflowers.md/bouquet-pink-palette/\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T15:03:01.517460",
       "metadata": {}
     },
     {
       "role": "user",
-      "content": "Она любит тюльпаны",
-      "timestamp": "2025-07-17T12:00:24.058289",
+      "content": "\"Привет нужны цветы для мамы до 1000 лей",
+      "timestamp": "2025-07-17T15:28:18.042124",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n2. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Preț: 3000.0 MDL\n   📂 Categorie: Classic Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n3. **Bouquet \"Pink Palette\" - Romantic pink bouquet with peonies, spray roses and classic roses**\n   💰 Preț: 2000.0 MDL\n   📂 Categorie: Peonies\n   🔗 Vizualizați: https://xoflowers.md/bouquet-pink-palette/\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T15:28:18.429852",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Привет нужны цветы для мамы до 1000 лей",
+      "timestamp": "2025-07-17T15:29:03.038028",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n2. **Bouquet Red Roses - Bouquet with Red roses.**\n   💰 Preț: 640.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-red-roses/\n\n3. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Preț: 3000.0 MDL\n   📂 Categorie: Classic Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n🌸 Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T15:29:03.247757",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "до 1000",
+      "timestamp": "2025-07-17T15:29:09.829089",
       "metadata": {}
     },
     {
       "role": "assistant",
       "content": "🌸 **Înțeleg!** Sunt aici să vă ajut cu orice aveți nevoie legat de flori. \n\n**Pentru a vă ajuta mai bine, spuneți-mi:**\n\n🌺 Ce tip de flori căutați?\n🎉 Pentru ce ocazie sunt?\n💰 Aveți un buget anume?\n🎨 Culori preferate?\n👥 Pentru cine sunt florile?\n\n**Exemple:**\n• \"Caut trandafiri roșii pentru soția mea\"\n• \"Vreau un buchet sub 500 lei\"\n• \"Flori pentru ziua mamei\"\n\nCu cât mai multe detalii îmi oferiți, cu atât mai bine vă pot ajuta! 💪😊",
-      "timestamp": "2025-07-17T12:00:24.059336",
+      "timestamp": "2025-07-17T15:29:09.831131",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Привет нужны цветы для мамы до 1000 лей",
+      "timestamp": "2025-07-17T15:32:34.997751",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n2. **Bouquet Red Roses - Bouquet with Red roses.**\n   💰 Preț: 640.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-red-roses/\n\n3. **Bouquet 'Sunny Accent' - Bouquet with rose, tulip, chrysanthemum, and ruscus.**\n   💰 Preț: 800.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-sunny-accent/\n\n🌸 Toate opțiunile sunt în bugetul dumneavoastră de până la 1000.0 MDL. Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T15:32:35.337122",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Привет нужны цветы для мамы до 6000 лей",
+      "timestamp": "2025-07-17T15:32:42.906298",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n2. **Bouquet Red Roses - Bouquet with Red roses.**\n   💰 Preț: 640.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-red-roses/\n\n3. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Preț: 3000.0 MDL\n   📂 Categorie: Classic Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n🌸 Toate opțiunile sunt în bugetul dumneavoastră de până la 6000.0 MDL. Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T15:32:43.095944",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Привет нужны цветы для мамы до 5000 лей",
+      "timestamp": "2025-07-17T15:32:49.133559",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n2. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Preț: 3000.0 MDL\n   📂 Categorie: Classic Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n3. **Bouquet Red Roses - Bouquet with Red roses.**\n   💰 Preț: 640.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-red-roses/\n\n🌸 Toate opțiunile sunt în bugetul dumneavoastră de până la 5000.0 MDL. Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T15:32:49.321002",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Привет нужны цветы для мамы до 500 лей",
+      "timestamp": "2025-07-17T15:32:54.123627",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n🌸 Toate opțiunile sunt în bugetul dumneavoastră de până la 500.0 MDL. Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-17T15:32:54.313499",
       "metadata": {}
     }
   ],
   "preferences": {
     "favorite_colors": [],
-    "favorite_flowers": [
-      "trandafir"
-    ],
+    "favorite_flowers": [],
     "budget_range": null,
     "preferred_occasions": [],
     "style_preferences": [],
@@ -195,5 +181,5 @@
   "current_search_context": null,
   "mentioned_products": [],
   "conversation_stage": "greeting",
-  "last_activity": "2025-07-17T12:00:24.059336"
+  "last_activity": "2025-07-17T15:32:54.313499"
 }

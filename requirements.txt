@@ -6,11 +6,10 @@ python-dotenv>=1.0.0
 # AI and ML
 openai>=1.0.0
 google-generativeai>=0.3.0
-sentence-transformers>=2.2.0
+sentence-transformers>=2.2.2
 
 # Database and Vector Search
 chromadb>=0.4.24
-sentence-transformers>=2.2.2
 torch>=2.0.0
 transformers>=4.21.0
 numpy>=1.24.0
