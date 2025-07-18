@@ -70,6 +70,12 @@ class AIEngine:
         self._openai_semaphore = asyncio.Semaphore(10)  # Limit concurrent OpenAI calls
         self._gemini_semaphore = asyncio.Semaphore(10)  # Limit concurrent Gemini calls
         
+        # Chat history management for conversation context
+        self.user_chats: Dict[str, Any] = {}  # Store chat objects per user
+        self.chat_max_age = 3600  # 1 hour chat timeout
+        self.chat_cleanup_interval = 300  # Clean up every 5 minutes
+        self.last_cleanup = time.time()
+        
         # Initialize AI services
         self._setup_openai()
         self._setup_gemini()
@@ -132,6 +138,89 @@ class AIEngine:
             self.gemini_available = False
             self.gemini_model = None
             self.logger.error(f"Failed to setup Gemini: {e}")
+    
+    def _get_or_create_chat(self, user_id: str) -> Optional[Any]:
+        """Get or create a Gemini chat session for user with conversation history"""
+        if not self.gemini_available:
+            return None
+        
+        # Clean up old chats periodically
+        current_time = time.time()
+        if current_time - self.last_cleanup > self.chat_cleanup_interval:
+            self._cleanup_old_chats()
+            self.last_cleanup = current_time
+        
+        # Check if user has existing chat
+        if user_id in self.user_chats:
+            chat_info = self.user_chats[user_id]
+            # Check if chat is not too old
+            if current_time - chat_info['created_at'] < self.chat_max_age:
+                chat_info['last_used'] = current_time
+                return chat_info['chat']
+            else:
+                # Chat expired, remove it
+                del self.user_chats[user_id]
+        
+        # Create new chat session
+        try:
+            from google import genai
+            
+            # System instruction for the consultant role
+            system_instruction = """Tu ești consultantul floral expert al florăriei XOFlowers din Chișinău, Moldova. 
+Ești prietenos, profesional și cunoscător în domeniul floristicii.
+
+PERSONALITATEA TA:
+- Vorbești natural în română, ca un consultant cu experiență
+- Ești empatic și înțelegi nevoile emoționale ale clienților
+- Oferi sfaturi personalizate bazate pe ocasie și buget
+- Ții minte conversația anterioară cu clientul
+- Ești proactiv în a oferi alternative și sugestii
+
+OBIECTIVUL TĂU:
+- Să ajuți clienții să găsească florile perfecte pentru nevoile lor
+- Să oferi o experiență personalizată și memorabilă
+- Să menții o conversație naturală și caldă
+
+IMPORTANT: Ține minte tot ce discutați în conversație - numele, ocasiile, preferințele, bugetul."""
+            
+            chat = self.gemini_client.chats.create(
+                model=self.gemini_model,
+                config={
+                    'system_instruction': system_instruction,
+                    'temperature': 0.7
+                }
+            )
+            
+            # Store chat info
+            self.user_chats[user_id] = {
+                'chat': chat,
+                'created_at': current_time,
+                'last_used': current_time,
+                'message_count': 0
+            }
+            
+            self.logger.info(f"Created new Gemini chat session for user {user_id}")
+            return chat
+            
+        except Exception as e:
+            self.logger.error(f"Failed to create chat for user {user_id}: {e}")
+            return None
+    
+    def _cleanup_old_chats(self):
+        """Remove old chat sessions to prevent memory leaks"""
+        current_time = time.time()
+        expired_users = []
+        
+        for user_id, chat_info in self.user_chats.items():
+            if current_time - chat_info['last_used'] > self.chat_max_age:
+                expired_users.append(user_id)
+        
+        for user_id in expired_users:
+            del self.user_chats[user_id]
+            self.logger.debug(f"Cleaned up expired chat for user {user_id}")
+        
+        if expired_users:
+            self.logger.info(f"Cleaned up {len(expired_users)} expired chat sessions")
     
     async def process_message_ai(self, user_message: str, user_id: str, context: Optional[Dict] = None) -> Dict[str, Any]:
         """
@@ -514,37 +603,76 @@ Exemple:
                     )
                     
                     self.logger.info(f"[{request_id}] ChromaDB returned {len(products)} products")
-                    self.logger.debug(f"[{request_id}] Product details: {[p.get('name', 'N/A')[:50] for p in products[:3]]}")
+                    
+                    # Safe debug logging - filter out None values
+                    valid_products = [p for p in products[:3] if p is not None and isinstance(p, dict)]
+                    self.logger.debug(f"[{request_id}] Product details: {[p.get('name', 'N/A')[:50] for p in valid_products]}")
                     
                     self.logger.info(f"[{request_id}] Found {len(products)} products in ChromaDB")
                     
-                    # Additional price filtering if needed
+                    # Additional price filtering if needed - with safety checks
                     if price_range.get("max") and 'max_price' not in filters:
                         max_price = price_range["max"]
-                        products = [p for p in products if float(p.get('price', 0)) <= max_price]
+                        # Safe filtering - check for valid products and price values
+                        safe_products = []
+                        for p in products:
+                            if p is not None and isinstance(p, dict):
+                                try:
+                                    price = float(p.get('price', 0))
+                                    if price <= max_price:
+                                        safe_products.append(p)
+                                except (ValueError, TypeError):
+                                    # Skip products with invalid price data
+                                    continue
+                        products = safe_products
                         self.logger.debug(f"[{request_id}] After additional price filtering (≤{max_price}): {len(products)} products")
                     
                 except Exception as search_error:
                     self.logger.error(f"[{request_id}] Product search failed: {search_error}")
                     products = []
             
-            # Step 3: Generate natural response with Gemini using full context
-            response_prompt = self._build_enhanced_response_prompt(
-                user_message, context, products, analysis, user_id
+            # Step 3: Generate natural response with Gemini using chat history for context
+            chat = self._get_or_create_chat(user_id)
+            
+            if chat is None:
+                raise Exception("Unable to create/get Gemini chat session")
+            
+            # Build enhanced message with product context (not a system prompt)
+            if products:
+                products_info = "PRODUSE DISPONIBILE:\n"
+                for i, product in enumerate(products[:5], 1):
+                    if product is not None and isinstance(product, dict):
+                        name = product.get('name', 'Produs')
+                        price = product.get('price', 'N/A')
+                        category = product.get('category', '')
+                        products_info += f"{i}. {name} - {price} MDL"
+                        if category:
+                            products_info += f" ({category})"
+                        products_info += "\n"
+                
+                enhanced_message = f"{user_message}\n\n{products_info}"
+            else:
+                enhanced_message = user_message
+            
+            self.logger.debug(f"[{request_id}] Sending message to Gemini chat with conversation history")
+            
+            # Send message to chat (this maintains conversation history automatically)
+            final_response = await asyncio.to_thread(
+                chat.send_message,
+                enhanced_message
             )
             
-            self.logger.debug(f"[{request_id}] Generating natural response with Gemini")
-            
-            final_response = client.models.generate_content(
-                model=self.service_config['gemini']['model'],
-                contents=response_prompt,
-                config={'temperature': 0.7}  # Higher temperature for more natural responses
-            )
+            # Update chat message count
+            if user_id in self.user_chats:
+                self.user_chats[user_id]['message_count'] += 1
             
             response_text = final_response.text
             processing_time = time.time() - start_time
             
             self.logger.info(f"[{request_id}] Enhanced processing completed in {processing_time:.2f}s")
+            
+            # Filter out None/invalid products before returning
+            valid_products = [p for p in products[:5] if p is not None and isinstance(p, dict)]
             
             return AIResponse(
                 response_text=response_text,
@@ -552,9 +680,9 @@ Exemple:
                 service_used="enhanced_gemini_chat",
                 intent=analysis.get("intent", "general"),
                 confidence=analysis.get("confidence", 0.8),
-                products_found=len(products),
+                products_found=len(valid_products),
                 needs_product_search=analysis.get("needs_product_search", False),
-                products=products[:5]  # Return top 5 products for buttons/context
+                products=valid_products  # Return only valid products for buttons/context
             )
             
         except Exception as e:
@@ -583,10 +711,18 @@ Exemple:
         if products:
             products_section = "PRODUSE GĂSITE ÎN CATALOG:\n"
             for i, product in enumerate(products[:5], 1):  # Top 5 products
+                # Safety check for None or invalid products
+                if product is None or not isinstance(product, dict):
+                    continue
+                    
                 price = product.get('price', 'N/A')
                 name = product.get('name', 'Produs')
                 category = product.get('category', '')
-                description = product.get('description', '')[:100]  # Truncate long descriptions
+                description = product.get('description', '')
+                
+                # Safe description truncation
+                if description and len(description) > 100:
+                    description = description[:100]  # Truncate long descriptions
                 
                 products_section += f"{i}. {name} - {price} MDL"
                 if category:
