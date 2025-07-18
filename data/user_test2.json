@@ -1,0 +1,41 @@
+{
+  "user_id": "test2",
+  "messages": [
+    {
+      "role": "user",
+      "content": "hello",
+      "timestamp": "2025-07-18T19:42:26.386275",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Bună ziua din nou! Mă bucur să vă revăd la XOFlowers! Cu ce vă pot ajuta astăzi?",
+      "timestamp": "2025-07-18T19:42:26.387319",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "hello",
+      "timestamp": "2025-07-18T19:47:31.743695",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Welcome to XOFlowers! 💐\n\nI'm your virtual assistant and I can help you find perfect flowers for any occasion.\n\n**How can I help you today?**\n• Looking for a special arrangement?\n• Do you have a particular occasion?\n• Need recommendations?\n\nTell me what you have in mind and I'll be happy to help! 😊",
+      "timestamp": "2025-07-18T19:47:31.745200",
+      "metadata": {}
+    }
+  ],
+  "preferences": {
+    "favorite_colors": [],
+    "favorite_flowers": [],
+    "budget_range": null,
+    "preferred_occasions": [],
+    "style_preferences": [],
+    "recipient_types": []
+  },
+  "current_search_context": null,
+  "mentioned_products": [],
+  "conversation_stage": "greeting",
+  "last_activity": "2025-07-18T19:47:31.745200"
+}

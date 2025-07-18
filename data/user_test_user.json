@@ -3,26 +3,14 @@
   "messages": [
     {
       "role": "user",
-      "content": "Salut!",
-      "timestamp": "2025-07-18T18:13:19.649554",
+      "content": "как дела",
+      "timestamp": "2025-07-18T19:49:17.207727",
       "metadata": {}
     },
     {
       "role": "assistant",
-      "content": "🌸 Bună ziua din nou! Mă bucur să vă revăd la XOFlowers! Cu ce vă pot ajuta astăzi?",
-      "timestamp": "2025-07-18T18:13:19.649554",
-      "metadata": {}
-    },
-    {
-      "role": "user",
-      "content": "Salut!",
-      "timestamp": "2025-07-18T18:15:26.583807",
-      "metadata": {}
-    },
-    {
-      "role": "assistant",
-      "content": "🌸 Bună ziua! Bine ați venit la XOFlowers! 💐\n\nSunt asistentul dumneavoastră virtual și vă pot ajuta să găsiți florile perfecte pentru orice ocazie.\n\n**Cum vă pot ajuta astăzi?**\n• Căutați un buchet special?\n• Aveți o ocazie particulară?\n• Doriți recomandări?\n\nSpuneți-mi ce aveți în minte și vă voi ajuta cu plăcere! 😊",
-      "timestamp": "2025-07-18T18:15:26.583807",
+      "content": "🌸 **Понимаю!** Я здесь, чтобы помочь с любыми вопросами о цветах. \n\n**Чтобы лучше помочь, расскажите:**\n\n🌺 Какие цветы ищете?\n🎉 По какому поводу?\n💰 Есть ли бюджет?\n🎨 Предпочитаемые цвета?\n👥 Для кого цветы?\n\n**Примеры:**\n• \"Ищу красные розы для жены\"\n• \"Хочу композицию до 500 MDL\"\n• \"Цветы на день матери\"\n\nЧем больше деталей, тем лучше смогу помочь! 💪😊",
+      "timestamp": "2025-07-18T19:49:17.207727",
       "metadata": {}
     }
   ],
@@ -37,5 +25,5 @@
   "current_search_context": null,
   "mentioned_products": [],
   "conversation_stage": "greeting",
-  "last_activity": "2025-07-18T18:15:26.583807"
+  "last_activity": "2025-07-18T19:49:17.207727"
 }

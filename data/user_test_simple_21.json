@@ -48,6 +48,66 @@
       "content": "🌸 Bună ziua! Bine ați venit la XOFlowers! 💐\n\nSunt asistentul dumneavoastră virtual și vă pot ajuta să găsiți florile perfecte pentru orice ocazie.\n\n**Cum vă pot ajuta astăzi?**\n• Căutați un buchet special?\n• Aveți o ocazie particulară?\n• Doriți recomandări?\n\nSpuneți-mi ce aveți în minte și vă voi ajuta cu plăcere! 😊",
       "timestamp": "2025-07-18T19:23:05.616601",
       "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "hello",
+      "timestamp": "2025-07-18T19:30:07.326621",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Bună ziua! Bine ați venit la XOFlowers! 💐\n\nSunt asistentul dumneavoastră virtual și vă pot ajuta să găsiți florile perfecte pentru orice ocazie.\n\n**Cum vă pot ajuta astăzi?**\n• Căutați un buchet special?\n• Aveți o ocazie particulară?\n• Doriți recomandări?\n\nSpuneți-mi ce aveți în minte și vă voi ajuta cu plăcere! 😊",
+      "timestamp": "2025-07-18T19:30:07.327625",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "hello",
+      "timestamp": "2025-07-18T19:42:52.693881",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Welcome to XOFlowers! 💐\n\nI'm your virtual assistant and I can help you find perfect flowers for any occasion.\n\n**How can I help you today?**\n• Looking for a special bouquet?\n• Do you have a particular occasion?\n• Need recommendations?\n\nTell me what you have in mind and I'll be happy to help! 😊",
+      "timestamp": "2025-07-18T19:42:52.693881",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "hello",
+      "timestamp": "2025-07-18T19:45:41.425250",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Welcome to XOFlowers! 💐\n\nI'm your virtual assistant and I can help you find perfect flowers for any occasion.\n\n**How can I help you today?**\n• Looking for a special bouquet?\n• Do you have a particular occasion?\n• Need recommendations?\n\nTell me what you have in mind and I'll be happy to help! 😊",
+      "timestamp": "2025-07-18T19:45:41.426732",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "hello",
+      "timestamp": "2025-07-18T19:48:15.473713",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Welcome to XOFlowers! 💐\n\nI'm your virtual assistant and I can help you find perfect flowers for any occasion.\n\n**How can I help you today?**\n• Looking for a special arrangement?\n• Do you have a particular occasion?\n• Need recommendations?\n\nTell me what you have in mind and I'll be happy to help! 😊",
+      "timestamp": "2025-07-18T19:48:15.475217",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "hello",
+      "timestamp": "2025-07-18T20:01:12.130242",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Welcome to XOFlowers! 💐\n\nI'm your virtual assistant and I can help you find perfect flowers for any occasion.\n\n**How can I help you today?**\n• Looking for a special arrangement?\n• Do you have a particular occasion?\n• Need recommendations?\n\nTell me what you have in mind and I'll be happy to help! 😊",
+      "timestamp": "2025-07-18T20:01:12.131257",
+      "metadata": {}
     }
   ],
   "preferences": {
@@ -61,5 +121,5 @@
   "current_search_context": null,
   "mentioned_products": [],
   "conversation_stage": "greeting",
-  "last_activity": "2025-07-18T19:23:05.616601"
+  "last_activity": "2025-07-18T20:01:12.131257"
 }
