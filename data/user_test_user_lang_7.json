@@ -1,28 +1,40 @@
 {
-  "user_id": "test_user",
+  "user_id": "test_user_lang_7",
   "messages": [
     {
       "role": "user",
-      "content": "Salut!",
-      "timestamp": "2025-07-18T18:13:19.649554",
+      "content": "Hello!",
+      "timestamp": "2025-07-18T18:36:26.271437",
       "metadata": {}
     },
     {
       "role": "assistant",
       "content": "🌸 Bună ziua din nou! Mă bucur să vă revăd la XOFlowers! Cu ce vă pot ajuta astăzi?",
-      "timestamp": "2025-07-18T18:13:19.649554",
+      "timestamp": "2025-07-18T18:36:26.271437",
       "metadata": {}
     },
     {
       "role": "user",
-      "content": "Salut!",
-      "timestamp": "2025-07-18T18:15:26.583807",
+      "content": "Hello!",
+      "timestamp": "2025-07-18T18:39:13.556028",
       "metadata": {}
     },
     {
       "role": "assistant",
       "content": "🌸 Bună ziua! Bine ați venit la XOFlowers! 💐\n\nSunt asistentul dumneavoastră virtual și vă pot ajuta să găsiți florile perfecte pentru orice ocazie.\n\n**Cum vă pot ajuta astăzi?**\n• Căutați un buchet special?\n• Aveți o ocazie particulară?\n• Doriți recomandări?\n\nSpuneți-mi ce aveți în minte și vă voi ajuta cu plăcere! 😊",
-      "timestamp": "2025-07-18T18:15:26.583807",
+      "timestamp": "2025-07-18T18:39:13.557256",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Hello!",
+      "timestamp": "2025-07-18T18:42:41.389536",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Hello again! Great to see you back at XOFlowers! How can I help you today?",
+      "timestamp": "2025-07-18T18:42:41.391041",
       "metadata": {}
     }
   ],
@@ -37,5 +49,5 @@
   "current_search_context": null,
   "mentioned_products": [],
   "conversation_stage": "greeting",
-  "last_activity": "2025-07-18T18:15:26.583807"
+  "last_activity": "2025-07-18T18:42:41.391041"
 }

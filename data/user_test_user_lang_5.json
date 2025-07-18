@@ -1,0 +1,53 @@
+{
+  "user_id": "test_user_lang_5",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Хочу красивый букет",
+      "timestamp": "2025-07-18T18:36:25.867774",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n2. **Bouquet Red Roses - Bouquet with Red roses.**\n   💰 Preț: 640.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-red-roses/\n\n3. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Preț: 3000.0 MDL\n   📂 Categorie: Classic Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\nCe părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-18T18:36:26.073417",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Хочу красивый букет",
+      "timestamp": "2025-07-18T18:39:13.120527",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n2. **Bouquet Red Roses - Bouquet with Red roses.**\n   💰 Preț: 640.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-red-roses/\n\n3. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Preț: 3000.0 MDL\n   📂 Categorie: Classic Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\nCe părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-18T18:39:13.324549",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Хочу красивый букет",
+      "timestamp": "2025-07-18T18:42:40.989483",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Я нашел несколько красивых вариантов для вас:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Цена: 450.0 лей\n   📂 Категория: St. Valentine'S Day\n   🔗 Посмотреть: https://xoflowers.md/bouquet-of-roses/\n\n2. **Bouquet Red Roses - Bouquet with Red roses.**\n   💰 Цена: 640.0 лей\n   📂 Категория: St. Valentine'S Day\n   🔗 Посмотреть: https://xoflowers.md/bouquet-red-roses/\n\n3. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Цена: 3000.0 лей\n   📂 Категория: Classic Bouquets\n   🔗 Посмотреть: https://xoflowers.md/bouquet-of-roses/\n\nЧто думаете об этих вариантах? Расскажите больше о ваших предпочтениях!",
+      "timestamp": "2025-07-18T18:42:41.173132",
+      "metadata": {}
+    }
+  ],
+  "preferences": {
+    "favorite_colors": [],
+    "favorite_flowers": [],
+    "budget_range": null,
+    "preferred_occasions": [],
+    "style_preferences": [],
+    "recipient_types": []
+  },
+  "current_search_context": null,
+  "mentioned_products": [],
+  "conversation_stage": "greeting",
+  "last_activity": "2025-07-18T18:42:41.173132"
+}

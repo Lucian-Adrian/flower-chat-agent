@@ -1,0 +1,53 @@
+{
+  "user_id": "6997272703",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Salut",
+      "timestamp": "2025-07-18T18:48:21.340497",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Bună ziua! Bine ați venit la XOFlowers! 💐\n\nSunt asistentul dumneavoastră virtual și vă pot ajuta să găsiți florile perfecte pentru orice ocazie.\n\n**Cum vă pot ajuta astăzi?**\n• Căutați un buchet special?\n• Aveți o ocazie particulară?\n• Doriți recomandări?\n\nSpuneți-mi ce aveți în minte și vă voi ajuta cu plăcere! 😊",
+      "timestamp": "2025-07-18T18:48:21.340497",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Vreau flori până în 200 lei",
+      "timestamp": "2025-07-18T18:48:28.252747",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet \"La Fleur\" - A beautiful 'La Fleur' bouquet with chrysanthemum, rose, and hydrangea.**\n   💰 Preț: 2700.0 MDL\n   📂 Categorie: Premium\n   🔗 Vizualizați: https://xoflowers.md/bouquet-la-fleur/\n\n2. **Bouquet of Pink Tulips - Bouquet with pink Tulip, available in various quantities.**\n   💰 Preț: 500.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-pink-tulips-valentines/\n\n3. **Bouquet \"Cream\" - Creamy bouquet featuring spray rose, tanacetum, and gerbera.**\n   💰 Preț: 2100.0 MDL\n   📂 Categorie: Mono/Duo Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-cream/\n\nCe părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-18T18:48:28.441890",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Flori până în 1000 lei",
+      "timestamp": "2025-07-18T18:48:35.324450",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Pink Tulips - A delicate bouquet of pink tulips, available in various quantities.**\n   💰 Preț: 500.0 MDL\n   📂 Categorie: Mono/Duo Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-pink-tulips/\n\n2. **Bouquet \"Cream\" - Creamy bouquet featuring spray rose, tanacetum, and gerbera.**\n   💰 Preț: 2100.0 MDL\n   📂 Categorie: Mono/Duo Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-cream/\n\n3. **Flower Bouquet \"Flowers of Love\" - Loving arrangement with chrysanthemum, tulips and spray roses**\n   💰 Preț: 600.0 MDL\n   📂 Categorie: Author'S Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-flowers-love/\n\nCe părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-18T18:48:35.515989",
+      "metadata": {}
+    }
+  ],
+  "preferences": {
+    "favorite_colors": [],
+    "favorite_flowers": [],
+    "budget_range": null,
+    "preferred_occasions": [],
+    "style_preferences": [],
+    "recipient_types": []
+  },
+  "current_search_context": null,
+  "mentioned_products": [],
+  "conversation_stage": "greeting",
+  "last_activity": "2025-07-18T18:48:35.515989"
+}

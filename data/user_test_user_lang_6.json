@@ -1,0 +1,53 @@
+{
+  "user_id": "test_user_lang_6",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Нужны цветы до 1000 лей",
+      "timestamp": "2025-07-18T18:36:26.074710",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n2. **Bouquet Red Roses - Bouquet with Red roses.**\n   💰 Preț: 640.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-red-roses/\n\n3. **Bouquet 'Sunny Accent' - Bouquet with rose, tulip, chrysanthemum, and ruscus.**\n   💰 Preț: 800.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-sunny-accent/\n\n🌸 Toate opțiunile sunt în bugetul dumneavoastră de până la 1000.0 MDL. Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-18T18:36:26.270427",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Нужны цветы до 1000 лей",
+      "timestamp": "2025-07-18T18:39:13.338642",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n2. **Bouquet Red Roses - Bouquet with Red roses.**\n   💰 Preț: 640.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-red-roses/\n\n3. **Bouquet 'Sunny Accent' - Bouquet with rose, tulip, chrysanthemum, and ruscus.**\n   💰 Preț: 800.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-sunny-accent/\n\n🌸 Toate opțiunile sunt în bugetul dumneavoastră de până la 1000.0 MDL. Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-18T18:39:13.545988",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Нужны цветы до 1000 лей",
+      "timestamp": "2025-07-18T18:42:41.186104",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Я нашел несколько красивых вариантов для вас:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Цена: 450.0 лей\n   📂 Категория: St. Valentine'S Day\n   🔗 Посмотреть: https://xoflowers.md/bouquet-of-roses/\n\n2. **Bouquet Red Roses - Bouquet with Red roses.**\n   💰 Цена: 640.0 лей\n   📂 Категория: St. Valentine'S Day\n   🔗 Посмотреть: https://xoflowers.md/bouquet-red-roses/\n\n3. **Bouquet 'Sunny Accent' - Bouquet with rose, tulip, chrysanthemum, and ruscus.**\n   💰 Цена: 800.0 лей\n   📂 Категория: St. Valentine'S Day\n   🔗 Посмотреть: https://xoflowers.md/bouquet-sunny-accent/\n\n🌸 Все варианты в вашем бюджете до 1000.0 лей. Что вы думаете об этих вариантах? Расскажите больше о ваших предпочтениях!",
+      "timestamp": "2025-07-18T18:42:41.379452",
+      "metadata": {}
+    }
+  ],
+  "preferences": {
+    "favorite_colors": [],
+    "favorite_flowers": [],
+    "budget_range": null,
+    "preferred_occasions": [],
+    "style_preferences": [],
+    "recipient_types": []
+  },
+  "current_search_context": null,
+  "mentioned_products": [],
+  "conversation_stage": "greeting",
+  "last_activity": "2025-07-18T18:42:41.379452"
+}

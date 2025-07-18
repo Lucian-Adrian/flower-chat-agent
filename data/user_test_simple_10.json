@@ -1,0 +1,65 @@
+{
+  "user_id": "test_simple_10",
+  "messages": [
+    {
+      "role": "user",
+      "content": "розы для девушки",
+      "timestamp": "2025-07-18T19:03:30.290438",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Greeting Card - Greeting card.**\n   💰 Preț: 20.0 MDL\n   📂 Categorie: Greeting Card\n   🔗 Vizualizați: https://xoflowers.md/greeting-card/\n\n2. **Greeting Card - Greeting card.**\n   💰 Preț: 20.0 MDL\n   📂 Categorie: Greeting Card\n   🔗 Vizualizați: https://xoflowers.md/greeting-card/\n\n3. **Greeting Card - Greeting card.**\n   💰 Preț: 20.0 MDL\n   📂 Categorie: Greeting Card\n   🔗 Vizualizați: https://xoflowers.md/greeting-card/\n\nCe părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-18T19:03:30.500295",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "розы для девушки",
+      "timestamp": "2025-07-18T19:05:08.751311",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Greeting Card - Greeting card.**\n   💰 Preț: 20.0 MDL\n   📂 Categorie: Greeting Card\n   🔗 Vizualizați: https://xoflowers.md/greeting-card/\n\n2. **Greeting Card - Greeting card.**\n   💰 Preț: 20.0 MDL\n   📂 Categorie: Greeting Card\n   🔗 Vizualizați: https://xoflowers.md/greeting-card/\n\n3. **Greeting Card - Greeting card.**\n   💰 Preț: 20.0 MDL\n   📂 Categorie: Greeting Card\n   🔗 Vizualizați: https://xoflowers.md/greeting-card/\n\nCe părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-18T19:05:08.992673",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "розы для девушки",
+      "timestamp": "2025-07-18T19:05:59.832867",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Greeting Card - Greeting card.**\n   💰 Preț: 20.0 MDL\n   📂 Categorie: Greeting Card\n   🔗 Vizualizați: https://xoflowers.md/greeting-card/\n\n2. **Greeting Card - Greeting card.**\n   💰 Preț: 20.0 MDL\n   📂 Categorie: Greeting Card\n   🔗 Vizualizați: https://xoflowers.md/greeting-card/\n\n3. **Greeting Card - Greeting card.**\n   💰 Preț: 20.0 MDL\n   📂 Categorie: Greeting Card\n   🔗 Vizualizați: https://xoflowers.md/greeting-card/\n\nCe părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-18T19:06:00.034050",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "розы для девушки",
+      "timestamp": "2025-07-18T19:23:03.958868",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Greeting Card - Greeting card.**\n   💰 Preț: 20.0 MDL\n   📂 Categorie: Greeting Card\n   🔗 Vizualizați: https://xoflowers.md/greeting-card/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/\n\n2. **Greeting Card - Greeting card.**\n   💰 Preț: 20.0 MDL\n   📂 Categorie: Greeting Card\n   🔗 Vizualizați: https://xoflowers.md/greeting-card/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/\n\n3. **Greeting Card - Greeting card.**\n   💰 Preț: 20.0 MDL\n   📂 Categorie: Greeting Card\n   🔗 Vizualizați: https://xoflowers.md/greeting-card/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/n/\n\nCe părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-18T19:23:04.162853",
+      "metadata": {}
+    }
+  ],
+  "preferences": {
+    "favorite_colors": [],
+    "favorite_flowers": [],
+    "budget_range": null,
+    "preferred_occasions": [],
+    "style_preferences": [],
+    "recipient_types": []
+  },
+  "current_search_context": null,
+  "mentioned_products": [],
+  "conversation_stage": "greeting",
+  "last_activity": "2025-07-18T19:23:04.162853"
+}

@@ -1,0 +1,53 @@
+{
+  "user_id": "test_user_lang_3",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Caut flori până la 500 lei",
+      "timestamp": "2025-07-18T18:36:25.672229",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet \"La Fleur\" - A beautiful 'La Fleur' bouquet with chrysanthemum, rose, and hydrangea.**\n   💰 Preț: 2700.0 MDL\n   📂 Categorie: Premium\n   🔗 Vizualizați: https://xoflowers.md/bouquet-la-fleur/\n\n2. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n3. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Preț: 3000.0 MDL\n   📂 Categorie: Classic Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\nCe părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-18T18:36:25.863715",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Caut flori până la 500 lei",
+      "timestamp": "2025-07-18T18:39:12.846048",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n🌸 Toate opțiunile sunt în bugetul dumneavoastră de până la 500.0 MDL. Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-18T18:39:13.092858",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Caut flori până la 500 lei",
+      "timestamp": "2025-07-18T18:42:40.750958",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n🌸 Toate opțiunile sunt în bugetul dumneavoastră de până la 500.0 MDL. Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-18T18:42:40.966069",
+      "metadata": {}
+    }
+  ],
+  "preferences": {
+    "favorite_colors": [],
+    "favorite_flowers": [],
+    "budget_range": null,
+    "preferred_occasions": [],
+    "style_preferences": [],
+    "recipient_types": []
+  },
+  "current_search_context": null,
+  "mentioned_products": [],
+  "conversation_stage": "greeting",
+  "last_activity": "2025-07-18T18:42:40.966069"
+}

@@ -223,7 +223,7 @@ python main.py --platform telegram --debug
 
 # Testare rapidă intent classifier
 python -c "
-from src.intelligence.intent_classifier import IntentClassifier
+from src.intelligence.ai_conversation_engine import IntentClassifier
 ic = IntentClassifier()
 print(ic.classify_intent('Vreau un buchet frumos pentru soția mea'))
 "
@@ -275,7 +275,7 @@ curl http://localhost:5001/health
 ```bash
 # Testare intenții principale
 python -c "
-from src.intelligence.intent_classifier import IntentClassifier
+from src.intelligence.ai_conversation_engine import IntentClassifier
 ic = IntentClassifier()
 
 # Testare diverse tipuri de intenții

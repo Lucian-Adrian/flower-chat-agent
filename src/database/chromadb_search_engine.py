@@ -194,11 +194,7 @@ class XOFlowersSearchEngine:
         for field in ['url', 'original_url', 'url_fixed']:
             url = row.get(field, '').strip()
             if url and url != 'True' and url != 'False':
-                # Убираем лишние символы в конце URL
-                url = url.rstrip('/n/').rstrip('/n').rstrip('/')
-                # Добавляем слэш в конце если его нет
-                if not url.endswith('/'):
-                    url += '/'
+                # Возвращаем URL как есть, без фильтрации
                 return url
         return ""
     

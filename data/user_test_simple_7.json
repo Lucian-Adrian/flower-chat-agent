@@ -1,0 +1,65 @@
+{
+  "user_id": "test_simple_7",
+  "messages": [
+    {
+      "role": "user",
+      "content": "красные розы",
+      "timestamp": "2025-07-18T19:03:29.870570",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **A Burgundy Kenzan Vase - A burgundy glass kenzan vase.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: Additional Accessories / Vases\n   🔗 Vizualizați: https://xoflowers.md/a-burgundy-kenzan-vase/\n\n2. **Velvet Box with Delicate Flowers - Luxurious velvet box with orchids, roses, tulips, carnation and asparagus**\n   💰 Preț: 4800.0 MDL\n   📂 Categorie: Basket / Boxes With Flowers\n   🔗 Vizualizați: https://xoflowers.md/velvet-box-with-flowers-delicate/\n\n3. **Box with Flowers Xs - Extra small flower box**\n   💰 Preț: 940.0 MDL\n   📂 Categorie: Basket / Boxes With Flowers\n   🔗 Vizualizați: https://xoflowers.md/box-with-flowers-xs/\n\nCe părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-18T19:03:30.077690",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "красные розы",
+      "timestamp": "2025-07-18T19:05:08.033106",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **A Burgundy Kenzan Vase - A burgundy glass kenzan vase.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: Additional Accessories / Vases\n   🔗 Vizualizați: https://xoflowers.md/a-burgundy-kenzan-vase/\n\n2. **Velvet Box with Delicate Flowers - Luxurious velvet box with orchids, roses, tulips, carnation and asparagus**\n   💰 Preț: 4800.0 MDL\n   📂 Categorie: Basket / Boxes With Flowers\n   🔗 Vizualizați: https://xoflowers.md/velvet-box-with-flowers-delicate/\n\n3. **Box with Flowers Xs - Extra small flower box**\n   💰 Preț: 940.0 MDL\n   📂 Categorie: Basket / Boxes With Flowers\n   🔗 Vizualizați: https://xoflowers.md/box-with-flowers-xs/\n\nCe părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-18T19:05:08.264458",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "красные розы",
+      "timestamp": "2025-07-18T19:05:59.184948",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **A Burgundy Kenzan Vase - A burgundy glass kenzan vase.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: Additional Accessories / Vases\n   🔗 Vizualizați: https://xoflowers.md/a-burgundy-kenzan-vase/\n\n2. **Velvet Box with Delicate Flowers - Luxurious velvet box with orchids, roses, tulips, carnation and asparagus**\n   💰 Preț: 4800.0 MDL\n   📂 Categorie: Basket / Boxes With Flowers\n   🔗 Vizualizați: https://xoflowers.md/velvet-box-with-flowers-delicate/\n\n3. **Box with Flowers Xs - Extra small flower box**\n   💰 Preț: 940.0 MDL\n   📂 Categorie: Basket / Boxes With Flowers\n   🔗 Vizualizați: https://xoflowers.md/box-with-flowers-xs/\n\nCe părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-18T19:05:59.391315",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "красные розы",
+      "timestamp": "2025-07-18T19:23:03.554548",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **A Burgundy Kenzan Vase - A burgundy glass kenzan vase.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: Additional Accessories / Vases\n   🔗 Vizualizați: https://xoflowers.md/a-burgundy-kenzan-vase/\n\n2. **Velvet Box with Delicate Flowers - Luxurious velvet box with orchids, roses, tulips, carnation and asparagus**\n   💰 Preț: 4800.0 MDL\n   📂 Categorie: Basket / Boxes With Flowers\n   🔗 Vizualizați: https://xoflowers.md/velvet-box-with-flowers-delicate/\n\n3. **Box with Flowers Xs - Extra small flower box**\n   💰 Preț: 940.0 MDL\n   📂 Categorie: Basket / Boxes With Flowers\n   🔗 Vizualizați: https://xoflowers.md/box-with-flowers-xs\n\nCe părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-18T19:23:03.747492",
+      "metadata": {}
+    }
+  ],
+  "preferences": {
+    "favorite_colors": [],
+    "favorite_flowers": [],
+    "budget_range": null,
+    "preferred_occasions": [],
+    "style_preferences": [],
+    "recipient_types": []
+  },
+  "current_search_context": null,
+  "mentioned_products": [],
+  "conversation_stage": "greeting",
+  "last_activity": "2025-07-18T19:23:03.747492"
+}

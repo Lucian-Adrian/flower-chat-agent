@@ -1,0 +1,65 @@
+{
+  "user_id": "test_simple_5",
+  "messages": [
+    {
+      "role": "user",
+      "content": "flowers",
+      "timestamp": "2025-07-18T19:03:29.436848",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 I found several beautiful options for you:\n\n1. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Price: 3000.0 MDL\n   📂 Category: Classic Bouquets\n   🔗 View: https://xoflowers.md/bouquet-of-roses/\n\n2. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Price: 450.0 MDL\n   📂 Category: St. Valentine'S Day\n   🔗 View: https://xoflowers.md/bouquet-of-roses/\n\n3. **Bouquet Red Roses - Bouquet with Red roses.**\n   💰 Price: 640.0 MDL\n   📂 Category: St. Valentine'S Day\n   🔗 View: https://xoflowers.md/bouquet-red-roses/\n\nWhat do you think about these options? Tell me more about your preferences!",
+      "timestamp": "2025-07-18T19:03:29.658060",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "flowers",
+      "timestamp": "2025-07-18T19:05:07.536655",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 I found several beautiful options for you:\n\n1. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Price: 3000.0 MDL\n   📂 Category: Classic Bouquets\n   🔗 View: https://xoflowers.md/bouquet-of-roses/\n\n2. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Price: 450.0 MDL\n   📂 Category: St. Valentine'S Day\n   🔗 View: https://xoflowers.md/bouquet-of-roses/\n\n3. **Bouquet Red Roses - Bouquet with Red roses.**\n   💰 Price: 640.0 MDL\n   📂 Category: St. Valentine'S Day\n   🔗 View: https://xoflowers.md/bouquet-red-roses/\n\nWhat do you think about these options? Tell me more about your preferences!",
+      "timestamp": "2025-07-18T19:05:07.768936",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "flowers",
+      "timestamp": "2025-07-18T19:05:58.758708",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 I found several beautiful options for you:\n\n1. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Price: 3000.0 MDL\n   📂 Category: Classic Bouquets\n   🔗 View: https://xoflowers.md/bouquet-of-roses/\n\n2. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Price: 450.0 MDL\n   📂 Category: St. Valentine'S Day\n   🔗 View: https://xoflowers.md/bouquet-of-roses/\n\n3. **Bouquet Red Roses - Bouquet with Red roses.**\n   💰 Price: 640.0 MDL\n   📂 Category: St. Valentine'S Day\n   🔗 View: https://xoflowers.md/bouquet-red-roses/\n\nWhat do you think about these options? Tell me more about your preferences!",
+      "timestamp": "2025-07-18T19:05:58.962169",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "flowers",
+      "timestamp": "2025-07-18T19:23:03.162222",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Preț: 3000.0 MDL\n   📂 Categorie: Classic Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/n/\n\n2. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/n/\n\n3. **Bouquet Red Roses - Bouquet with Red roses.**\n   💰 Preț: 640.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-red-roses/n/\n\nCe părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-18T19:23:03.356383",
+      "metadata": {}
+    }
+  ],
+  "preferences": {
+    "favorite_colors": [],
+    "favorite_flowers": [],
+    "budget_range": null,
+    "preferred_occasions": [],
+    "style_preferences": [],
+    "recipient_types": []
+  },
+  "current_search_context": null,
+  "mentioned_products": [],
+  "conversation_stage": "greeting",
+  "last_activity": "2025-07-18T19:23:03.356383"
+}

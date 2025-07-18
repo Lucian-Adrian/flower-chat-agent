@@ -1,0 +1,65 @@
+{
+  "user_id": "test_simple_4",
+  "messages": [
+    {
+      "role": "user",
+      "content": "цветы",
+      "timestamp": "2025-07-18T19:03:29.222913",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Я нашел несколько красивых вариантов для вас:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Цена: 450.0 лей\n   📂 Категория: St. Valentine'S Day\n   🔗 Посмотреть: https://xoflowers.md/bouquet-of-roses/\n\n2. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Цена: 3000.0 лей\n   📂 Категория: Classic Bouquets\n   🔗 Посмотреть: https://xoflowers.md/bouquet-of-roses/\n\n3. **Bouquet \"Momo\" - Charming 'Momo' bouquet featuring chrysanthemums.**\n   💰 Цена: 850.0 лей\n   📂 Категория: Mono/Duo Bouquets\n   🔗 Посмотреть: https://xoflowers.md/bouquet-momo/\n\nЧто думаете об этих вариантах? Расскажите больше о ваших предпочтениях!",
+      "timestamp": "2025-07-18T19:03:29.434790",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "цветы",
+      "timestamp": "2025-07-18T19:05:07.300438",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Я нашел несколько красивых вариантов для вас:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Цена: 450.0 лей\n   📂 Категория: St. Valentine'S Day\n   🔗 Посмотреть: https://xoflowers.md/bouquet-of-roses/\n\n2. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Цена: 3000.0 лей\n   📂 Категория: Classic Bouquets\n   🔗 Посмотреть: https://xoflowers.md/bouquet-of-roses/\n\n3. **Bouquet \"Momo\" - Charming 'Momo' bouquet featuring chrysanthemums.**\n   💰 Цена: 850.0 лей\n   📂 Категория: Mono/Duo Bouquets\n   🔗 Посмотреть: https://xoflowers.md/bouquet-momo/\n\nЧто думаете об этих вариантах? Расскажите больше о ваших предпочтениях!",
+      "timestamp": "2025-07-18T19:05:07.524304",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "цветы",
+      "timestamp": "2025-07-18T19:05:58.534919",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Я нашел несколько красивых вариантов для вас:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Цена: 450.0 лей\n   📂 Категория: St. Valentine'S Day\n   🔗 Посмотреть: https://xoflowers.md/bouquet-of-roses/\n\n2. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Цена: 3000.0 лей\n   📂 Категория: Classic Bouquets\n   🔗 Посмотреть: https://xoflowers.md/bouquet-of-roses/\n\n3. **Bouquet \"Momo\" - Charming 'Momo' bouquet featuring chrysanthemums.**\n   💰 Цена: 850.0 лей\n   📂 Категория: Mono/Duo Bouquets\n   🔗 Посмотреть: https://xoflowers.md/bouquet-momo/\n\nЧто думаете об этих вариантах? Расскажите больше о ваших предпочтениях!",
+      "timestamp": "2025-07-18T19:05:58.745520",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "цветы",
+      "timestamp": "2025-07-18T19:23:02.972279",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/n/\n\n2. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Preț: 3000.0 MDL\n   📂 Categorie: Classic Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/n/\n\n3. **Bouquet \"Momo\" - Charming 'Momo' bouquet featuring chrysanthemums.**\n   💰 Preț: 850.0 MDL\n   📂 Categorie: Mono/Duo Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-momo/n/\n\nCe părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-18T19:23:03.160344",
+      "metadata": {}
+    }
+  ],
+  "preferences": {
+    "favorite_colors": [],
+    "favorite_flowers": [],
+    "budget_range": null,
+    "preferred_occasions": [],
+    "style_preferences": [],
+    "recipient_types": []
+  },
+  "current_search_context": null,
+  "mentioned_products": [],
+  "conversation_stage": "greeting",
+  "last_activity": "2025-07-18T19:23:03.160344"
+}

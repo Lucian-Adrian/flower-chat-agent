@@ -1,0 +1,53 @@
+{
+  "user_id": "test_user_lang_9",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Need flowers under 500 lei",
+      "timestamp": "2025-07-18T18:36:26.496664",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n2. **Bouquet of Pink Tulips - Bouquet with pink Tulip, available in various quantities.**\n   💰 Preț: 500.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-pink-tulips-valentines/\n\n3. **Bouquet of Pink Tulips - A delicate bouquet of pink tulips, available in various quantities.**\n   💰 Preț: 500.0 MDL\n   📂 Categorie: Mono/Duo Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-pink-tulips/\n\n🌸 Toate opțiunile sunt în bugetul dumneavoastră de până la 500.0 MDL. Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-18T18:36:26.694618",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Need flowers under 500 lei",
+      "timestamp": "2025-07-18T18:39:13.785138",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Preț: 450.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n2. **Bouquet of Pink Tulips - Bouquet with pink Tulip, available in various quantities.**\n   💰 Preț: 500.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-pink-tulips-valentines/\n\n3. **Bouquet of Pink Tulips - A delicate bouquet of pink tulips, available in various quantities.**\n   💰 Preț: 500.0 MDL\n   📂 Categorie: Mono/Duo Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-pink-tulips/\n\n🌸 Toate opțiunile sunt în bugetul dumneavoastră de până la 500.0 MDL. Ce părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-18T18:39:13.996237",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Need flowers under 500 lei",
+      "timestamp": "2025-07-18T18:42:41.596458",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 I found several beautiful options for you:\n\n1. **Bouquet of Roses - Bouquet with Roses.**\n   💰 Price: 450.0 MDL\n   📂 Category: St. Valentine'S Day\n   🔗 View: https://xoflowers.md/bouquet-of-roses/\n\n2. **Bouquet of Pink Tulips - Bouquet with pink Tulip, available in various quantities.**\n   💰 Price: 500.0 MDL\n   📂 Category: St. Valentine'S Day\n   🔗 View: https://xoflowers.md/bouquet-of-pink-tulips-valentines/\n\n3. **Bouquet of Pink Tulips - A delicate bouquet of pink tulips, available in various quantities.**\n   💰 Price: 500.0 MDL\n   📂 Category: Mono/Duo Bouquets\n   🔗 View: https://xoflowers.md/bouquet-of-pink-tulips/\n\n🌸 All options are within your budget of up to 500.0 MDL. What do you think about these options? You can tell me more about your preferences!",
+      "timestamp": "2025-07-18T18:42:41.784499",
+      "metadata": {}
+    }
+  ],
+  "preferences": {
+    "favorite_colors": [],
+    "favorite_flowers": [],
+    "budget_range": null,
+    "preferred_occasions": [],
+    "style_preferences": [],
+    "recipient_types": []
+  },
+  "current_search_context": null,
+  "mentioned_products": [],
+  "conversation_stage": "greeting",
+  "last_activity": "2025-07-18T18:42:41.784499"
+}

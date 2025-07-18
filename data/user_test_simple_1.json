@@ -1,0 +1,65 @@
+{
+  "user_id": "test_simple_1",
+  "messages": [
+    {
+      "role": "user",
+      "content": "розы",
+      "timestamp": "2025-07-18T19:03:28.620174",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Box with Flowers Xs - Extra small flower box**\n   💰 Preț: 940.0 MDL\n   📂 Categorie: Basket / Boxes With Flowers\n   🔗 Vizualizați: https://xoflowers.md/box-with-flowers-xs/\n\n2. **Box with Hydrangea \"Air Marshmallow\" - Box with Hydrangea.**\n   💰 Preț: 6000.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/box-with-hydrangea-air-marshmallow/\n\n3. **Bouquet \"Sunny Accent\" - Bright sunny accent with roses, tulips, chrysanthemum and ruscus**\n   💰 Preț: 800.0 MDL\n   📂 Categorie: Author'S Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-sunny-accent/\n\nCe părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-18T19:03:28.975675",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "розы",
+      "timestamp": "2025-07-18T19:05:06.417516",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Box with Flowers Xs - Extra small flower box**\n   💰 Preț: 940.0 MDL\n   📂 Categorie: Basket / Boxes With Flowers\n   🔗 Vizualizați: https://xoflowers.md/box-with-flowers-xs/\n\n2. **Box with Hydrangea \"Air Marshmallow\" - Box with Hydrangea.**\n   💰 Preț: 6000.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/box-with-hydrangea-air-marshmallow/\n\n3. **Bouquet \"Sunny Accent\" - Bright sunny accent with roses, tulips, chrysanthemum and ruscus**\n   💰 Preț: 800.0 MDL\n   📂 Categorie: Author'S Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-sunny-accent/\n\nCe părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-18T19:05:06.768908",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "розы",
+      "timestamp": "2025-07-18T19:05:57.703832",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Box with Flowers Xs - Extra small flower box**\n   💰 Preț: 940.0 MDL\n   📂 Categorie: Basket / Boxes With Flowers\n   🔗 Vizualizați: https://xoflowers.md/box-with-flowers-xs/\n\n2. **Box with Hydrangea \"Air Marshmallow\" - Box with Hydrangea.**\n   💰 Preț: 6000.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/box-with-hydrangea-air-marshmallow/\n\n3. **Bouquet \"Sunny Accent\" - Bright sunny accent with roses, tulips, chrysanthemum and ruscus**\n   💰 Preț: 800.0 MDL\n   📂 Categorie: Author'S Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-sunny-accent/\n\nCe părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-18T19:05:58.077626",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "розы",
+      "timestamp": "2025-07-18T19:23:02.450267",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Box with Flowers Xs - Extra small flower box**\n   💰 Preț: 940.0 MDL\n   📂 Categorie: Basket / Boxes With Flowers\n   🔗 Vizualizați: https://xoflowers.md/box-with-flowers-xs\n\n2. **Box with Hydrangea \"Air Marshmallow\" - Box with Hydrangea.**\n   💰 Preț: 6000.0 MDL\n   📂 Categorie: St. Valentine'S Day\n   🔗 Vizualizați: https://xoflowers.md/box-with-hydrangea-air-marshmallow\n\n3. **Bouquet \"Sunny Accent\" - Bright sunny accent with roses, tulips, chrysanthemum and ruscus**\n   💰 Preț: 800.0 MDL\n   📂 Categorie: Author'S Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-sunny-accent/n/\n\nCe părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-18T19:23:02.765696",
+      "metadata": {}
+    }
+  ],
+  "preferences": {
+    "favorite_colors": [],
+    "favorite_flowers": [],
+    "budget_range": null,
+    "preferred_occasions": [],
+    "style_preferences": [],
+    "recipient_types": []
+  },
+  "current_search_context": null,
+  "mentioned_products": [],
+  "conversation_stage": "greeting",
+  "last_activity": "2025-07-18T19:23:02.765696"
+}

@@ -1,0 +1,53 @@
+{
+  "user_id": "test_user_lang_2",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Vreau un buchet frumos",
+      "timestamp": "2025-07-18T18:36:25.271291",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet \"Momo\" - Charming 'Momo' bouquet featuring chrysanthemums.**\n   💰 Preț: 850.0 MDL\n   📂 Categorie: Mono/Duo Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-momo/\n\n2. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Preț: 3000.0 MDL\n   📂 Categorie: Classic Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n3. **Bouquet \"Greenery\" - Fresh green arrangement with natural foliage and seasonal flowers for nature lovers**\n   💰 Preț: 1400.0 MDL\n   📂 Categorie: Author'S Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-greenery/\n\nCe părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-18T18:36:25.670175",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Vreau un buchet frumos",
+      "timestamp": "2025-07-18T18:39:12.468804",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet \"Momo\" - Charming 'Momo' bouquet featuring chrysanthemums.**\n   💰 Preț: 850.0 MDL\n   📂 Categorie: Mono/Duo Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-momo/\n\n2. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Preț: 3000.0 MDL\n   📂 Categorie: Classic Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n3. **Bouquet \"Greenery\" - Fresh green arrangement with natural foliage and seasonal flowers for nature lovers**\n   💰 Preț: 1400.0 MDL\n   📂 Categorie: Author'S Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-greenery/\n\nCe părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-18T18:39:12.831268",
+      "metadata": {}
+    },
+    {
+      "role": "user",
+      "content": "Vreau un buchet frumos",
+      "timestamp": "2025-07-18T18:42:40.427428",
+      "metadata": {}
+    },
+    {
+      "role": "assistant",
+      "content": "🌸 Am găsit câteva opțiuni frumoase pentru dumneavoastră:\n\n1. **Bouquet \"Momo\" - Charming 'Momo' bouquet featuring chrysanthemums.**\n   💰 Preț: 850.0 MDL\n   📂 Categorie: Mono/Duo Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-momo/\n\n2. **Bouquet of Roses - A classic bouquet composed solely of roses.**\n   💰 Preț: 3000.0 MDL\n   📂 Categorie: Classic Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-of-roses/\n\n3. **Bouquet \"Greenery\" - Fresh green arrangement with natural foliage and seasonal flowers for nature lovers**\n   💰 Preț: 1400.0 MDL\n   📂 Categorie: Author'S Bouquets\n   🔗 Vizualizați: https://xoflowers.md/bouquet-greenery/\n\nCe părere aveți despre aceste opțiuni? Puteți să îmi spuneți mai multe despre preferințele dumneavoastră!",
+      "timestamp": "2025-07-18T18:42:40.740329",
+      "metadata": {}
+    }
+  ],
+  "preferences": {
+    "favorite_colors": [],
+    "favorite_flowers": [],
+    "budget_range": null,
+    "preferred_occasions": [],
+    "style_preferences": [],
+    "recipient_types": []
+  },
+  "current_search_context": null,
+  "mentioned_products": [],
+  "conversation_stage": "greeting",
+  "last_activity": "2025-07-18T18:42:40.740329"
+}
