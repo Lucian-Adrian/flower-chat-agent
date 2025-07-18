@@ -1,504 +1,431 @@
-# 🚀 Deployment Guide
+# XOFlowers AI Agent - Deployment Guide (2025)
 
-## 📋 **OVERVIEW**
+**CURRENT IMPLEMENTATION** - FastAPI with ChromaDB, Redis Fallback, and Multi-Platform Bot Integration
 
-This guide provides instructions for deploying the XOFlowers AI Agent to production environments, including local development, staging, and production deployments.
+This guide covers deploying the **current working version** of the XOFlowers AI Agent with all 2025 enhancements.
 
-## 🏠 **LOCAL DEVELOPMENT**
+## 🚀 Quick Start
 
-### **Prerequisites**
-- Python 3.8+
-- Git
-- Virtual environment tool (venv/conda)
-
-### **Setup Steps**
-
-#### **1. Clone Repository**
+### Development Deployment
 ```bash
-git clone https://github.com/Lucian-Adrian/flower-chat-agent.git
+# 1. Clone and setup
+git clone <repository>
 cd xoflowers-agent
-```
 
-#### **2. Create Virtual Environment**
-```bash
-# Using venv
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# or
-venv\Scripts\activate     # Windows
-
-# Using conda
-conda create -n xoflowers python=3.9
-conda activate xoflowers
-```
-
-#### **3. Install Dependencies**
-```bash
-pip install -r requirements.txt
-```
-
-#### **4. Configure Environment**
-```bash
-# Copy environment template
+# 2. Copy environment template  
 cp .env.example .env
 
-# Edit .env with your API keys
-nano .env
+# 3. Edit .env with your configuration
+# Required: OPENAI_API_KEY or GEMINI_API_KEY
+# Required: TELEGRAM_BOT_TOKEN
+# Optional: Instagram API credentials
+
+# 4. Install dependencies
+pip install -r requirements.txt
+
+# 5. Run main FastAPI application
+python -m uvicorn src.api.main:app --host 0.0.0.0 --port 8000 --reload
+
+# 6. Check health
+curl http://localhost:8000/health
 ```
 
-#### **5. Initialize Database**
+### Production Deployment
 ```bash
-# Populate ChromaDB with products
-python -m src.pipeline.populate_db
+# 1. Validate configuration
+python scripts/validate-deployment.py
+
+# 2. Deploy production stack
+./deploy.sh -e production --backup
+
+# 3. Or on Windows  
+.\deploy.ps1 -Environment production -Backup
+
+# 4. Check all services
+docker-compose ps
+curl http://localhost:8000/health
 ```
 
-#### **6. Run Application**
+## 🎯 Current Architecture
+
+The **2025 implementation** uses:
+
+- **FastAPI** as main application (`src/api/main.py`)
+- **ChromaDB** for product search (692 products)
+- **Redis** with in-memory fallback for context
+- **Gemini Chat** with OpenAI fallback for AI
+- **Integrated bots** for Telegram and Instagram
+- **Docker Compose** for production deployment
+
+## 🔧 Environment Configuration
+
+### Required Variables (Production)
 ```bash
-# Instagram only
-python main.py --platform instagram --debug
+# At least one AI service API key
+OPENAI_API_KEY=your_openai_api_key
+GEMINI_API_KEY=your_gemini_api_key
 
-# Telegram only
-python main.py --platform telegram --debug
-
-# Both platforms
-python main.py --platform both --debug
+# At least one platform integration
+TELEGRAM_BOT_TOKEN=your_telegram_bot_token
+INSTAGRAM_ACCESS_TOKEN=your_instagram_access_token
 ```
 
-## 🌐 **PRODUCTION DEPLOYMENT**
-
-### **Option 1: Docker Deployment**
-
-#### **1. Create Dockerfile**
-```dockerfile
-FROM python:3.9-slim
-
-WORKDIR /app
-
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    gcc \
-    g++ \
-    && rm -rf /var/lib/apt/lists/*
-
-# Copy requirements and install Python dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy application code
-COPY . .
-
-# Create non-root user
-RUN useradd -m -u 1000 xoflowers && chown -R xoflowers:xoflowers /app
-USER xoflowers
-
-# Expose port
-EXPOSE 5001
-
-# Run application
-CMD ["python", "main.py", "--platform", "both"]
-```
-
-#### **2. Create docker-compose.yml**
-```yaml
-version: '3.8'
-
-services:
-  xoflowers-agent:
-    build: .
-    ports:
-      - "5001:5001"
-    env_file:
-      - .env
-    volumes:
-      - ./chroma_db_flowers:/app/chroma_db_flowers
-      - ./logs:/app/logs
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5001/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-
-  nginx:
-    image: nginx:alpine
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-      - ./ssl:/etc/nginx/ssl
-    depends_on:
-      - xoflowers-agent
-    restart: unless-stopped
-```
-
-#### **3. Deploy with Docker**
+#### Application Settings
 ```bash
-# Build and start services
+ENVIRONMENT=production          # development|staging|production
+LOG_LEVEL=INFO                 # DEBUG|INFO|WARNING|ERROR|CRITICAL
+DEBUG=false                    # true|false
+```
+
+#### Service Configuration
+```bash
+# Redis (for conversation context)
+REDIS_HOST=redis               # Container: redis, Local: localhost
+REDIS_PORT=6379
+REDIS_DB=0
+REDIS_PASSWORD=                # Optional
+
+# ChromaDB (for product search)
+CHROMADB_PATH=/app/chroma_db_flowers
+CHROMADB_COLLECTION=xoflowers_products
+```
+
+#### Platform Integration
+```bash
+# Telegram
+TELEGRAM_BOT_TOKEN=your_token
+TELEGRAM_WEBHOOK_URL=https://your-domain.com/api/telegram/webhook
+
+# Instagram
+INSTAGRAM_VERIFY_TOKEN=your_verify_token
+INSTAGRAM_ACCESS_TOKEN=your_access_token
+INSTAGRAM_WEBHOOK_URL=https://your-domain.com/api/instagram/webhook
+```
+
+#### Performance & Security
+```bash
+MAX_MESSAGE_LENGTH=1000
+SECURITY_ENABLED=true
+CACHE_TTL_SECONDS=600
+MAX_CONCURRENT_REQUESTS=20
+REQUEST_TIMEOUT_SECONDS=25
+```
+
+#### Monitoring
+```bash
+HEALTH_CHECK_ENABLED=true
+METRICS_ENABLED=true
+PERFORMANCE_MONITORING=true
+```
+
+### Environment Files
+
+- `.env.example` - Template with all available options
+- `.env` - Local development configuration
+- `.env.production` - Production configuration template
+
+## Docker Deployment
+
+### Single Container
+```bash
+# Build image
+docker build -t xoflowers-ai .
+
+# Run container
+docker run -d \
+  --name xoflowers-ai \
+  -p 8000:8000 \
+  --env-file .env.production \
+  -v $(pwd)/logs:/app/logs \
+  -v $(pwd)/chroma_db_flowers:/app/chroma_db_flowers \
+  xoflowers-ai
+```
+
+### Docker Compose (Recommended)
+
+#### Development
+```bash
 docker-compose up -d
-
-# View logs
-docker-compose logs -f xoflowers-agent
-
-# Stop services
-docker-compose down
 ```
 
-### **Option 2: Cloud Deployment (AWS/GCP/Azure)**
-
-#### **AWS Deployment with ECS**
-
-1. **Create ECS Cluster**
+#### Production
 ```bash
-aws ecs create-cluster --cluster-name xoflowers-cluster
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 ```
 
-2. **Push Docker Image to ECR**
-```bash
-# Create ECR repository
-aws ecr create-repository --repository-name xoflowers-agent
+### Docker Compose Services
 
-# Get login token
-aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <account-id>.dkr.ecr.us-east-1.amazonaws.com
+- **xoflowers-ai** - Main application
+- **redis** - Conversation context storage
+- **nginx** - Reverse proxy and load balancer
+- **prometheus** - Metrics collection (optional)
+- **grafana** - Monitoring dashboards (optional)
 
-# Build and push
-docker build -t xoflowers-agent .
-docker tag xoflowers-agent:latest <account-id>.dkr.ecr.us-east-1.amazonaws.com/xoflowers-agent:latest
-docker push <account-id>.dkr.ecr.us-east-1.amazonaws.com/xoflowers-agent:latest
-```
+## Health Checks & Monitoring
 
-3. **Create ECS Task Definition**
+### Health Check Endpoints
+
+#### `/health` - Comprehensive Health Check
+Returns detailed status of all services:
 ```json
 {
-  "family": "xoflowers-agent",
-  "networkMode": "awsvpc",
-  "requiresCompatibilities": ["FARGATE"],
-  "cpu": "256",
-  "memory": "512",
-  "executionRoleArn": "arn:aws:iam::account-id:role/ecsTaskExecutionRole",
-  "containerDefinitions": [
-    {
-      "name": "xoflowers-agent",
-      "image": "<account-id>.dkr.ecr.us-east-1.amazonaws.com/xoflowers-agent:latest",
-      "portMappings": [
-        {
-          "containerPort": 5001,
-          "protocol": "tcp"
-        }
-      ],
-      "environment": [
-        {
-          "name": "FLASK_ENV",
-          "value": "production"
-        }
-      ],
-      "secrets": [
-        {
-          "name": "OPENAI_API_KEY",
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:account-id:secret:xoflowers-secrets"
-        }
-      ],
-      "logConfiguration": {
-        "logDriver": "awslogs",
-        "options": {
-          "awslogs-group": "/ecs/xoflowers-agent",
-          "awslogs-region": "us-east-1",
-          "awslogs-stream-prefix": "ecs"
-        }
-      }
-    }
-  ]
+  "status": "healthy",
+  "timestamp": "2025-07-17T10:30:00Z",
+  "version": "1.0.0",
+  "uptime_seconds": 3600,
+  "services": {
+    "ai_engine": {"status": "healthy"},
+    "redis": {"status": "healthy"},
+    "chromadb": {"status": "healthy"}
+  }
 }
 ```
 
-#### **GCP Deployment with Cloud Run**
-
-1. **Build and Push to Container Registry**
-```bash
-# Configure Docker for GCP
-gcloud auth configure-docker
-
-# Build and push
-docker build -t gcr.io/your-project-id/xoflowers-agent .
-docker push gcr.io/your-project-id/xoflowers-agent
-```
-
-2. **Deploy to Cloud Run**
-```bash
-gcloud run deploy xoflowers-agent \
-  --image gcr.io/your-project-id/xoflowers-agent \
-  --platform managed \
-  --region us-central1 \
-  --allow-unauthenticated \
-  --set-env-vars="FLASK_ENV=production" \
-  --memory=1Gi \
-  --cpu=1
-```
-
-### **Option 3: VPS Deployment (Ubuntu/CentOS)**
-
-#### **1. Server Setup**
-```bash
-# Update system
-sudo apt update && sudo apt upgrade -y
-
-# Install dependencies
-sudo apt install -y python3 python3-pip python3-venv nginx certbot python3-certbot-nginx
-
-# Create application user
-sudo useradd -m -s /bin/bash xoflowers
-sudo usermod -aG sudo xoflowers
-```
-
-#### **2. Application Setup**
-```bash
-# Switch to application user
-sudo -u xoflowers -i
-
-# Clone repository
-git clone https://github.com/Lucian-Adrian/flower-chat-agent.git
-cd xoflowers-agent
-
-# Create virtual environment
-python3 -m venv venv
-source venv/bin/activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Configure environment
-cp .env.example .env
-nano .env
-
-# Initialize database
-python -m src.pipeline.populate_db
-```
-
-#### **3. Process Management with Systemd**
-```bash
-# Create systemd service
-sudo nano /etc/systemd/system/xoflowers-agent.service
-```
-
-```ini
-[Unit]
-Description=XOFlowers AI Agent
-After=network.target
-
-[Service]
-Type=simple
-User=xoflowers
-WorkingDirectory=/home/xoflowers/xoflowers-agent
-Environment=PATH=/home/xoflowers/xoflowers-agent/venv/bin
-ExecStart=/home/xoflowers/xoflowers-agent/venv/bin/python main.py --platform both
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
-```
-
-```bash
-# Enable and start service
-sudo systemctl daemon-reload
-sudo systemctl enable xoflowers-agent
-sudo systemctl start xoflowers-agent
-
-# Check status
-sudo systemctl status xoflowers-agent
-```
-
-#### **4. Nginx Configuration**
-```bash
-# Create nginx configuration
-sudo nano /etc/nginx/sites-available/xoflowers-agent
-```
-
-```nginx
-server {
-    listen 80;
-    server_name your-domain.com;
-
-    location / {
-        proxy_pass http://127.0.0.1:5001;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-
-    # Instagram webhook
-    location /webhook {
-        proxy_pass http://127.0.0.1:5001/webhook;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
+#### `/health/live` - Liveness Probe
+Simple check that application is running:
+```json
+{
+  "status": "alive",
+  "timestamp": "2025-07-17T10:30:00Z"
 }
 ```
 
+#### `/health/ready` - Readiness Probe
+Check if application is ready to serve traffic:
+```json
+{
+  "status": "ready",
+  "timestamp": "2025-07-17T10:30:00Z",
+  "services": {
+    "ai_engine": "ready"
+  }
+}
+```
+
+### Container Health Checks
+
+Docker containers include built-in health checks:
+```dockerfile
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD /usr/local/bin/healthcheck.sh
+```
+
+### Monitoring Stack
+
+Optional monitoring with Prometheus and Grafana:
 ```bash
-# Enable site
-sudo ln -s /etc/nginx/sites-available/xoflowers-agent /etc/nginx/sites-enabled/
-sudo nginx -t
-sudo systemctl reload nginx
+# Deploy with monitoring
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 
-# Configure SSL
-sudo certbot --nginx -d your-domain.com
+# Access Grafana
+open http://localhost:3000
+# Default: admin/admin
+
+# Access Prometheus
+open http://localhost:9090
 ```
 
-## 🔐 **SECURITY CONSIDERATIONS**
+## Deployment Scripts
 
-### **1. Environment Variables**
+### Bash Script (Linux/macOS)
 ```bash
-# Use secrets management
-# AWS Secrets Manager
-# GCP Secret Manager
-# Azure Key Vault
-# HashiCorp Vault
+./deploy.sh [OPTIONS]
+
+Options:
+  -e, --environment ENV    Set environment (development|staging|production)
+  -b, --build             Build images locally
+  -n, --no-pull           Don't pull images
+  --backup                Create backup before deployment
+  -h, --help              Show help
 ```
 
-### **2. Network Security**
+### PowerShell Script (Windows)
+```powershell
+.\deploy.ps1 [OPTIONS]
+
+Parameters:
+  -Environment ENV        Set environment
+  -Build                  Build images locally
+  -NoPull                 Don't pull images
+  -Backup                 Create backup before deployment
+  -Help                   Show help
+```
+
+## Configuration Validation
+
+### Pre-deployment Validation
 ```bash
-# Configure firewall
-sudo ufw allow ssh
-sudo ufw allow 80
-sudo ufw allow 443
-sudo ufw enable
+# Validate configuration
+python scripts/validate-deployment.py
 
-# Disable unnecessary services
-sudo systemctl disable apache2
-sudo systemctl disable mysql
+# Example output:
+# 🔍 XOFlowers AI Agent - Deployment Configuration Validation
+# ✅ Configuration Valid: true
+# 🟢 Configuration is valid and ready for deployment!
 ```
 
-### **3. SSL/TLS Configuration**
+### Validation Checks
+- Environment variable presence and format
+- API key availability
+- Service connectivity (Redis, ChromaDB)
+- Performance setting validation
+- Security configuration verification
+
+## Production Considerations
+
+### Security
+- Set strong Redis password if exposed
+- Configure SSL certificates in nginx.conf
+- Use secrets management for API keys
+- Enable firewall rules
+- Regular security updates
+
+### Performance
+- Monitor resource usage
+- Configure appropriate resource limits
+- Set up log rotation
+- Implement backup strategies
+- Monitor response times
+
+### Scaling
+- Use container orchestration (Kubernetes, Docker Swarm)
+- Implement horizontal scaling
+- Configure load balancing
+- Set up auto-scaling policies
+
+### Monitoring & Alerting
+- Set up log aggregation
+- Configure metric collection
+- Implement alerting rules
+- Monitor business metrics
+- Track error rates and response times
+
+## Troubleshooting
+
+### Common Issues
+
+#### Container Won't Start
 ```bash
-# Strong SSL configuration in nginx
-ssl_protocols TLSv1.2 TLSv1.3;
-ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384;
-ssl_prefer_server_ciphers off;
-ssl_session_cache shared:SSL:10m;
+# Check logs
+docker-compose logs xoflowers-ai
+
+# Common causes:
+# - Missing environment variables
+# - Port conflicts
+# - Volume mount issues
 ```
 
-## 📊 **MONITORING & LOGGING**
-
-### **1. Application Monitoring**
-```python
-# Add to main.py
-import logging
-from logging.handlers import RotatingFileHandler
-
-# Configure logging
-handler = RotatingFileHandler('logs/xoflowers.log', maxBytes=10000, backupCount=3)
-handler.setLevel(logging.INFO)
-formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s')
-handler.setFormatter(formatter)
-app.logger.addHandler(handler)
-```
-
-### **2. System Monitoring**
+#### Health Check Failures
 ```bash
-# Install monitoring tools
-sudo apt install -y htop iotop nethogs
+# Check health endpoint directly
+curl http://localhost:8000/health
 
-# Monitor processes
-htop
-ps aux | grep xoflowers
-
-# Monitor logs
-tail -f /var/log/syslog
-journalctl -u xoflowers-agent -f
+# Check container health
+docker inspect xoflowers-ai | grep Health -A 10
 ```
 
-### **3. Health Checks**
-```python
-# Add health check endpoint
-@app.route('/health')
-def health_check():
-    return {'status': 'healthy', 'timestamp': time.time()}
-```
-
-## 🔄 **CONTINUOUS DEPLOYMENT**
-
-### **GitHub Actions Workflow**
-```yaml
-name: Deploy XOFlowers Agent
-
-on:
-  push:
-    branches: [main]
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.9'
-    
-    - name: Install dependencies
-      run: |
-        pip install -r requirements.txt
-    
-    - name: Run tests
-      run: |
-        python -m pytest tests/
-    
-    - name: Deploy to production
-      run: |
-        # Your deployment script here
-        ssh user@your-server 'cd /home/xoflowers/xoflowers-agent && git pull && sudo systemctl restart xoflowers-agent'
-```
-
-## 🛠️ **TROUBLESHOOTING**
-
-### **Common Issues**
-
-1. **Port Already in Use**
+#### Service Dependencies
 ```bash
-sudo lsof -i :5001
-sudo kill -9 <PID>
-```
+# Check Redis connectivity
+docker-compose exec redis redis-cli ping
 
-2. **Permission Denied**
-```bash
-sudo chown -R xoflowers:xoflowers /home/xoflowers/xoflowers-agent
-```
-
-3. **SSL Certificate Issues**
-```bash
-sudo certbot renew
-sudo systemctl reload nginx
-```
-
-4. **Database Connection Issues**
-```bash
-# Check ChromaDB permissions
+# Check ChromaDB data
 ls -la chroma_db_flowers/
-sudo chown -R xoflowers:xoflowers chroma_db_flowers/
 ```
 
-## 📋 **MAINTENANCE CHECKLIST**
+### Log Analysis
+```bash
+# View application logs
+docker-compose logs -f xoflowers-ai
 
-### **Daily**
-- [ ] Check application logs
-- [ ] Monitor system resources
-- [ ] Verify API endpoints
+# View all service logs
+docker-compose logs -f
 
-### **Weekly**
-- [ ] Update dependencies
-- [ ] Review security alerts
-- [ ] Backup database
+# Filter by service
+docker-compose logs -f redis
+```
 
-### **Monthly**
-- [ ] SSL certificate renewal
-- [ ] Performance optimization
-- [ ] Security audit
+### Performance Issues
+```bash
+# Check resource usage
+docker stats
 
----
+# Monitor metrics endpoint
+curl http://localhost:8000/metrics
 
-**Last Updated:** January 2025  
-**Version:** 1.0.0
+# Check system health
+curl http://localhost:8000/health
+```
+
+## Backup & Recovery
+
+### Automated Backups
+The deployment scripts include backup functionality:
+```bash
+# Create backup before deployment
+./deploy.sh --backup
+
+# Backup location
+ls backups/
+```
+
+### Manual Backup
+```bash
+# Backup Redis data
+docker run --rm -v xoflowers_redis_data:/data -v $(pwd)/backup:/backup alpine tar czf /backup/redis_data.tar.gz -C /data .
+
+# Backup ChromaDB
+tar czf backup/chroma_db_flowers.tar.gz chroma_db_flowers/
+
+# Backup logs
+tar czf backup/logs.tar.gz logs/
+```
+
+### Recovery
+```bash
+# Restore Redis data
+docker run --rm -v xoflowers_redis_data:/data -v $(pwd)/backup:/backup alpine tar xzf /backup/redis_data.tar.gz -C /data
+
+# Restore ChromaDB
+tar xzf backup/chroma_db_flowers.tar.gz
+
+# Restart services
+docker-compose restart
+```
+
+## Environment-Specific Configurations
+
+### Development
+- Debug logging enabled
+- Hot reload for code changes
+- Exposed ports for debugging
+- Minimal resource limits
+
+### Staging
+- Production-like configuration
+- Reduced resource allocation
+- Test data and configurations
+- Monitoring enabled
+
+### Production
+- Optimized performance settings
+- Resource limits and reservations
+- SSL/TLS configuration
+- Comprehensive monitoring
+- Backup strategies
+- Security hardening
+
+## API Documentation
+
+Once deployed, access the interactive API documentation:
+- Swagger UI: `http://localhost:8000/docs`
+- ReDoc: `http://localhost:8000/redoc`
+
+## Support
+
+For deployment issues:
+1. Check this documentation
+2. Validate configuration with `scripts/validate-deployment.py`
+3. Review logs with `docker-compose logs`
+4. Check health endpoints
+5. Consult troubleshooting section

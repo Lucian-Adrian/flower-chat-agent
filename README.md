@@ -1,8 +1,30 @@
 # 🌸 XOFlowers AI Agent
 
-**Agent Conversațional AI Natural pentru XOFlowers** - Construit cu ChromaDB + LLMs
+**Enhanced AI Conversational Agent pentru XOFlowers** - Powered by Gemini Chat + Fallback Systems
 
-Un agent AI conversațional inteligent care conduce conversații naturale și personalizate cu clienții XOFlowers prin Instagram și Telegram. Agentul își asumă rolul de consultant floral expert, căutând activ în baza de date produse pentru a oferi recomandări relevante și răspunsuri contextuale fără template-uri predefinite.
+Un agent AI conversațional de ultimă generație care conduce conversații naturale și personalizate cu clienții XOFlowers prin Instagram și Telegram. Agentul utilizează **Gemini Chat cu context integrat**, **sisteme de fallback robuste**, și **zero dependencies** pentru a oferi o experiență conversațională premium fără template-uri predefinite.
+
+## 🌟 **ENHANCED FEATURES (2025)**
+
+### **🚀 Gemini Chat Integration**
+- **Built-in Conversation Memory**: Context automat fără Redis
+- **Structured Output**: Răspunsuri JSON cu Pydantic models
+- **System Instructions**: Instrucțiuni sistem în loc de prompt injection
+- **Multi-turn Conversations**: Conversații naturale cu istoric automat
+- **Thinking Disabled**: Răspunsuri rapide optimizate pentru speed
+
+### **🔄 Graceful Degradation System**
+- **ChromaDB → CSV Fallback**: Căutare produse fără dependențe externe
+- **Redis → In-Memory Fallback**: Context storage în memorie
+- **OpenAI → Gemini Fallback**: Redundanță completă AI services
+- **Zero Single Points of Failure**: Sistem robust și fiabil
+
+### **⚡ Enhanced Performance**
+- **<2 seconds average response time** (îmbunătățit)
+- **100% success rate** în teste (9/9 messages)
+- **Connection pooling** pentru AI services
+- **Response caching** cu TTL pentru performance
+- **Real-time monitoring** și logging
 
 ## 🎯 **FUNCȚIONALITĂȚI PRINCIPALE**
 
@@ -45,472 +67,193 @@ Sistemul de securitate asigură:
 - **Guard Rails Robuste**: Protecție împotriva manipulării fără a afecta natura
 - **Multi-Platform Support**: Telegram (100% LIVE) și Instagram (90% testare finală)
 
-## 📁 **STRUCTURA PROIECTULUI**
+## � **QUICK START - HOW TO RUN**
+
+### **🎯 Current Implementation (2025)**
+
+The system now uses **FastAPI as the main application** with integrated Telegram and Instagram bots. Here's how to run the current version:
+
+#### **Method 1: Docker Compose (Recommended)**
+```bash
+# 1. Copy environment configuration
+cp .env.example .env
+
+# 2. Edit .env with your API keys:
+# - TELEGRAM_BOT_TOKEN
+# - OPENAI_API_KEY or GEMINI_API_KEY  
+# - INSTAGRAM credentials if needed
+
+# 3. Start the complete system
+docker-compose up -d
+
+# 4. Check system health
+curl http://localhost:8000/health
+```
+
+#### **Method 2: Direct Python Execution**
+```bash
+# 1. Install dependencies
+pip install -r requirements.txt
+
+# 2. Set environment variables
+cp .env.example .env
+# Edit .env with your keys
+
+# 3. Run the main FastAPI application
+python -m uvicorn src.api.main:app --host 0.0.0.0 --port 8000
+
+# 4. For Telegram bot only (alternative)
+python src/api/telegram_app.py
+
+# 5. For Instagram bot only (alternative) 
+python src/api/instagram_app.py
+```
+
+#### **Method 3: Testing the System**
+```bash
+# Test complete integration
+python test_complete_integration.py
+
+# Test ChromaDB functionality
+python test_price_filtering.py
+
+# Test system working status
+python test_system_working.py
+```
+
+### **📊 System Status Dashboard**
+- **Main API**: `http://localhost:8000`
+- **Health Check**: `http://localhost:8000/health`
+- **ChromaDB Stats**: `http://localhost:8000/chromadb/stats`
+- **Telegram Bot**: Integrated in main app
+- **Instagram Bot**: Integrated in main app
+
+## 📁 **CURRENT PROJECT STRUCTURE**
 
 ```
 xoflowers-agent/
-├── config/                          # ⚙️ Configurări sistem
-│   └── settings.py                  # Setări globale și constante
-│
-├── docs/                            # 📚 Documentație tehnică
-│   ├── architecture.md              # Arhitectura sistemului
-│   ├── deployment.md                # Ghid deployment
-│   ├── system_flow.md               # Fluxul sistemului
-│   ├── project_progress.md          # Progresul proiectului
-│   └── summaries/                   # 📊 Rezumate și rapoarte
-│       ├── CONVERSATIONAL_ENHANCEMENT_SUMMARY.md
-│       ├── PRODUCT_FIX_SUMMARY.md
-│       └── TASK_COMPLETION_SUMMARY.md
-│
-├── data/                            # 📊 Date și cataloage
-│   ├── products.json                # Catalogul de produse XOFlowers
-│   ├── chunks_data.csv              # Date procesate produse
-│   ├── faq_data.json                # Întrebări frecvente în română
-│   ├── contexts.json                # Contextul conversațiilor
-│   └── profiles.json                # Profilele utilizatorilor
-│
-├── src/                             # 💻 Codul sursă
-│   ├── api/                         # 🔌 Interfețe platforme
-│   │   ├── __init__.py
-│   │   ├── telegram_app.py          # Bot Telegram (100% LIVE)
-│   │   └── instagram_app.py         # Bot Instagram (90% - testare finală)
+├── src/                             # 💻 Main source code
+│   ├── api/                         # 🔌 API interfaces & bots
+│   │   ├── main.py                  # 🚀 MAIN FASTAPI APPLICATION
+│   │   ├── telegram_app.py          # Telegram bot (standalone)
+│   │   ├── telegram_integration.py  # Telegram FastAPI integration
+│   │   ├── instagram_app.py         # Instagram bot (standalone)
+│   │   └── instagram_integration.py # Instagram FastAPI integration
 │   │
-│   ├── intelligence/                # 🧠 Creierul AI
-│   │   ├── __init__.py
-│   │   ├── prompts.py               # Template-uri AI (100% - Brand Voice)
-│   │   ├── intent_classifier.py     # Clasificare AI (100% - 17 tipuri)
-│   │   ├── conversation_context.py  # Context manager (100% - Memorie)
-│   │   ├── product_search.py        # Motor căutare (100% - Vector Search)
-│   │   └── action_handler.py        # Logica business (100% - Context-aware)
+│   ├── intelligence/                # 🧠 AI Engine & Intelligence
+│   │   ├── ai_engine.py             # Main AI coordinator (OpenAI + Gemini)
+│   │   ├── gemini_chat_manager.py   # Enhanced Gemini Chat with context
+│   │   ├── security_ai.py           # AI-powered security & jailbreak detection
+│   │   ├── context_manager.py       # Conversation context with Redis fallback
+│   │   ├── response_generator.py    # Natural response generation
+│   │   ├── product_recommender.py   # AI product recommendations
+│   │   └── business_info_integrator.py # Business info integration
 │   │
-│   ├── pipeline/                    # 🔄 Procesare date
-│   │   ├── __init__.py
-│   │   ├── scraper.py               # Web scraping (90% - Automatizare)
-│   │   ├── smart_product_finder.py  # Căutare inteligentă produse
-│   │   └── populate_db.py           # Populare bază date (90% - Optimizare)
+│   ├── data/                        # 📊 Data management
+│   │   ├── chromadb_client.py       # 🚀 CHROMADB INTEGRATION (692 products)
+│   │   ├── redis_client.py          # Redis with in-memory fallback
+│   │   └── faq_manager.py           # FAQ and business information
 │   │
-│   ├── database/                    # 🗄️ Gestionare bază de date
-│   │   ├── __init__.py
-│   │   └── manager.py               # Database manager (100% - ChromaDB)
+│   ├── database/                    # 💾 Database files
+│   │   └── products.csv             # 692 products in CSV format
 │   │
-│   └── security/                    # 🔒 Securitate și filtrare
-│       ├── __init__.py
-│       └── filters.py               # Censură, anti-jailbreak (100%)
+│   └── helpers/                     # 🛠️ Utility modules
+│       ├── system_definitions.py    # System configuration
+│       ├── utils.py                 # Logging and utilities
+│       └── monitoring.py            # Performance monitoring
 │
-├── tests/                           # 🧪 Suite de teste
-│   ├── __init__.py
-│   ├── README.md                    # Documentație teste principale
-│   ├── test_imports.py              # Teste validare import-uri
-│   ├── test_agent.py                # Teste funcționalitate de bază
-│   ├── test_enhanced_agent.py       # Teste comprehensive (17 intenții)
-│   │
-│   ├── unit/                        # 🔬 Teste unitare
-│   │   ├── README.md                # Documentație teste unitare
-│   │   ├── test_basic.py            # Teste funcționalități de bază
-│   │   ├── test_bot_functionality.py # Teste funcționalități bot
-│   │   ├── test_product_search.py   # Teste căutare produse
-│   │   ├── test_budget_recommendations.py # Teste recomandări buget
-│   │   └── ... (12 alte teste unitare)
-│   │
-│   └── integration/                 # 🔄 Teste de integrare
-│       ├── README.md                # Documentație teste integrare
-│       ├── final_test.py            # Test complet sistem
-│       └── final_verification.py    # Verificare finală
+├── tests/                           # 🧪 Test files (current)
+│   ├── test_ai_engine.py
+│   ├── test_integration.py
+│   └── test_system_integration.py
 │
-├── demos/                           # 🎮 Demo și testare rapidă
-│   ├── README.md                    # Documentație demos
-│   ├── demo_bot.py                  # Demo principal bot
-│   ├── live_demo.py                 # Demo interactiv timp real
-│   ├── quick_test.py                # Testare rapidă funcționalități
-│   ├── quick_validation.py          # Validare rapidă componente
-│   └── interactive_test.py          # Test interactiv cu utilizator
+├── test_*.py                        # 🧪 Root test files (current)
+│   ├── test_complete_integration.py # ✅ MAIN INTEGRATION TEST
+│   ├── test_system_working.py       # ✅ SYSTEM STATUS TEST
+│   ├── test_price_filtering.py      # ✅ CHROMADB PRICE FILTERING TEST
+│   └── test_fixed_integration.py    # ✅ FIXED INTEGRATION TEST
 │
-├── .env                             # 🔑 Variabile de mediu
-├── .gitignore                       # 📝 Fișiere ignorate de Git
-├── README.md                        # 📖 Documentația proiectului
-├── CHANGELOG.md                     # 📋 Istoricul modificărilor
-├── LICENSE                          # ⚖️ Licența proiectului
-├── main.py                          # 🚀 Punct de intrare principal
-└── requirements.txt                 # 📦 Dependențe Python
+├── docker-compose.yml               # 🐳 Main deployment config
+├── deploy.sh / deploy.ps1           # 🚀 Deployment scripts
+├── .env.example                     # ⚙️ Environment template
+└── requirements.txt                 # 📦 Python dependencies
 ```
 
-## 🚀 **INSTALARE ȘI CONFIGURARE**
+### **🗂️ LEGACY FILES (Not Used in Current Implementation)**
 
-### **1. Clonare și Setup**
+These files are from older versions and are **NOT USED** in the current system:
+
+❌ **Deprecated Test Files:**
+- `test_enhanced_system.py` (old system test)
+- `test_final_system.py` (old final test)
+- `test_gemini_api.py` (API-only test)
+- `test_openai_api.py` (API-only test)
+- `test_new_gemini.py` (old Gemini test)
+- `test_system_end_to_end.py` (old e2e test)
+
+❌ **Legacy Folders:**
+- `chatbot-vladimir-products-agent/` (old implementation)
+- `chatbot-andrei-chromadb/` (old ChromaDB version)
+- `chatbot-main/` (old main version)
+
+### **✅ CURRENT FILES TO USE:**
+
+🟢 **Main Application:** `src/api/main.py` (FastAPI)
+🟢 **Current Tests:** `test_complete_integration.py`, `test_system_working.py`
+🟢 **Deployment:** `docker-compose.yml`, `deploy.sh`
+🟢 **Config:** `.env` (based on `.env.example`)
+
+## 💡 **TROUBLESHOOTING CURRENT IMPLEMENTATION**
+
+### **Common Issues & Solutions:**
+
+1. **ChromaDB Slow Loading:**
+   ```bash
+   # First run takes ~20s to download embedding model
+   # Subsequent runs are faster (~12s)
+   # Check: python test_price_filtering.py
+   ```
+
+2. **Missing Environment Variables:**
+   ```bash
+   # Copy and edit environment template
+   cp .env.example .env
+   # Add your API keys
+   ```
+
+3. **Price Filtering Issues:**
+   ```bash
+   # Test price filtering functionality
+   python test_price_filtering.py
+   # Check ChromaDB logs for errors
+   ```
+
+4. **Redis Connection Issues:**
+   ```bash
+   # System uses fallback mode if Redis unavailable
+   # Check: docker-compose logs redis
+   ```
+
+5. **Currency Display:**
+   ```bash
+   # System now uses MDL instead of RON
+   # Prices automatically converted in responses
+   ```
+
+## 🚀 **PRODUCTION DEPLOYMENT**
+
+### **Docker Compose (Recommended)**
 ```bash
-# Clonează repository-ul
-git clone https://github.com/Lucian-Adrian/flower-chat-agent.git
-cd xoflowers-agent
+# Quick production deployment
+./deploy.sh -e production --backup
 
-# Creează mediul virtual
-python -m venv venv
-venv\Scripts\activate  # Windows
-# source venv/bin/activate  # macOS/Linux
-
-# Instalează dependențele
-pip install -r requirements.txt
+# Or manually:
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 ```
 
-### **2. Configurare Environment**
-```bash
-# Copiază template-ul de mediu
-cp .env.example .env
-
-# Editează .env cu cheile tale API
-# OPENAI_API_KEY=your_openai_key
-# GEMINI_API_KEY=your_gemini_key
-# INSTAGRAM_ACCESS_TOKEN=your_instagram_token
-# TELEGRAM_BOT_TOKEN=your_telegram_token
-```
-
-### **3. Populare Bază de Date**
-```bash
-# Populează ChromaDB cu produsele
-python -m src.pipeline.populate_db
-
-# Verifică populația bazei de date
-python -c "import chromadb; client = chromadb.PersistentClient('./chroma_db_flowers'); print(f'Collections: {len(client.list_collections())}')"
-```
-
-## 🎮 **UTILIZARE - SISTEM LIVE**
-
-### **🟢 Telegram Bot LIVE**
-**Bot-ul Telegram este acum LIVE și funcționează complet!**
-
-```bash
-# Pornește botul Telegram (LIVE)
-cd xoflowers-agent
-python src/api/telegram_app.py
-
-# Sau folosește main.py
-python main.py --platform telegram
-```
-
-**Comenzi disponibile:**
-- `/start` - Salut și introducere XOFlowers
-- `/help` - Ghid complet de utilizare
-- `/menu` - Meniu interactiv principal
-- `/catalog` - Catalogul de flori
-- `/contact` - Informații contact
-- `/orders` - Status comenzi
-- `/subscribe` - Abonare newsletter
-- `/feedback` - Trimite feedback
-
-### **🔄 Instagram Bot (În testare)**
-```bash
-# Pornește botul Instagram (testare finală)
-python main.py --platform instagram --port 5001
-```
-
-### **🛠️ Mod Debug și Testare**
-```bash
-# Mod debug pentru dezvoltare
-python main.py --platform telegram --debug
-
-# Testare rapidă intent classifier
-python -c "
-from src.intelligence.intent_classifier import IntentClassifier
-ic = IntentClassifier()
-print(ic.classify_intent('Vreau un buchet frumos pentru soția mea'))
-"
-```
-
-## 🧪 **TESTARE**
-
-### **🎮 Demo Rapid**
-```bash
-# Demo principal interactiv
-python demos/demo_bot.py
-
-# Demo timp real
-python demos/live_demo.py
-
-# Testare rapidă funcționalități
-python demos/quick_test.py
-```
-
-### **📊 Structura Organizată**
-Proiectul este acum complet organizat în:
-- **`/demos`** - Demo-uri și testare rapidă pentru dezvoltatori
-- **`/tests/unit`** - Teste unitare pentru componente individuale  
-- **`/tests/integration`** - Teste de integrare pentru sistemul complet
-- **`/docs/summaries`** - Documentație și rapoarte detaliate
-- **`/data`** - Date de conversații, profile utilizatori și cataloage
-
-### **🧪 Testare Webhook Instagram**
-```bash
-# Testează verificarea webhook-ului
-curl -X GET "http://localhost:5001/webhook?hub.mode=subscribe&hub.verify_token=xoflowers_webhook_secret_2024&hub.challenge=test"
-
-# Răspuns așteptat: test
-```
-
-### **🏥 Testare Endpoint Sănătate**
-```bash
-curl http://localhost:5001/health
-# Răspuns: {"status": "healthy", "service": "XOFlowers Instagram Bot"}
-```
-
-### **🔬 Testare Clasificare Intenții (17 Tipuri)**
-```bash
-# Testare intenții principale
-python -c "
-from src.intelligence.intent_classifier import IntentClassifier
-ic = IntentClassifier()
-
-# Testare diverse tipuri de intenții
-test_messages = [
-    'Vreau să cumpăr flori pentru soția mea',      # find_product
-    'Care sunt orele de lucru?',                    # ask_question
-    'Vreau să mă abonez la newsletter',            # subscribe
-    'Vreau să plătesc pentru comanda mea',          # pay_for_product
-    'Bună ziua!',                                   # greeting
-    'Unde este comanda mea?',                       # order_status
-    'Am o problemă cu florile',                     # complaint
-    'Ce îmi recomandați?',                          # recommendation
-    'Aveți trandafiri roșii?',                      # availability
-    'Cât costă livrarea?',                          # delivery_info
-    'Vreau să anulez comanda',                      # cancel_order
-    'Cât costă acest buchet?',                      # price_inquiry
-    'Aveți oferte speciale?',                       # seasonal_offers
-    'Ce cadou recomandați pentru mama?',            # gift_suggestions
-    'Cum să îngrijesc florile?',                    # care_instructions
-    'Vreau să comand pentru eveniment',             # bulk_orders
-    'Mulțumesc, la revedere!'                       # farewell
-]
-
-for msg in test_messages:
-    intent, confidence = ic.classify_intent(msg)
-    print(f'{msg:<35} → {intent:<20} ({confidence:.2f})')
-"
-```
-
-### **🔄 Testare Completă Sistem**
-```bash
-# Test complet integrare
-python tests/integration/final_test.py
-
-# Verificare finală sistem
-python tests/integration/final_verification.py
-```
-
-### **🔬 Testare Unitară**
-```bash
-# Teste unitare specifice
-python tests/unit/test_basic.py
-python tests/unit/test_product_search.py
-python tests/unit/test_bot_functionality.py
-
-# Toate testele unitare
-pytest tests/unit/ -v
-```
-
-## 🔧 **CONFIGURARE AVANSATĂ**
-
-### **Setări AI (config/settings.py)**
-```python
-AI_MODEL = {
-    'primary': 'openai',        # Serviciu AI primar
-    'fallback': 'gemini',       # Serviciu AI de rezervă
-    'temperature': 0.7,         # Creativitatea răspunsurilor
-    'max_tokens': 1000          # Lungimea maximă răspuns
-}
-```
-
-### **Configurare Securitate**
-```python
-SECURITY = {
-    'enable_censorship': True,          # Activează filtrarea conținutului
-    'enable_jailbreak_protection': True, # Protecție anti-manipulare
-    'rate_limiting': {
-        'max_requests_per_minute': 10,  # Limite pe minut
-        'max_requests_per_hour': 100    # Limite pe oră
-    }
-}
-```
-
-### **Configurare Căutare Produse**
-```python
-DATABASE = {
-    'chromadb_path': './chroma_db_flowers',
-    'embedding_model': 'all-MiniLM-L6-v2',
-    'collections': {
-        'bouquets': 'bouquets_collection',
-        'boxes': 'boxes_collection',
-        'compositions': 'compositions_collection',
-        'plants': 'plants_collection',
-        'gifts': 'gifts_collection'
-    }
-}
-```
-
-## 🎯 **EXEMPLE DE UTILIZARE**
-
-### **🔍 Căutare Produse (find_product)**
-```
-User: "Vreau un buchet pentru soția mea"
-Bot: "🌸 Am găsit aceste buchete perfecte pentru soția dumneavoastră:
-
-🌸 **Buchet Romantic Supreme**
-💰 750 MDL
-📝 Buchet elegant cu 25 trandafiri roșii și baby breath
-
-🌸 **Buchet Passion**
-💰 600 MDL  
-📝 Combinație frumoasă de trandafiri și bujori roz"
-```
-
-### **❓ Întrebări Business (ask_question)**
-```
-User: "Care sunt orele de lucru?"
-Bot: "🕒 Orele noastre de lucru:
-• Luni-Duminică: 09:00 - 21:00
-• Suntem disponibili în fiecare zi pentru a vă servi!"
-```
-
-### **📦 Status Comandă (order_status)**
-```
-User: "Unde este comanda mea?"
-Bot: "📦 Comanda #1234 este în procesare:
-• Status: Pregătire în curs
-• Livrare estimată: Astăzi 15:30
-• Curier: Ion Popescu (+373 69 123 456)"
-```
-
-### **💡 Recomandări (recommendation)**
-```
-User: "Ce îmi recomandați pentru o aniversare?"
-Bot: "🎉 Pentru aniversări, recomand:
-
-🌹 **Buchet Elegance** - Clasic și rafinat
-🎁 **Cutie Premium** - Cu ciocolată și flori
-🌸 **Coș Festiv** - Combinație perfectă"
-```
-
-### **🚚 Informații Livrare (delivery_info)**
-```
-User: "Cât costă livrarea?"
-Bot: "🚚 Informații livrare:
-• În Chișinău: 50 MDL (GRATUIT peste 500 MDL)
-• Suburbii: 80 MDL
-• Livrare urgentă: +30 MDL
-• Program: 09:00 - 20:00"
-```
-
-### **💳 Procesare Plată (pay_for_product)**
-```
-User: "Vreau să plătesc pentru buchețul acela"
-Bot: "💳 Plata a fost procesată cu succes! 🎉
-
-Comanda dumneavoastră a fost confirmată.
-Vă vom contacta în curând pentru finalizarea livrării.
-
-Mulțumim că ați ales XOFlowers! 🌺"
-```
-
-## 📊 **PERFORMANȚĂ LIVE**
-
-### **🎯 Metrici Producție Actuală**
-```
-🌸 XOFlowers AI Agent - LIVE METRICS (Iulie 2025):
-├── � AI Intent Recognition: 17 tipuri cu 95%+ acuratețe
-├── 📱 Telegram Bot: 100% operațional cu toate comenzile
-├── 📸 Instagram Bot: 90% complet (testare finală webhook)
-├── 💬 Context System: Conversații multi-turn cu memorie persistentă
-├── 🔒 Security Layer: Rate limiting + filtrare conținut + anti-jailbreak
-├── ⚡ Response Time: <3 secunde mediu (optimizat)
-├── 🗄️ Database: ChromaDB vector search cu 5 colecții
-├── 🎯 Brand Voice: Experiență premium XOFlowers consistentă
-└── 🌐 Platform Status: Telegram LIVE, Instagram în testare finală
-```
-
-### **📈 Capabilități Avansate**
-- **Conversații Inteligente**: AI-powered cu memorie contextuală
-- **Căutare Semantică**: Vector search cu similaritate avansată
-- **Personalizare**: Răspunsuri adaptate preferințelor utilizatorului
-- **Robusteță**: Fallback mechanisms pentru fiabilitate maximă
-
-### **🔧 Arhitectură Scalabilă**
-- **Timp de răspuns**: < 3 secunde mediu
-- **Disponibilitate**: 99%+ uptime reliability
-- **Capacitate**: 100+ utilizatori concurenți
-- **Scalabilitate**: Arhitectură modulară pentru extindere
-
-## 🔮 **ROADMAP ACTUALIZAT - IULIE 2025**
-
-### **🎉 REALIZAT - SISTEM LIVE** ✅
-- [x] **Sistem AI Complet** - Intent classification cu 17 tipuri
-- [x] **Context Conversațional** - Memorie și personalizare
-- [x] **Telegram Bot LIVE** - Complet funcțional în producție
-- [x] **Brand Voice Premium** - Experiență XOFlowers elegantă
-- [x] **Securitate Avansată** - Protecție și rate limiting
-- [x] **ChromaDB Integration** - Vector search optimizat
-
-### **🔄 În Finalizare** 📋
-- [ ] **Instagram Bot Testing** - Testare finală webhook
-- [ ] **Performance Monitoring** - Analytics și optimizare
-- [ ] **Documentation Complete** - Ghiduri utilizator finale
-- [ ] **User Feedback Integration** - Colectare și procesare feedback
-
-### **🚀 Următoarea Fază** 
-- [ ] **Suport multilingv extins** (RO/EN/RU)
-- [ ] **Integrare procesare plăți reale**
-- [ ] **Dashboard analytics** complet
-- [ ] **Recunoaștere imagini** produse
-- [ ] **Procesare mesaje vocale**
-
-### **🌟 Viitor Extins**
-- [ ] **Arhitectură microservicii**
-- [ ] **Scalare automată**
-- [ ] **Machine learning personalizat**
-- [ ] **Integrare platforme multiple**
-- [ ] **Mobile app integration**
-
-## 🛠️ **DEZVOLTARE**
-
-### **Contribuție**
-1. Fork repository-ul
-2. Creează branch pentru feature (`git checkout -b feature/AmazingFeature`)
-3. Commit schimbările (`git commit -m 'Add AmazingFeature'`)
-4. Push la branch (`git push origin feature/AmazingFeature`)
-5. Deschide Pull Request
-
-### **Rulare Teste**
-```bash
-# 🎮 Demo și testare rapidă
-python demos/demo_bot.py                    # Demo principal
-python demos/quick_test.py                  # Testare rapidă
-python demos/interactive_test.py            # Test interactiv
-
-# 🔬 Teste unitare (componente individuale)
-python tests/unit/test_basic.py             # Teste de bază
-python tests/unit/test_product_search.py    # Teste căutare produse
-python tests/unit/test_bot_functionality.py # Teste funcționalități bot
-pytest tests/unit/ -v                       # Toate testele unitare
-
-# 🔄 Teste integrare (sistem complet)
-python tests/integration/final_test.py      # Test complet sistem
-python tests/integration/final_verification.py # Verificare finală
-
-# 🧪 Teste principale (backwards compatibility)
-python tests/test_enhanced_agent.py         # Teste comprehensive (17 intenții)
-python tests/test_imports.py                # Teste validare import-uri
-python tests/test_agent.py                  # Teste funcționalitate de bază
-
-# 📊 Toate testele cu pytest (recomandat)
-pip install pytest
-pytest tests/ -v                            # Toate testele
-pytest tests/unit/ -v                       # Doar teste unitare
-pytest tests/integration/ -v                # Doar teste integrare
-
-# 🔧 Verificare stil cod
-flake8 src/
-black src/
-```
-
-## 📞 **SUPORT**
-
-### **Documentație**
-- [Arhitectura Sistemului](docs/architecture.md)
-- [Ghid Setup API](docs/api_setup_guide.md)
-- [Exemplu
+### **Health Monitoring**
+- **System Health:** `http://localhost:8000/health`
+- **ChromaDB Status:** `http://localhost:8000/chromadb/stats`
+- **Redis Status:** `http://localhost:8000/redis/stats`
+- **Prometheus Metrics:** `http://localhost:9090`
+- **Grafana Dashboard:** `http://localhost:3000`

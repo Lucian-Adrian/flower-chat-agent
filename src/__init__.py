@@ -3,10 +3,13 @@ XOFlowers AI Agent - Main Source Package
 Instagram AI Agent for XOFlowers built with ChromaDB + LLMs
 """
 
-from .api import TelegramApp, InstagramApp
-from .intelligence import NaturalIntentClassifier, NaturalConversationHandler, NaturalProductSearch
-from .pipeline import XOFlowersScraper, ChromaDBPopulator
-from .security import SecurityFilter
-
 __version__ = "2.0.0"
-__all__ = ['TelegramApp', 'InstagramApp', 'NaturalIntentClassifier', 'NaturalConversationHandler', 'NaturalProductSearch', 'XOFlowersScraper', 'ChromaDBPopulator', 'SecurityFilter']
+
+# Import classes only when explicitly requested to avoid circular imports
+def get_telegram_app():
+    from .api.telegram_integration import TelegramApp
+    return TelegramApp
+
+def get_instagram_app():
+    from .api.instagram_integration import InstagramApp
+    return InstagramApp

@@ -18,8 +18,9 @@ import requests
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 try:
-    from intelligence.conversation_manager import get_conversation_manager
-    from security.filters import SecurityFilter
+    from intelligence.intent_classifier import classify_intent
+    from intelligence.llm_client import call_llm
+    from security.filters import validate_message_security
     print("All modules imported successfully")
 except ImportError as e:
     print(f"Error importing modules: {e}")
@@ -46,8 +47,7 @@ class XOFlowersInstagramBot:
         if not all([self.access_token, self.verify_token, self.app_secret]):
             raise ValueError("Missing required Instagram environment variables.")
 
-        self.conversation_manager = get_conversation_manager()
-        self.security_filter = SecurityFilter()
+        # Using modular approach - no centralized manager needed
         self.app = Flask(__name__)
         self._setup_routes()
 
@@ -100,21 +100,42 @@ class XOFlowersInstagramBot:
             user_message = message_data['text']
             logger.info(f"Message from {sender_id}: {user_message}")
 
-            if not self.security_filter.is_safe_message(user_message):
-                self._send_message(sender_id, "Vă rog să păstrăm o conversație politicoasă.")
-                return
-
             try:
-                # This is an async function, but Flask routes are sync.
-                # For a production app, consider using an async framework like FastAPI
-                # or running the async code in a separate event loop.
-                # For simplicity here, we'll call it directly.
-                import asyncio
-                response = asyncio.run(self.conversation_manager.handle_message(sender_id, user_message))
+                # Step 1: Security validation using modular approach
+                message_security_data = {
+                    "user_id": sender_id,
+                    "message_text": user_message,
+                    "platform": "instagram"
+                }
+                security_result = validate_message_security(message_security_data)
+                
+                if not security_result['is_allowed']:
+                    self._send_message(sender_id, "Vă rog să păstrăm o conversație politicoasă.")
+                    return
+
+                # Step 2: Intent classification
+                intent_result = classify_intent(user_message)
+                
+                # Step 3: Generate response based on intent
+                if intent_result['intent_type'] == 'greeting':
+                    response = "🌸 Bună ziua! Bine ați venit la XOFlowers! Cu ce vă pot ajuta astăzi?"
+                elif intent_result['intent_type'] == 'product_search':
+                    response = "🌸 Înțeleg că căutați flori! Permiteți-mi să vă ajut să găsesc ceva frumos pentru dumneavoastră."
+                elif intent_result['intent_type'] == 'question':
+                    response = "🌸 Cu plăcere vă răspund la întrebare! Suntem XOFlowers din Chișinău și oferim cele mai frumoase flori."
+                else:
+                    # Use LLM for complex responses
+                    llm_result = call_llm(f"Generate a helpful response for XOFlowers customer who said: {user_message}")
+                    if llm_result['success']:
+                        response = llm_result['response']
+                    else:
+                        response = "🌸 Îmi pare rău, am întâmpinat o problemă tehnică. Cu ce vă pot ajuta?"
+                
                 self._send_message(sender_id, response)
-                logger.info(f"Response sent to {sender_id}")
+                logger.info(f"Response sent to {sender_id} - Intent: {intent_result['intent_type']}")
+                
             except Exception as e:
-                logger.error(f"Error processing message with ConversationManager: {e}")
+                logger.error(f"Error processing message with modular approach: {e}")
                 self._send_message(sender_id, "Ne pare rău, am întâmpinat o eroare.")
 
         elif 'attachments' in message_data:

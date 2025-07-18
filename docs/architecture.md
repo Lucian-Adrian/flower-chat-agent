@@ -1,598 +1,405 @@
-# 🏗️ Arhitectura Sistemului XOFlowers AI Agent
+# XOFlowers AI Agent - System Architecture
 
-## 📋 **VIZIUNEA SISTEMULUI**
+## Overview
 
-XOFlowers AI Agent este un **agent conversațional natural** construit pentru a conduce conversații personalizate cu clienții florăriei XOFlowers din Chișinău, Moldova. Agentul funcționează ca un consultant floral expert care are acces la funcții de căutare în baza de date (MCP-style) pentru a oferi recomandări relevante fără a utiliza template-uri predefinite.
+The XOFlowers AI Agent is a sophisticated conversational AI system designed to provide intelligent customer support for the XOFlowers flower shop. The system integrates multiple AI services (Gemini 2.5 Flash primary, OpenAI fallback) with vector-based product search capabilities using ChromaDB, providing product-aware responses through Telegram and Instagram bots.
 
-## 🤖 **PRINCIPIILE AGENTULUI NATURAL**
+## Architecture Principles
 
-### **1. Conversații Naturale, Nu Template-uri**
-- Fiecare răspuns este generat natural de AI
-- Nu există template-uri sau răspunsuri predefinite
-- Agentul se adaptează la stilul și contextul conversației
-- Personalizarea completă pe baza interacțiunilor
+- **AI-First Design**: Gemini 2.5 Flash as primary AI engine with OpenAI as fallback
+- **Product-Aware Responses**: ChromaDB integration for intelligent product search and recommendations
+- **Security-First**: AI-powered security validation for all incoming messages
+- **Fallback Resilience**: Multiple fallback layers ensure system availability
+- **Performance Monitoring**: Comprehensive logging and performance tracking
+- **Modular Design**: Clean separation of concerns with clear interfaces
 
-### **2. Acces la Baza de Date (MCP-Style)**
-- Agentul are acces la funcții de căutare în timp real
-- Poate apela funcții specializate pentru căutare produse
-- Integrarea informațiilor în conversația naturală
-- Căutare semantică și filtrare inteligentă
-
-### **3. Guard Rails Robuste**
-- Focusul pe rolul de consultant floral XOFlowers
-- Protecție împotriva manipulării fără a afecta naturalețea
-- Menținerea tonului profesional și prietenos
-- Securitate avansată cu răspunsuri politicoase
-
-## 🏗️ **ARHITECTURA GENERALĂ**
+## High-Level Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────────┐
-│                           UTILIZATORII FINALI                                    │
-├─────────────────────────────────────────────────────────────────────────────────┤
-│  📱 Instagram DM          📱 Telegram Chat          🌐 Website Chat             │
-│  (Meta Graph API)        (Telegram Bot API)        (Viitor)                     │
-└─────────────────┬─────────────────────┬─────────────────────┬─────────────────────┘
-                  │                     │                     │
-                  ▼                     ▼                     ▼
-┌─────────────────────────────────────────────────────────────────────────────────┐
-│                            STRATUL API                                           │
-├─────────────────────────────────────────────────────────────────────────────────┤
-│  📸 instagram_app.py      📱 telegram_app.py       🚀 main.py                   │
-│  • Webhook Flask (90%)    • Polling Telegram (100%)• Punct intrare (100%)      │
-│  • Validare mesaje       • Procesare update-uri    • Selecție platformă        │
-│  • Răspunsuri Instagram  • Răspunsuri Telegram     • Configurare sistem        │
-└─────────────────┬─────────────────────┬─────────────────────┬─────────────────────┘
-                  │                     │                     │
-                  └─────────────────────┼─────────────────────┘
-                                        ▼
-┌─────────────────────────────────────────────────────────────────────────────────┐
-│                           STRATUL SECURITATE                                     │
-├─────────────────────────────────────────────────────────────────────────────────┤
-│  🔒 filters.py (100%)                                                           │
-│  • Filtrare conținut ofensator     • Protecție anti-jailbreak                  │
-│  • Rate limiting per utilizator    • Validare mesaje                           │
-│  • Detecție tentative manipulare   • Logging încercări suspecte                │
-└─────────────────────────────────────┬───────────────────────────────────────────┘
-                                      ▼
-┌─────────────────────────────────────────────────────────────────────────────────┐
-│                        STRATUL INTELIGENȚĂ                                       │
-├─────────────────────────────────────────────────────────────────────────────────┤
-│  🧠 intent_classifier.py   🔍 product_search.py     ⚡ action_handler.py       │
-│  • Clasificare intenții(100%)• Căutare vectorială(95%)• Execuție acțiuni(100%)│
-│  • Integrare AI models     • Similaritate semantică • Logică business          │
-│  • Scoring încredere      • Rezultate relevante     • Generare răspunsuri      │
-│  • 17 tipuri intenții     • ChromaDB integration    • Context-aware responses  │
-│                                                                                 │
-│  🎯 prompts.py (100%) - Template-uri și prompt-uri pentru toate interacțiunile │
-│  💬 conversation_context.py (100%) - Gestionare conversații și context         │
-└─────────────┬─────────────────────┬─────────────────────┬─────────────────────────┘
-              │                     │                     │
-              ▼                     ▼                     ▼
-┌─────────────────────────────────────────────────────────────────────────────────┐
-│                         STRATUL BAZĂ DE DATE                                     │
-├─────────────────────────────────────────────────────────────────────────────────┤
-│  🗄️ database/manager.py (NEW)     📊 ChromaDB Vector Database                  │
-│  • Database management layer      • Vector embeddings storage                   │
-│  • Connection pooling             • Similarity search optimization              │
-│  • Query optimization             • 5 specialized collections                   │
-│  • Backup and recovery           • Real-time data sync                         │
-└─────────────────────────────────────┬───────────────────────────────────────────┘
-                                      ▼
-              ▼                     ▼                     ▼
-┌─────────────────────────────────────────────────────────────────────────────────┐
-│                         STRATUL BAZE DE DATE                                     │
-├─────────────────────────────────────────────────────────────────────────────────┤
-│  💾 database/manager.py (100%) - Gestionare ChromaDB și operații vectoriale    │
-│  📊 ChromaDB Collections:                                                       │
-│     • bouquets_collection      • boxes_collection     • plants_collection      │
-│     • compositions_collection  • gifts_collection                              │
-└─────────────────────────────────────────────────────────────────────────────────┘
-┌─────────────────────────────────────────────────────────────────────────────────┐
-│                         DATE ȘI CONFIGURARE                                      │
-├─────────────────────────────────────────────────────────────────────────────────┤
-│  📊 ChromaDB              📋 settings.py           📄 faq_data.json             │
-│  • Bază date vectorială   • Configurări sistem     • Întrebări frecvente       │
-│  • Embeddings produse     • Setări AI models       • Informații business       │
-│  • Căutare similaritate   • Parametri bază date    • Răspunsuri rapide         │
-│                                                                                 │
-│  📦 products.json         🔧 populate_db.py        📡 scraper.py               │
-│  • Catalog produse        • Populare bază date     • Colectare date web        │
-│  • Date structurate       • Procesare embeddings   • Actualizare automată      │
-└─────────────────────────────────────────────────────────────────────────────────┘
+┌─────────────────┐    ┌─────────────────┐
+│   Telegram Bot  │    │  Instagram Bot  │
+└─────────┬───────┘    └─────────┬───────┘
+          │                      │
+          └──────────┬───────────┘
+                     │
+            ┌────────▼────────┐
+            │   AI Engine     │
+            │  (Orchestrator) │
+            └────────┬────────┘
+                     │
+     ┌───────────────┼───────────────┐
+     │               │               │
+┌────▼────┐  ┌──────▼──────┐  ┌─────▼─────┐
+│ Gemini  │  │   ChromaDB  │  │ Security  │
+│2.5 Flash│  │  Products   │  │    AI     │
+└─────────┘  └─────────────┘  └───────────┘
+     │
+┌────▼────┐
+│ OpenAI  │
+│Fallback │
+└─────────┘
 ```
 
-## 🔄 **FLUXUL PROCESĂRII MESAJELOR**
+## Core Components
 
-### **1. Recepția Mesajului** 📨
+### 1. Entry Points
+
+#### src/api/telegram_app.py
+- **Purpose**: Telegram Bot interface using python-telegram-bot
+- **Features**: 
+  - Enhanced message handling with product URL buttons
+  - Inline keyboard markup for product recommendations
+  - Error handling and logging
+  - Integration with AI Engine
+- **Key Classes**: `XOFlowersTelegramBot`
+- **Dependencies**: AI Engine, System Definitions, Utils
+
+#### src/api/main.py  
+- **Purpose**: FastAPI web interface for API access
+- **Features**:
+  - RESTful endpoints for message processing
+  - Pydantic validation for requests/responses
+  - CORS middleware for web access
+  - Background task processing
+- **Key Classes**: `MessageRequest`, `MessageResponse`
+- **Dependencies**: AI Engine, Telegram/Instagram routers
+
+### 2. Intelligence Layer
+
+#### src/intelligence/ai_engine.py
+- **Purpose**: Main AI processing orchestrator
+- **Features**:
+  - Primary Gemini 2.5 Flash integration
+  - OpenAI fallback system
+  - Intent analysis and classification
+  - Product search integration
+  - Response caching and optimization
+  - Performance monitoring
+- **Key Classes**: `AIEngine`, `AIResponse`
+- **Flow**: Security Check → Intent Analysis → Product Search → Response Generation
+
+#### src/intelligence/security_ai.py
+- **Purpose**: AI-powered message security validation
+- **Features**:
+  - Multi-layered security analysis
+  - Risk assessment and classification
+  - Automated response generation for threats
+  - Both Gemini and OpenAI validation
+- **Key Classes**: `SecurityAI`, `SecurityResult`
+- **Integration**: Called by AI Engine before processing
+
+#### src/intelligence/gemini_chat_manager.py
+- **Purpose**: Gemini-specific chat session management
+- **Features**:
+  - Persistent chat sessions per user
+  - Context management and memory
+  - Enhanced conversational capabilities
+  - Session cleanup and optimization
+- **Key Classes**: `GeminiChatManager`, `GeminiChatSession`
+
+### 3. Data Layer
+
+#### src/data/chromadb_client.py
+- **Purpose**: Vector database for product search
+- **Features**:
+  - Automatic CSV product loading (724 products)
+  - Semantic product search with relevance scoring
+  - Price filtering and category support
+  - Fallback to CSV when ChromaDB unavailable
+- **Key Methods**: `search_products()`, `search_with_price_filter()`
+- **Data Source**: `src/database/products.csv` (724 products)
+
+#### src/database/products.csv
+- **Purpose**: Complete product database
+- **Structure**: 
+  - 724 products across multiple categories
+  - Fields: chunk_id, primary_text, category, price, flower_type, url, etc.
+  - Categories: Chando (aromă diffusers), Peonies, French Roses, Basket/Boxes
+- **URL Integration**: Direct product links for Telegram buttons
+
+### 4. Configuration & Utilities
+
+#### src/utils/system_definitions.py
+- **Purpose**: Centralized configuration management
+- **Contents**:
+  - Service configurations (API keys, endpoints)
+  - AI prompts and templates
+  - Business information and policies
+  - Security and performance settings
+
+#### src/utils/utils.py
+- **Purpose**: Shared utilities and monitoring
+- **Features**:
+  - Logging setup and standardization
+  - Performance monitoring and metrics
+  - Request ID generation
+  - Cache management utilities
+
+### 5. Platform Integrations
+
+#### src/api/telegram_integration.py
+- **Purpose**: Telegram-specific routing and handling
+- **Features**: Webhook management, message routing
+
+#### src/api/instagram_integration.py
+- **Purpose**: Instagram-specific integration
+- **Features**: Meta webhook handling, message processing
+
+## Data Flow
+
+### 1. Message Processing Flow
+
 ```
-Utilizator → Platformă (Instagram/Telegram) → API Layer → Extragere conținut
-*Debug mode = arata continutul extras*
-```
-
-### **2. Validarea Securității** 🔒
-```
-Security Layer:
-├── Verificare rate limiting (10 msg/min, 100 msg/h)
-├── Scanare conținut ofensator
-├── Detecție tentative jailbreak
-└── Decizie: ALLOW/BLOCK cu răspuns corespunzător
-*Debug mode = arata decizia de securitate si criteriile de filtrare verificate*
-```
-
-### **3. Clasificarea Intenției** 🧠
-```
-Intent Classification:
-├── Încărcare prompt pentru clasificare
-├── Apel API AI (OpenAI → Gemini fallback)
-├── Analiză text și context
-├── Returnare intenție clasificată
-└── Calculare scor de încredere
-*Debug mode = arata prompt-ul folosit si intentia clasificata, scor de incredere*
-```
-
-### **4. Procesarea Acțiunii** ⚡
-```
-Action Handler:
-├── Rutare către handler specific pentru intenție
-├── Aplicare logică business XOFlowers
-├── Generare răspuns contextualizat
-└── Formatare finală pentru platformă
-*Debug mode = arata actiunea executata si datele de intrare/iesire*
-```
-
-### **5. Căutarea Produselor** 🔍 (pentru find_product)
-```
-Product Search Engine:
-├── Extragere query din mesaj
-├── Generare embedding pentru query
-├── Căutare vectorială în ChromaDB:
-│   ├── Similaritate cosinus în colecții
-│   ├── Filtrare pe categorii (dacă specificat)
-│   └── Ranking după relevanță
-├── Formatare rezultate (top 3-5 produse)
-└── Generare răspuns cu recomandări
-*Debug mode = arata query-ul, embedding-ul generat si rezultatele cautarii*
-```
-
-### **6. Livrarea Răspunsului** 📤
-```
-Response Delivery:
-├── Formatare specifică platformei
-├── Trimitere prin API (Instagram Graph / Telegram Bot)
-├── Logging și monitorizare
-└── Tracking timp de răspuns
-*Debug mode = arata mesajul final trimis si timpul de raspuns, timpul fiecarei parti*
-```
-
-## 🎯 **COMPONENTELE CHEIE**
-
-### **Stratul API** 🔌
-**Responsabilități:**
-- Gestionarea conexiunilor cu platformele externe
-- Validarea webhook-urilor și autentificarea
-- Procesarea mesajelor primite și trimiterea răspunsurilor
-- Gestionarea erorilor de rețea și retry logic
-
-**Fișiere principale:**
-- `instagram_app.py` - Flask app pentru webhook Instagram
-- `telegram_app.py` - Bot Telegram cu polling
-- `main.py` - Punct de intrare și orchestrare
-
-### **Stratul Inteligență** 🧠
-**Responsabilități:**
-- Clasificarea intențiilor folosind doar AI
-- Căutare vectorială pentru produse
-- Aplicarea logicii business
-- Generarea răspunsurilor contextuale, personalizate și relevante, care tin cont de mesajul utilizatorului
-
-**Fișiere principale:**
-- `intent_classifier.py` - Clasificare AI a intențiilor
-- `product_search.py` - Motor căutare vectorială
-- `action_handler.py` - Logică business și acțiuni
-- `prompts.py` - Template-uri pentru AI
-- `conversation_context.py` - Gestionare context conversațional, loggin și urmărirea interacțiunilor in json contexts.json si profiles.json
-
-### **Stratul Securitate** 🔒
-**Responsabilități:**
-- Filtrarea conținutului neadecvat
-- Protecția împotriva manipulării
-- Rate limiting pentru abuz
-- Logging încercări suspecte
-
-**Fișiere principale:**
-- `filters.py` - Toate filtrele de securitate
-
-### **Stratul Date** 📊
-**Responsabilități:**
-- Stocarea și indexarea produselor
-- Configurarea sistemului
-- Informații business și FAQ
-- Pipeline-ul de procesare date
-
-### **Stratul Bază de Date Vectorială** 🗄️
-**Responsabilități:**
-- Stocarea embeddings pentru produse
-- Căutare semantică/vectorială rapidă
-- Gestionarea colecțiilor de produse
-- Backup și recuperare date
-
-**Fișiere principale:**
-- `chroma_db.py` - fisierul chromadb, baza de date vectoriala
-- `manager.py` - Gestionare ChromaDB și operații vectoriale
-- `products.json` - Catalog produse
-- `populate_db.py` - Script de populare bază de date
-
-**Fișiere principale:**
-- `settings.py` - Configurări globale
-- `faq_data.json` - Informații business
-- `products.csv` - Catalog produse
-- `populate_db.py` - Populare bază date
-- `scraper.py` - Colectare date web
-
-## 🤖 **INTEGRAREA AI**
-
-### **Servicii AI Utilizate**
-```
-Primary AI Service: OpenAI GPT-3.5-turbo
-├── Clasificare intenții cu acuratețe ridicată
-├── Înțelegere context conversațional
-├── Generare răspunsuri naturale
-└── Fallback la Gemini în caz de indisponibilitate
-
-Fallback AI Service: Google Gemini Pro
-├── Backup pentru continuitatea serviciului
-├── Procesare alternativă intenții
-└── Menținerea calității răspunsurilor
-
-Embedding Model: sentence-transformers/all-MiniLM-L6-v2
-├── Generare embeddings pentru produse
-├── Căutare vectorială eficientă
-└── Rezultate relevante pentru query-uri si rapide, teste ce verifica acuratetea si viteza
-```
-
-### **Prompt Engineering**
-```
-Template-uri specializate pentru:
-├── Clasificarea intențiilor
-├── Exemplu de răspunsuri pentru fiecare tip de intenție
-├── Formatarea recomandărilor de produse
-├── Gestionarea situațiilor de fallback
-└── Personalizarea pentru cultura moldovenească
+User Message (Telegram/Instagram)
+        │
+        ▼
+┌─────────────────┐
+│ Platform Router │
+│ (telegram_app)  │
+└─────────┬───────┘
+          │
+          ▼
+┌─────────────────┐
+│  Security AI    │
+│ Message Validation │
+└─────────┬───────┘
+          │ ✓ Safe
+          ▼
+┌─────────────────┐
+│   AI Engine     │
+│  (Orchestrator) │
+└─────────┬───────┘
+          │
+          ▼
+┌─────────────────┐
+│ Intent Analysis │
+│ (Gemini/OpenAI) │
+└─────────┬───────┘
+          │
+          ▼
+┌─────────────────┐
+│ Product Search  │
+│   (ChromaDB)    │
+└─────────┬───────┘
+          │
+          ▼
+┌─────────────────┐
+│Response Generator│
+│ (Enhanced Gemini)│
+└─────────┬───────┘
+          │
+          ▼
+┌─────────────────┐
+│ Platform Response│
+│ (with buttons)  │
+└─────────────────┘
 ```
 
-## 📊 **BAZA DE DATE VECTORIALĂ**
+### 2. Product Search Integration
 
-### **Structura ChromaDB**
 ```
-chroma_db_flowers/
-├── bouquets_collection      # Buchete și aranjamente florale
-├── boxes_collection         # Cutii cadou și composiții
-├── compositions_collection  # Aranjamente speciale
-├── plants_collection        # Plante de interior și exterior
-└── gifts_collection         # Cadouri și accesorii
-```
-
-### **Strategia Embeddings**
-```
-Pentru fiecare produs:
-├── Text combinat: nume + descriere + categoria
-├── Embedding 384-dimensional (all-MiniLM-L6-v2)
-├── Metadata: preț, categoria, disponibilitate
-└── ID unic pentru referință rapidă
-```
-
-### **Căutarea Semantică**
-```
-Proces căutare:
-├── Query utilizator → Embedding query
-├── Căutare similaritate cosinus în colecții
-├── Filtrare după parametri (preț, categorie)
-├── Ranking după scor relevanță
-└── Returnare top N rezultate
-```
-
-## 🔒 **SECURITATEA SISTEMULUI**
-
-### **Măsuri de Protecție**
-```
-1. Rate Limiting:
-   ├── Maxim 10 mesaje/minut per utilizator
-   ├── Maxim 100 mesaje/oră per utilizator
-   └── Blocare temporară pentru abuz
-
-2. Content Filtering:
-   ├── Lista neagră keywords ofensive conform listelor populare utilizate deja, google etc.
-   ├── Filtrare regex pentru conținut inadecvat
-   ├── Pattern matching pentru conținut neadecvat
-   │   └── Prompturi bine facute pentru a evita jailbreak-uri
-   └── Răspunsuri politicoase pentru refuz si continuare conversație
-
-3. Jailbreak Protection:
-   ├── Detecție tentative "ignore instructions"
-   ├── Filtrare comenzi de manipulare sistem
-   └── Menținerea focusului pe business XOFlowers
-
-4. Data Protection:
-   ├── Anonimizarea conversațiilor în logs
-   ├── Criptarea informațiilor sensibile
-   └── Conformitate cu GDPR
+User Query: "roses under 1000 lei"
+        │
+        ▼
+┌─────────────────┐
+│ Intent Analysis │ → intent: "product_search"
+│                 │   price_max: 1000
+│                 │   category: "roses"
+└─────────┬───────┘
+          │
+          ▼
+┌─────────────────┐
+│ ChromaDB Search │ → Vector similarity search
+│                 │   Price filtering
+│                 │   Relevance scoring
+└─────────┬───────┘
+          │
+          ▼
+┌─────────────────┐
+│ Enhanced Gemini │ → Natural Romanian response
+│ Response Gen    │   Product recommendations
+│                 │   Price comparisons
+└─────────┬───────┘
+          │
+          ▼
+┌─────────────────┐
+│ Telegram Output │ → Text + Product buttons
+│                 │   Direct purchase links
+└─────────────────┘
 ```
 
-## 📈 **PERFORMANȚA SISTEMULUI**
+## AI Services Configuration
 
-### **Metrici Țintă**
-```
-Performanță:
-├── Timp răspuns: < 3 secunde (95% din cazuri)
-├── Availabilitate: 99.5% uptime
-├── Throughput: 100+ utilizatori concurenți
-└── Acuratețe intenții: > 80%
+### Primary: Gemini 2.5 Flash
+- **Model**: `gemini-2.5-flash`
+- **Usage**: Primary chat, intent analysis, response generation
+- **Features**: Structured output, Romanian language, product awareness
+- **Fallback**: OpenAI GPT-4o-mini when Gemini fails
 
-Calitate:
-├── Relevanța căutării: > 85% satisfacție
-├── Rezolvarea query-urilor: > 80% la prima încercare
-├── Conversații completate: > 70% fără escalare
-└── Rating satisfacție: > 4.5/5 stele
-```
+### Secondary: OpenAI GPT-4o-mini
+- **Model**: `gpt-4o-mini`
+- **Usage**: Fallback for chat, security validation
+- **Features**: JSON mode for structured responses
+- **Role**: Backup when Gemini unavailable
 
-### **Monitorizare și Alerting**
-```
-Metrici monitorizate:
-├── Timp de răspuns (avg, p95, p99)
-├── Rata de erori pe componentă
-├── Utilizarea resurselor (CPU, RAM, storage)
-├── Volumul de trafic pe oră/zi
-├── Distribuția intențiilor clasificate
-└── Feedback-ul utilizatorilor
+## Product Recommendation System
 
-Alerte critice:
-├── Timp răspuns > 10 secunde
-├── Rata erori > 5%
-├── AI service indisponibil
-├── Baza de date offline
-└── Utilizare memorie > 90%
-```
+### Configuration
+- **Search Limit**: 10 products per search
+- **Response Limit**: 5 products per recommendation
+- **Categories**: Chando, Peonies, French Roses, Baskets/Boxes
+- **Price Filtering**: Intelligent price range detection
 
-## 🚀 **STRATEGIA DE SCALARE**
+### Features
+- **Semantic Search**: Vector-based product matching
+- **URL Integration**: Direct product links as Telegram buttons
+- **Multiple Products**: Configurable recommendation count
+- **Price Awareness**: Automatic price filtering and comparison
 
-### **Scalare Orizontală**
-```
-Componente scalabile:
-├── API Layer: Load balancer + multiple instanțe
-├── Intelligence Layer: Distributed processing
-├── Database Layer: ChromaDB clustering
-└── Security Layer: Shared rate limiting store
-```
+## Security Architecture
 
-### **Optimizări Performanță**
-```
-Tehnici implementate:
-├── Caching răspunsuri frecvente (Redis)
-├── Connection pooling pentru API-uri
-├── Batch processing pentru embeddings
-├── Lazy loading pentru colecții mari
-└── Async processing pentru operațiuni I/O
-- chromadb cu requesturi
-- fara keywords method la intent classifier, AI only
-- Nu cu Json dar cu Redis 
-- Log la intent classifier pentru debug
-- requesturi la chromadb si logging la requesturi
-- Security Filtering la nivel avansat
-- Instagram Bot functional
-- Remove multiple definitions of same info, for example intents are defined multiple times in each prompt, have only one definition, not only intents, many other info may be defined once and then used as variables.
-```
-<!-- 
-TREBUIE RESCRIS PENTRU CA E FALS:
-## 🔮 **ROADMAP TEHNOLOGIC**
+### Multi-Layer Validation
+1. **Basic Filtering**: Keyword-based threat detection
+2. **AI Analysis**: Gemini/OpenAI security assessment
+3. **Risk Classification**: LOW/MEDIUM/HIGH threat levels
+4. **Automated Response**: Context-aware security messages
 
-### **Îmbunătățiri Planificate**
-```
-Q3 2025:
-├── Implementare completă intelligence modules
-├── Optimizare algoritmi căutare
-├── Dashboard monitoring în timp real
-└── A/B testing pentru prompt-uri
+### Threat Detection
+- Spam and promotional content
+- Inappropriate language
+- Potential security threats
+- Off-topic conversations
 
-Q4 2025:
-├── Suport multilingv complet (RO/EN/RU)
-├── Integrare sisteme plată reale
-├── Personalizare bazată pe istoric
-└── API pentru integrări terțe
+## Performance & Monitoring
 
-2026:
-├── Machine learning personalizat
-├── Analiză sentiment avansată
-├── Procesare imagini produse
-└── Arhitectură microservicii
+### Metrics Tracking
+- Response times per AI service
+- Cache hit/miss ratios
+- User activity patterns
+- Error rates and fallback usage
+
+### Optimization Features
+- Response caching with TTL
+- Batch product processing
+- Connection pooling
+- Automatic cleanup routines
+
+## Environment Variables
+
+### Required Configuration
+```env
+# AI Services
+GEMINI_API_KEY=your_gemini_key
+OPENAI_API_KEY=your_openai_key
+
+# Telegram
+TELEGRAM_BOT_TOKEN=your_telegram_token
+
+# Instagram (Optional)
+INSTAGRAM_ACCESS_TOKEN=your_instagram_token
+
+# Database
+CHROMADB_PATH=./chroma_db_flowers
+REDIS_HOST=localhost
+REDIS_PORT=6379
 ```
 
-## 📊 **STATUS CURENT PROIECT**
+## Deployment Architecture
 
-### **Componente Finalizate (100%)**
-```
-✅ PRODUCTION READY:
-├── config/
-│   ├── settings.py              ✅ 100% - Configurații complete
-│   └── faq_data.json            ✅ 100% - FAQ-uri în română
-│
-├── docs/
-│   ├── architecture.md          ✅ 100% - Documentație actualizată
-│   └── system_flow.md           ✅ 100% - Fluxuri documentate
-│
-├── src/api/
-│   ├── telegram_app.py          ✅ 100% - Bot live și funcțional
-│   └── instagram_app.py         ✅ 90%  - Necesită testare finală
-│
-├── src/intelligence/
-│   ├── intent_classifier.py     ✅ 100% - 17 intenții + AI hybrid
-│   ├── prompts.py               ✅ 100% - Brand voice + templates
-│   ├── conversation_context.py  ✅ 100% - Context management
-│   └── action_handler.py        ✅ 100% - Business logic
-│
-├── src/security/
-│   └── filters.py               ✅ 100% - Securitate completă
-│
-└── src/database/
-    ├── manager.py               ✅ 100% - ChromaDB management
-    └── __init__.py              ✅ 100% - Database interfaces
+### Development Setup
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Set environment variables
+cp .env.example .env
+
+# Initialize ChromaDB
+python -c "from src.data.chromadb_client import ChromaDBClient; ChromaDBClient()"
+
+# Run Telegram bot
+python src/api/telegram_app.py
 ```
 
-### **Componente în Finalizare (90%)**
+### Production Considerations
+- **Scaling**: Multiple bot instances with shared ChromaDB
+- **Monitoring**: Comprehensive logging and alerts
+- **Backup**: ChromaDB and conversation data backup
+- **Security**: API key rotation and access controls
+
+## File Structure
+
 ```
-🔄 IN PROGRESS:
-├── data/
-│   ├── products.json            🔄 90% - Catalog produs completat
-│   └── chunks_data.csv          🔄 90% - Date procesate pentru AI
-│
-├── src/intelligence/
-│   └── product_search.py        🔄 95% - Adaptare la noul sistem
-│
-├── src/pipeline/
-│   ├── scraper.py               🔄 90% - Web scraping xoflowers.md
-│   └── populate_db.py           🔄 90% - Populare bază de date
-│
-└── README.md                    🔄 90% - Documentație utilizator
+xoflowers-agent/
+├── src/
+│   ├── api/                    # Platform interfaces
+│   │   ├── telegram_app.py     # Main Telegram bot
+│   │   ├── main.py            # FastAPI web interface
+│   │   ├── telegram_integration.py
+│   │   └── instagram_integration.py
+│   ├── intelligence/          # AI processing
+│   │   ├── ai_engine.py       # Main AI orchestrator
+│   │   ├── security_ai.py     # Security validation
+│   │   ├── gemini_chat_manager.py
+│   │   ├── intent_classifier.py
+│   │   └── response_generator.py
+│   ├── data/                  # Data management
+│   │   ├── chromadb_client.py # Vector database
+│   │   └── faq_manager.py
+│   ├── database/              # Data storage
+│   │   ├── products.csv       # 724 products
+│   │   ├── vector_search.py
+│   │   └── simplified_search.py
+│   ├── utils/                 # Shared utilities
+│   │   ├── system_definitions.py # Configuration
+│   │   └── utils.py          # Logging & monitoring
+│   ├── config/                # Environment setup
+│   ├── security/              # Security modules
+│   └── helpers/               # Helper functions
+├── tests/                     # Test scripts
+├── docs/                      # Documentation
+└── requirements.txt           # Dependencies
 ```
 
-### **Componente de Verificat (80%)**
-```
-⚠️ NEEDS TESTING:
-├── requirements.txt             ⚠️ 80% - Cleanup dependențe
-├── .gitignore                   ⚠️ 80% - Optimizare patterns
-└── Instagram integration        ⚠️ 80% - Testare webhook live
+## Testing & Validation
+
+### Test Scripts Available
+- `test_ai_engine.py` - AI engine functionality
+- `test_gemini_analysis.py` - Gemini AI validation
+- `test_telegram_integration.py` - Bot integration
+- `test_enhanced_products.py` - Product recommendation UX
+- `test_launch_readiness.py` - Full system validation
+
+### Validation Commands
+```bash
+# Test AI engine
+python test_ai_engine.py
+
+# Test product features
+python test_enhanced_products.py
+
+# Launch readiness check
+python test_launch_readiness.py
 ```
 
-### **Metrici Performanță Actuală**
-```
-📈 PRODUCTION METRICS:
-├── Telegram Bot: 100% funcțional și testat
-├── Intent Classification: 17 tipuri suportate
-├── AI Integration: OpenAI + Gemini fallback
-├── Context System: Multi-turn conversations
-├── Database: ChromaDB cu 5+ colecții
-├── Security: Rate limiting + content filtering
-└── Response Time: <3 secunde mediu
-```
+## Future Enhancements
 
-## 🎉 **CURRENT PROJECT STATUS - JULY 14, 2025**
+### Planned Features
+1. **Category Mapping**: Enhanced ChromaDB category filtering
+2. **Redis Integration**: Persistent conversation context
+3. **Analytics Dashboard**: Real-time performance monitoring
+4. **Multi-language Support**: Extended language capabilities
+5. **Advanced Recommendations**: ML-based product suggestions
 
-### **🟢 LIVE IN PRODUCTION**
-```
-🌸 XOFlowers AI Agent - Status: PRODUCTION READY
-├── Telegram Bot: 100% LIVE and functional
-├── Enhanced AI System: 17 intent types supported
-├── Context-Aware Conversations: Full implementation
-├── Brand Voice: Premium XOFlowers experience
-├── Security Layer: Full protection enabled
-└── Response Performance: <3 seconds average
-```
-
-### **💯 COMPLETED MODULES (100%)**
-```
-✅ FULLY IMPLEMENTED:
-├── config/
-│   └── settings.py            ✅ 100% - Global configuration
-│
-├── data/
-│   ├── products.json          🔄 90% - Product catalog
-│   ├── chunks_data.csv        🔄 90% - Processed data
-│   └── faq_data.json          ✅ 100% - FAQ database
-│
-├── docs/
-│   ├── architecture.md         ✅ 100% - Updated system architecture
-│   └── system_flow.md         ✅ 100% - Complete flow documentation
-│
-├── src/api/
-│   ├── telegram_app.py        ✅ 100% - LIVE and fully functional
-│   └── instagram_app.py       ✅ 90% - Needs final testing
-│
-├── src/intelligence/
-│   ├── prompts.py             ✅ 100% - Enhanced AI prompts
-│   ├── intent_classifier.py   ✅ 100% - 17 intent types with AI
-│   ├── conversation_context.py ✅ 100% - Context management
-│   └── action_handler.py      ✅ 100% - Business logic
-│
-├── src/security/
-│   └── filters.py             ✅ 100% - Security and filtering
-│
-└── src/database/
-    ├── __init__.py            ✅ 100% - Database initialization
-    └── manager.py             ✅ 100% - Database management layer
-```
-
-### **🔄 HIGH COMPLETION (90%+)**
-```
-📊 NEAR COMPLETION:
-├── data/
-│   ├── products.json          🔄 90% - Product catalog
-│   └── chunks_data.csv        🔄 90% - Processed data
-│
-├── src/intelligence/
-│   └── product_search.py      🔄 95% - Vector search optimization
-│
-├── src/pipeline/
-│   ├── scraper.py             🔄 90% - Web scraping system
-│   └── populate_db.py         🔄 90% - Database population
-│
-└── README.md                  🔄 90% - User documentation
-```
-
-### **⚠️ NEEDS ATTENTION (80%)**
-```
-🔧 FINAL TOUCHES:
-├── requirements.txt           ⚠️ 80% - Dependency cleanup
-├── .gitignore                 ⚠️ 80% - Pattern optimization
-└── Instagram integration      ⚠️ 80% - Live webhook testing
-```
-
-### **🏆 PRODUCTION METRICS**
-```
-📈 CURRENT PERFORMANCE:
-├── 🤖 AI Intent Classification: 17 types with 95%+ accuracy
-├── 📱 Telegram Bot: 100% operational with all commands
-├── 💬 Context-Aware System: Multi-turn conversation support
-├── 🔒 Security Layer: Rate limiting + content filtering
-├── ⚡ Response Time: <3 seconds average
-├── 🎯 Brand Voice: Premium XOFlowers experience
-└── 🌐 Multi-platform: Telegram live, Instagram ready
-```
-
-## 🚀 **NEXT PHASE PRIORITIES**
-
-### **🎯 IMMEDIATE (Next 24-48 hours)**
-```
-🔥 HIGH PRIORITY:
-├── 🧪 Instagram webhook testing and validation
-├── 📊 Performance monitoring and optimization
-├── 🔧 Final dependency cleanup
-├── 📖 User documentation completion
-└── 🎮 Live user testing and feedback collection
-```
-
-### **📈 OPTIMIZATION PHASE**
-```
-🔧 SYSTEM IMPROVEMENTS:
-├── 🤖 AI model fine-tuning based on real usage
-├── 📊 Analytics dashboard implementation
-├── 🔄 Automated data refresh pipelines
-├── 🌐 Multi-language support expansion
-└── 📱 Mobile app integration planning
-```
-
-### **🌟 FUTURE ENHANCEMENTS**
-```
-🚀 ADVANCED FEATURES:
-├── 🖼️ Image recognition for flower identification
-├── 🗣️ Voice message processing
-├── 💰 Real payment gateway integration
-├── 📦 Order tracking system
-└── 🎨 Personalized recommendation engine
-```
+### Scalability Roadmap
+1. **Microservices**: Split AI engine into separate services
+2. **Load Balancing**: Multiple bot instances
+3. **Database Optimization**: Advanced ChromaDB configurations
+4. **Caching Layer**: Redis-based response caching
+5. **API Gateway**: Centralized request management
 
 ---
 
-**🎊 MILESTONE ACHIEVED: Production-Ready XOFlowers AI Agent**  
-**🌸 Status: LIVE and serving customers**  
-**📅 Completion Date: July 14, 2025**  
-**💯 Overall Progress: 95% Complete** -->
+**Last Updated**: July 2025  
+**Architecture Version**: 2.0  
+**System Status**: Production Ready
