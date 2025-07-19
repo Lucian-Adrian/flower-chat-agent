@@ -86,3 +86,37 @@ python test_chat_history.py
 Both launchers have **IDENTICAL features**, but the safe launcher fixes Windows Unicode issues:
 - **launch_enhanced_telegram_bot.py**: Original version (Unicode errors on Windows)
 - **launch_safe_telegram_bot.py**: Fixed version (same features + better reliability)
+
+🎯 Current Clean Structure:
+Essential Launchers (2 files):
+launch_safe_telegram_bot.py ✅ RECOMMENDED - Production launcher
+launch_bot.py ✅ Simple launcher
+Essential Tests (5 files):
+test_enhanced_ai_engine.py ✅ Core AI functionality
+test_enhanced_products.py ✅ Product search with buttons
+test_chat_history.py ✅ Conversation memory
+verify_system.py ✅ Full system verification
+test_telegram_bot_integration.py ✅ End-to-end testing
+Core System (src/ directory):
+src/
+├── api/telegram_app.py        # Telegram bot with buttons
+├── intelligence/ai_engine.py  # Main AI orchestrator  
+├── intelligence/security_ai.py # AI security validation
+├── data/chromadb_client.py   # Product search (724 products)
+├── helpers/system_definitions.py # Configuration
+└── database/products.csv     # Complete product database
+
+
+Essential Documentation:
+tests.md ✅ Complete testing guide
+README.md ✅ Project overview
+LAUNCH_GUIDE.md ✅ How to launch
+docs/architecture.md ✅ Technical architecture
+
+
+🚀 Ready to Use:
+# Launch the production bot:
+python launch_safe_telegram_bot.py
+
+# Test the system:
+python verify_system.py
