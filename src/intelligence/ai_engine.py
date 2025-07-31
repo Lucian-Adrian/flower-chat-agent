@@ -202,6 +202,78 @@ IMPORTANT: Ține minte tot ce discutați în conversație - numele, ocasiile, pr
             self.logger.info(f"Created new Gemini chat session for user {user_id}")
             return chat
             
+        # Cart & Payment Tools
+        from src.tools.cart_tools import CartTools
+        from src.tools.payment_tools import PaymentTools
+        import json
+        self.cart_tools = CartTools()
+        self.payment_tools = PaymentTools(self.cart_tools)
+
+        # Tool definitions for OpenAI function calling
+        self.available_tools = [
+            {
+                "type": "function",
+                "function": {
+                    "name": "add_to_cart",
+                    "description": "Adaugă un produs în cartul utilizatorului",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "user_id": {"type": "string", "description": "ID-ul utilizatorului"},
+                            "product_name": {"type": "string", "description": "Numele produsului"},
+                            "price": {"type": "number", "description": "Prețul produsului în MDL"},
+                            "product_url": {"type": "string", "description": "URL-ul produsului"}
+                        },
+                        "required": ["user_id", "product_name", "price"]
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "view_cart",
+                    "description": "Afișează conținutul cartului utilizatorului",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "user_id": {"type": "string", "description": "ID-ul utilizatorului"}
+                        },
+                        "required": ["user_id"]
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "clear_cart",
+                    "description": "Golește cartul utilizatorului",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "user_id": {"type": "string", "description": "ID-ul utilizatorului"}
+                        },
+                        "required": ["user_id"]
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "process_payment",
+                    "description": "Procesează plata pentru produsele din cart",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "user_id": {"type": "string", "description": "ID-ul utilizatorului"},
+                            "customer_name": {"type": "string", "description": "Numele clientului"},
+                            "customer_phone": {"type": "string", "description": "Telefonul clientului"}
+                        },
+                        "required": ["user_id"]
+                    }
+                }
+            }
+        ]
+
         except Exception as e:
             self.logger.error(f"Failed to create chat for user {user_id}: {e}")
             return None
