@@ -15,6 +15,7 @@ from telegram.ext import (
     MessageHandler,
     filters,
     ContextTypes,
+    CallbackQueryHandler,
 )
 from dotenv import load_dotenv
 
@@ -58,7 +59,15 @@ class XOFlowersTelegramBot:
         print("Creating Telegram application...")
         self.application = Application.builder().token(token).build()
         print("Modular components ready...")
-        # No need for centralized manager - using modular approach
+
+        # Initialize AI engine for tool calling
+        try:
+            from src.intelligence.ai_engine import EnhancedAIEngine
+            self.ai_engine = EnhancedAIEngine()
+            print("AI engine with tool calling loaded.")
+        except Exception as e:
+            print(f"[ERROR] Could not initialize EnhancedAIEngine: {e}")
+            self.ai_engine = None
 
         print("Setting up handlers...")
         self.setup_handlers()
@@ -70,8 +79,85 @@ class XOFlowersTelegramBot:
         self.application.add_handler(CommandHandler("start", self.start_command))
         self.application.add_handler(CommandHandler("help", self.help_command))
         self.application.add_handler(CommandHandler("contact", self.contact_command))
-        self.application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, self.handle_message))
+        self.application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, self.handle_message_tools))
         self.application.add_error_handler(self.error_handler)
+        self.application.add_handler(CallbackQueryHandler(self.handle_callback_query))
+
+    async def handle_message_tools(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+        """Handles all text messages using enhanced AI engine with tool calling."""
+        user = update.effective_user
+        user_id = str(user.id)
+        message_text = update.message.text
+        if not self.ai_engine:
+            await update.message.reply_text("Sistemul AI nu este disponibil momentan. Încercați mai târziu.")
+            return
+        try:
+            response = await self.ai_engine.process_message_with_tools(message_text, user_id)
+            if any(keyword in response.lower() for keyword in ["cart", "total", "produs adăugat", "comanda", "plata"]):
+                keyboard = [
+                    [
+                        InlineKeyboardButton("🛒 Vezi Cart", callback_data=f"view_cart_{user_id}"),
+                        InlineKeyboardButton("💳 Plătește", callback_data=f"pay_{user_id}")
+                    ],
+                    [
+                        InlineKeyboardButton("🗑️ Golește Cart", callback_data=f"clear_cart_{user_id}"),
+                        InlineKeyboardButton("🌹 Caută Produse", callback_data="search_products")
+                    ]
+                ]
+                reply_markup = InlineKeyboardMarkup(keyboard)
+                await update.message.reply_text(response, reply_markup=reply_markup, parse_mode='Markdown')
+            else:
+                await update.message.reply_text(response, parse_mode='Markdown')
+        except Exception as e:
+            print(f"Error handling message: {e}")
+            await update.message.reply_text("Ne pare rău, a apărut o eroare. Te rugăm să încerci din nou.")
+        
+    async def handle_message(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+        """Handles all text messages using enhanced AI engine with full product integration."""
+        user = update.effective_user
+        user_id = str(user.id)
+        message_text = update.message.text
+        try:
+            response = await self.ai_engine.process_message_with_tools(message_text, user_id)
+            if any(keyword in response.lower() for keyword in ["cart", "total", "produs adăugat", "comanda", "plata"]):
+                keyboard = [
+                    [
+                        InlineKeyboardButton("🛒 Vezi Cart", callback_data=f"view_cart_{user_id}"),
+                        InlineKeyboardButton("💳 Plătește", callback_data=f"pay_{user_id}")
+                    ],
+                    [
+                        InlineKeyboardButton("🗑️ Golește Cart", callback_data=f"clear_cart_{user_id}"),
+                        InlineKeyboardButton("🌹 Caută Produse", callback_data="search_products")
+                    ]
+                ]
+                reply_markup = InlineKeyboardMarkup(keyboard)
+                await update.message.reply_text(response, reply_markup=reply_markup, parse_mode='Markdown')
+            else:
+                await update.message.reply_text(response, parse_mode='Markdown')
+        except Exception as e:
+            print(f"Error handling message: {e}")
+            await update.message.reply_text("Ne pare rău, a apărut o eroare. Te rugăm să încerci din nou.")
+
+    async def handle_callback_query(self, update, context):
+        query = update.callback_query
+        await query.answer()
+        callback_data = query.data
+        user_id = str(query.from_user.id)
+        try:
+            if callback_data.startswith("view_cart_"):
+                response = self.ai_engine.cart_tools.view_cart(user_id)
+            elif callback_data.startswith("pay_"):
+                response = self.ai_engine.payment_tools.process_payment(user_id)
+            elif callback_data.startswith("clear_cart_"):
+                response = self.ai_engine.cart_tools.clear_cart(user_id)
+            elif callback_data == "search_products":
+                response = "🌹 Spune-mi ce flori cauți și te voi ajuta să găsești produsul perfect!"
+            else:
+                response = "Opțiune necunoscută"
+            await query.edit_message_text(text=response, parse_mode='Markdown')
+        except Exception as e:
+            print(f"Error handling callback: {e}")
+            await query.edit_message_text("A apărut o eroare. Te rugăm să încerci din nou.")
 
     async def start_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         """Handles the /start command with enhanced AI capabilities."""
@@ -105,109 +191,6 @@ Spuneți-mi cu ce vă pot ajuta astăzi! 🌺
             await update.message.reply_text(simple_message)
             logger.warning(f"Start command markdown failed, used simple text: {e}")
 
-    async def handle_message(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
-        """Handles all text messages using enhanced AI engine with full product integration."""
-        user = update.effective_user
-        user_id = str(user.id)
-        message_text = update.message.text
-
-        try:
-            await context.bot.send_chat_action(chat_id=update.effective_chat.id, action='typing')
-            
-            # Step 1: Basic message validation
-            if len(message_text) > 1000:
-                await update.message.reply_text("Mesajul este prea lung. Vă rog să-l reduceți.")
-                return
-            
-            # Step 2: Process message through ENHANCED AI engine
-            try:
-                logger.info(f"Processing message from {user.first_name} (ID: {user_id}): '{message_text[:50]}...'")
-                
-                # Process message using the enhanced Gemini+ChromaDB AI engine
-                ai_result = await process_message_ai(
-                    user_message=message_text,
-                    user_id=user_id
-                )
-                
-                if ai_result and ai_result.get('success') and ai_result.get('response'):
-                    response = ai_result['response']
-                    
-                    # Log enhanced metrics
-                    intent = ai_result.get('intent', 'unknown')
-                    confidence = ai_result.get('confidence', 0)
-                    products_found = ai_result.get('products_found', 0)
-                    service_used = ai_result.get('service_used', 'unknown')
-                    processing_time = ai_result.get('processing_time', 0)
-                    
-                    logger.info(f"[OK] Enhanced AI Response: intent={intent}, confidence={confidence:.2f}, "
-                              f"products={products_found}, service={service_used}, time={processing_time:.2f}s")
-                    
-                    # Add product information context if available
-                    if products_found > 0:
-                        logger.info(f"[SHOP] Response includes context from {products_found} products")
-                    
-                    # Check if security blocked the message
-                    if ai_result.get('security_blocked'):
-                        risk_level = ai_result.get('risk_level', 'unknown')
-                        logger.warning(f"[SHIELD] Security system blocked message - risk level: {risk_level}")
-                
-                else:
-                    # Enhanced fallback with more context
-                    intent = ai_result.get('intent', 'unknown') if ai_result else 'error'
-                    response = "🌸 Bună ziua! Cum vă pot ajuta cu florile astăzi? Puteți să-mi spuneți ce căutați."
-                    logger.warning(f"[WARNING] AI processing failed for intent: {intent}, using enhanced fallback")
-                        
-            except Exception as e:
-                logger.error(f"[ERROR] Error in enhanced AI processing: {e}")
-                response = "🌸 Îmi pare rău pentru întârziere. Sistem XOFlowers procesează cererea... Cu ce vă pot ajuta?"
-            
-            # Clean response for Telegram (remove problematic formatting)
-            response = self._clean_response_for_telegram(response)
-            
-            # Create product buttons if products are available
-            reply_markup = None
-            if ai_result and ai_result.get('products'):
-                products = ai_result.get('products', [])
-                logger.info(f"[SHOP] Found {len(products)} products for buttons")
-                
-                # Debug: Log first product structure
-                if products:
-                    logger.debug(f"[SHOP] First product structure: {products[0]}")
-                
-                reply_markup = self._create_product_buttons(products, max_buttons=5)
-                
-                if reply_markup:
-                    logger.info(f"[SHOP] Created product buttons successfully")
-                else:
-                    logger.warning(f"[SHOP] Failed to create product buttons despite having products")
-            else:
-                logger.info(f"[SHOP] No products available for buttons - ai_result has products: {ai_result.get('products') if ai_result else 'no ai_result'}")
-            
-            # Send response with retry logic
-            try:
-                await update.message.reply_text(
-                    response, 
-                    reply_markup=reply_markup
-                )
-                logger.info(f"[MOBILE] Response sent to {user.first_name} - length: {len(response)} chars")
-                
-                # Log if we included product buttons
-                if reply_markup:
-                    products_count = len(ai_result.get('products', []))
-                    buttons_count = min(5, products_count)
-                    logger.info(f"[SHOP] Sent {buttons_count} product buttons from {products_count} available products")
-                    
-            except Exception as send_error:
-                logger.error(f"[ERROR] Failed to send response: {send_error}")
-                # Fallback short response
-                await update.message.reply_text("🌸 XOFlowers vă salută! Cu ce vă putem ajuta?")
-            
-        except Exception as e:
-            logger.error(f"[ERROR] Critical error handling message: {e}")
-            try:
-                await update.message.reply_text("Ne pare rău pentru eroare. XOFlowers este mereu aici pentru dumneavoastră!")
-            except:
-                pass  # If even this fails, log it but don't crash
 
     def _clean_response_for_telegram(self, response: str) -> str:
         """Clean response text for Telegram compatibility"""
