@@ -1,1 +1,58 @@
-{}
+{
+  "XOF_20250807_152516_3E7BD8": {
+    "order_id": "XOF_20250807_152516_3E7BD8",
+    "transaction_id": "TXN_EF0DD9EE",
+    "user_id": "test_user_123",
+    "items": [
+      {
+        "product_id": "prod_1",
+        "name": "Spring Bloom Bouquet",
+        "price": 450.0,
+        "quantity": 1,
+        "url": "https://xoflowers.md/spring-bloom"
+      },
+      {
+        "product_id": "prod_2",
+        "name": "Rose Box Premium",
+        "price": 800.0,
+        "quantity": 1,
+        "url": "https://xoflowers.md/rose-box"
+      }
+    ],
+    "total_amount": 1250.0,
+    "currency": "MDL",
+    "customer_name": "Test Customer",
+    "customer_phone": "+373 XXX XXX",
+    "status": "confirmed",
+    "created_at": "2025-08-07T15:25:16.554546",
+    "payment_method": "dummy_simulation"
+  },
+  "XOF_20250807_152759_11941E": {
+    "order_id": "XOF_20250807_152759_11941E",
+    "transaction_id": "TXN_E03C23E4",
+    "user_id": "test_user_pdf",
+    "items": [
+      {
+        "product_id": "prod_1",
+        "name": "Spring Bloom",
+        "price": 450.0,
+        "quantity": 2,
+        "url": ""
+      },
+      {
+        "product_id": "prod_2",
+        "name": "Rose Box",
+        "price": 800.0,
+        "quantity": 1,
+        "url": ""
+      }
+    ],
+    "total_amount": 1700.0,
+    "currency": "MDL",
+    "customer_name": "John Doe",
+    "customer_phone": "+373 123 456",
+    "status": "confirmed",
+    "created_at": "2025-08-07T15:27:59.433072",
+    "payment_method": "dummy_simulation"
+  }
+}
