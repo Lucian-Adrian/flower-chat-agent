@@ -10,7 +10,7 @@ from datetime import datetime
 from typing import Dict, Any, Optional, List
 from dataclasses import dataclass
 
-import google.generativeai as genai
+import google.genai as genai
 
 from src.utils.system_definitions import get_service_config, get_ai_prompts
 from src.utils.utils import setup_logger, log_performance_metrics

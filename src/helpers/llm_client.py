@@ -28,7 +28,7 @@ except ImportError:
     HAS_OPENAI = False
 
 try:
-    import google.generativeai as genai
+    import google.genai as genai
     HAS_GEMINI = True
 except ImportError:
     genai = None

@@ -80,6 +80,9 @@ class AIEngine:
         self._setup_openai()
         self._setup_gemini()
         
+        # Initialize tools
+        self._initialize_tools()
+        
         self.logger.info("AI Engine initialized with OpenAI and Gemini support, caching enabled")
     
     def _setup_openai(self) -> None:
@@ -202,6 +205,12 @@ IMPORTANT: Ține minte tot ce discutați în conversație - numele, ocasiile, pr
             self.logger.info(f"Created new Gemini chat session for user {user_id}")
             return chat
             
+        except Exception as e:
+            self.logger.error(f"Failed to create Gemini chat session: {e}")
+            return None
+
+    def _initialize_tools(self):
+        """Initialize cart and payment tools"""
         # Cart & Payment Tools
         from src.tools.cart_tools import CartTools
         from src.tools.payment_tools import PaymentTools
@@ -273,10 +282,6 @@ IMPORTANT: Ține minte tot ce discutați în conversație - numele, ocasiile, pr
                 }
             }
         ]
-
-        except Exception as e:
-            self.logger.error(f"Failed to create chat for user {user_id}: {e}")
-            return None
     
     def _cleanup_old_chats(self):
         """Remove old chat sessions to prevent memory leaks"""
